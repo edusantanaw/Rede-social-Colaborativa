@@ -1,7 +1,7 @@
 import { httpResponse } from "../../presentational/protocols/httpResponse";
 import {Request, Response} from 'express';
 
-interface Controller {
+export interface Controller {
     handle: (data: any) => Promise<httpResponse>
 }
 
