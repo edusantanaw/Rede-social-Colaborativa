@@ -1,52 +1,65 @@
+import { randomUUID } from "crypto";
+import { IProject } from "../../types/project";
 import { IUser } from "../../types/user";
 
-type data = {
-    name: string
-    description: string
-    category: string
-    owner: IUser
-    collaborators: IUser[]
-}
+
 
 export class Project {
-  private name!: string;
-  private description!: string;
-  private owner!: IUser;
-  private collaborators!: IUser[];
+  private name: string;
+  private description: string;
+  private owner: IUser;
+  private collaborators?: IUser[];
+  private id: string;
 
-  constructor(data: data){
-    this.name = data.name
-    this.description = data.description
-    this.owner = data.owner
-    this.collaborators = data.collaborators
-  }
-
-  public getName(){
-    return this.name
-  }
-
-  public getDescription(){
-    return this.description
+  constructor(data: IProject) {
+    this.name = data.name;
+    this.description = data.description;
+    this.owner = data.owner;
+    this.collaborators = data.collaborators;
+    this.id = randomUUID();
   }
   
-  public getOwner(){
-    return this.owner
+  public getProject(){
+    return {
+        id: this.id,
+        name: this.name,
+        description: this.description,
+        owner: this.owner,
+        collaborators: this.collaborators
+    }
   }
 
-  public getCollaborator(){
-    return this.collaborators
+  public getId() {
+    return this.id;
   }
 
-  public addNewCollaborator(user: IUser){
-    this.collaborators = [...this.collaborators, user];
+  public getName() {
+    return this.name;
   }
 
-  public setDescription(desc: string){
-    this.description = desc
+  public getDescription() {
+    return this.description;
   }
-  
-  public setName(name: string){
+
+  public getOwner() {
+    return this.owner;
+  }
+
+  public getCollaborator() {
+    return this.collaborators;
+  }
+
+  public addNewCollaborator(user: IUser) {
+    this.collaborators = this.collaborators
+      ? [...this.collaborators, user]
+      : [user];
+  }
+
+  public setDescription(desc: string) {
+    this.description = desc;
+  }
+
+  public setName(name: string) {
     this.name = name;
   }
 }
-
