@@ -1,6 +1,6 @@
 import { ICreateUserUsecase } from "../../domain/usecases/createUserUsecase";
 import { IUserSchema } from "../../validation/schema/createUserSchema";
-import { IValidSchema } from "../../validation/schema/validSchema";
+import { IValidSchema } from "../../validation/validSchema";
 import { badRequest, created, error } from "../helpers/http-response";
 
 export class CreateUserController {

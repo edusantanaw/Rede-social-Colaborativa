@@ -22,7 +22,7 @@ export class CreateUserUsecase implements ICreateUserUsecase {
         const hashedPassord = await this.encrypter.genHash(data.password);
         const user = new User(data.name, data.email, hashedPassord, id);
         await this.userRepository.save(user);
-        const token = this.generateToken.generate(user.getId());
+        const token = await this.generateToken.generate(user.getId());
         return {token, user}
     }
 }

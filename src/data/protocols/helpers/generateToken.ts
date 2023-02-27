@@ -1,3 +1,3 @@
 export interface IGenerateToken {
-    generate: (userId: string) => string;
+    generate: (userId: string) => Promise<string>;
 }
