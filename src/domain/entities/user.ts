@@ -23,6 +23,7 @@ export class User {
     public getPassword(): string{
         return this.password;
     }
+    
     public getId(){
         return this.id;
     }
