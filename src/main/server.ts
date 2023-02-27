@@ -1,4 +1,5 @@
 import express from 'express';
+import routes from './config/routes';
 
 export class Server {
     private app = express();
@@ -16,6 +17,7 @@ export class Server {
 
     public bootstrap(){
         this.middlewares();
+        routes(this.app);
         this.start();
     }
 }
