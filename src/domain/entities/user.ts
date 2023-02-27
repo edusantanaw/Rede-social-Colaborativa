@@ -4,7 +4,7 @@ export class User {
     private email: string;
     private password: string;
     private id: string;
-    private roles: string[] = []
+    private roles: string[] = [];
 
     constructor(name: string, email: string, password: string, id: string){
         this.name = name;

@@ -8,9 +8,7 @@ export class AuthUsecase implements IAuthUsecase {
         private readonly repository: IAuthRepository,
         private readonly encrypter: ICompareHash,
         private readonly generateToken: IGenerateToken
-    ){
-
-    }
+    ){}
     public async auth(email: string, password: string){
         const user = await this.repository.loadByEmail(email);
         if(!user) throw new Error("User not found!");

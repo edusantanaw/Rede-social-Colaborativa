@@ -13,15 +13,24 @@ function created(data: unknown){
     }
 }
 
-function error(error: unknown){
+function error(error: Error){
     return {
         statusCode: 400,
-        body: error
+        body: error.message
     }
+}
+
+function ok(data: unknown){
+    return {
+        statusCode: 200,
+        body: data    
+    }
+
 }
 
 export {
     badRequest,
     created,
-    error
+    error,
+    ok
 }
