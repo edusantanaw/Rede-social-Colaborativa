@@ -15,6 +15,6 @@ export class ValidSchema implements IValidSchema {
     if(isSchemaValid.success){
         return {error: null}
     }
-    return {error: isSchemaValid.error}
+    return {error: isSchemaValid.error.errors[0]}
 }
 }

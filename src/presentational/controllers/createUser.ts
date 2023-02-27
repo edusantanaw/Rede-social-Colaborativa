@@ -16,7 +16,8 @@ export class CreateUserController {
       const { user, token } = await this.createUserUsecase.execute(data);
       return created({ user, token });
     } catch (err) {
-      return error(err);
+      const e = err as Error;
+      return error(e.message);
     }
   }
 }

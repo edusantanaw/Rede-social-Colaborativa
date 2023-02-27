@@ -5,5 +5,5 @@ import { makeCreateUserController } from "../factories/controllers/createUser";
 const adapter = new Adapter()
 
 export default function(router: Router){
-    router.post("/api/user", adapter.make(makeCreateUserController()) )
+    router.post("/user", adapter.make(makeCreateUserController()) )
 }
