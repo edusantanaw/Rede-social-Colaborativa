@@ -13,7 +13,15 @@ function created(data: unknown){
     }
 }
 
+function error(error: unknown){
+    return {
+        statusCode: 400,
+        body: error
+    }
+}
+
 export {
     badRequest,
-    created
+    created,
+    error
 }

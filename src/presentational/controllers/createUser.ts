@@ -1,7 +1,7 @@
 import { ICreateUserUsecase } from "../../domain/usecases/createUserUsecase";
 import { IUserSchema } from "../../validation/schema/createUserSchema";
 import { IValidSchema } from "../../validation/schema/validSchema";
-import { badRequest, created } from "../helpers/http-response";
+import { badRequest, created, error } from "../helpers/http-response";
 
 export class CreateUserController {
   constructor(
@@ -10,9 +10,13 @@ export class CreateUserController {
   ) {}
 
   public async handle(data: IUserSchema) {
-    const isSchemaValid = this.validSchema.valid(data);
-    if (isSchemaValid.error) return badRequest(isSchemaValid.error.message);
-    const { user, token } = await this.createUserUsecase.execute(data);
-    return created({ user, token });
+    try {
+      const isSchemaValid = this.validSchema.valid(data);
+      if (isSchemaValid.error) return badRequest(isSchemaValid.error.message);
+      const { user, token } = await this.createUserUsecase.execute(data);
+      return created({ user, token });
+    } catch (err) {
+      return error(err);
+    }
   }
 }
