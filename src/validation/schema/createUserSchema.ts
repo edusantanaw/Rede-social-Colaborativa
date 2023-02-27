@@ -12,5 +12,8 @@ export const userSchema = z.object({
     .max(20, "Password must have less than 20 characteres!"),
 });
 export type IUserSchema = z.infer<typeof userSchema>;
+const a = userSchema.safeParse({
+    name: "edu"
+})
 
 export type ICreateUserSchema = z.ZodObject<any>
