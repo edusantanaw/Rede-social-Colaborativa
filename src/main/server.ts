@@ -10,7 +10,8 @@ export class Server {
     }
 
     private start(){
-        this.app.listen(this.PORT);    
+        const cb = () => console.log(`Server running at ${this.PORT}`)
+        this.app.listen(this.PORT, cb);    
     }
 
     public bootstrap(){
