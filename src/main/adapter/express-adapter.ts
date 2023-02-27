@@ -14,5 +14,4 @@ export default function (constroller: Controller){
         })
         return res.status(statusCode).json(body);
     }
-
 }
