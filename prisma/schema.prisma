@@ -11,9 +11,32 @@ datasource db {
 }
 
 model User {
-  id   String    @id 
-  name String
-  email String
-  password String
-  roles String[]
+  id             String          @id
+  name           String
+  email          String          @unique
+  password       String
+  roles          String[]
+  Project        Project[]
+  Collaborations Collaborators[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @default(now()) @updatedAt
+}
+
+model Project {
+  id             String          @id
+  name           String
+  description    String
+  user           User            @relation(fields: [ownerId], references: [id])
+  ownerId        String
+  Collaborations Collaborators[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @default(now()) @updatedAt
+}
+
+model Collaborators {
+  id        String  @id
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
 }

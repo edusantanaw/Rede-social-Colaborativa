@@ -2,20 +2,18 @@ import { randomUUID } from "crypto";
 import { IProject } from "../../types/project";
 import { IUser } from "../../types/user";
 
-
-
 export class Project {
   private name: string;
   private description: string;
-  private owner: IUser;
-  private collaborators?: IUser[];
+  private owner: string;
+  private collaborators: string[];
   private id: string;
 
   constructor(data: IProject) {
     this.name = data.name;
     this.description = data.description;
     this.owner = data.owner;
-    this.collaborators = data.collaborators;
+    this.collaborators = data.collaborators ?? [];
     this.id = randomUUID();
   }
   
@@ -49,10 +47,10 @@ export class Project {
     return this.collaborators;
   }
 
-  public addNewCollaborator(user: IUser) {
+  public addNewCollaborator(userId: string) {
     this.collaborators = this.collaborators
-      ? [...this.collaborators, user]
-      : [user];
+      ? [...this.collaborators, userId]
+      : [userId];
   }
 
   public setDescription(desc: string) {
