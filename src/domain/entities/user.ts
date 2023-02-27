@@ -4,12 +4,14 @@ export class User {
     private email: string;
     private password: string;
     private id: string;
+    private roles: string[] = []
 
     constructor(name: string, email: string, password: string, id: string){
         this.name = name;
         this.email = email;
         this.password = password;
         this.id = id;
+        this.roles = ["USER"]
     }
     
     public getName(): string{
@@ -38,6 +40,14 @@ export class User {
 
     public setEmail(email: string){
         this.email = email;
+    }
+
+    public getRoles(){
+        return this.roles;
+    }
+
+    public addNewRole(role: string){
+        this.roles = [...this.roles, role];
     }
 
 }

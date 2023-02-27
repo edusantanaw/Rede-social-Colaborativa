@@ -1,6 +1,7 @@
 import { IGenerateToken } from "../data/protocols/helpers/generateToken";
 import jwt from "jsonwebtoken";
 import { promisify } from "node:util";
+import { IUser } from "../types/user";
 
 export class JwtToken implements IGenerateToken {
   private secret: string = "any_secret";
@@ -11,7 +12,7 @@ export class JwtToken implements IGenerateToken {
 
   public decodeUser(token: string) {
     try {
-      const userId = jwt.decode(token);
+      const userId = jwt.decode(token) as IUser;
       return userId;
     } catch (error) {
       return null;

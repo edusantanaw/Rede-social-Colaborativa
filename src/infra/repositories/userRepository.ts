@@ -10,7 +10,8 @@ export class UserRepository {
                 id: data.getId(),
                 name: data.getName(),
                 email: data.getEmail(),
-                password: data.getPassword()
+                password: data.getPassword(),
+                roles: data.getRoles()
             }
         })
     }
@@ -23,4 +24,9 @@ export class UserRepository {
         })
        return users;
     }
+    public async findById(id: string) {
+        const findUser = await user.findFirst({where: { id}}) 
+        return findUser;
+    }
+
 }
