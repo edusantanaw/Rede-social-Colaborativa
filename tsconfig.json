@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "outDir": "dist",
+    "target": "es2022",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+}
