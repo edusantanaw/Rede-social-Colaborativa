@@ -1,4 +1,3 @@
-import { IUser } from "./user"
 
 export type IProject = {
     name: string
