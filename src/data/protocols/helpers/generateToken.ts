@@ -1,3 +1,5 @@
+import { IUser } from "../../../types/user";
+
 export interface IGenerateToken {
-    generate: (userId: string) => Promise<string>;
+    generate: (user: IUser) => Promise<string>;
 }

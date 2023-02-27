@@ -5,8 +5,8 @@ import { IUser } from "../types/user";
 
 export class JwtToken implements IGenerateToken {
   private secret: string = "any_secret";
-  public async generate(userId: string): Promise<string> {
-    const token = await promisify(jwt.sign)(userId, this.secret);
+  public async generate(user: IUser): Promise<string> {
+    const token = await promisify(jwt.sign)(user, this.secret);
     return token as string;
   }
 

@@ -4,8 +4,8 @@ import {user} from '../prisma'
 
 export class UserRepository {
     
-    public async save(data: User): Promise<void>{
-        await user.create({
+    public async save(data: User): Promise<IUser>{
+        const newUser =await user.create({
             data: {
                 id: data.getId(),
                 name: data.getName(),
@@ -14,6 +14,7 @@ export class UserRepository {
                 roles: data.getRoles()
             }
         })
+        return newUser;
     }
 
     public async loadByEmail(email: string): Promise<IUser | null> {
