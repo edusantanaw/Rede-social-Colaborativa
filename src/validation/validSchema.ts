@@ -1,7 +1,7 @@
 import { ZodObject } from "zod";
 
 export interface IValidSchema {
-    valid: <T>(data:  T) => { error: {message: string} | null} 
+  valid: <T>(data: T) => { error: { message: string } | null };
 }
 
 export class ValidSchema implements IValidSchema {
@@ -12,9 +12,9 @@ export class ValidSchema implements IValidSchema {
 
   public valid<T>(data: T) {
     const isSchemaValid = this.schema.safeParse(data);
-    if(isSchemaValid.success){
-        return {error: null}
+    if (isSchemaValid.success) {
+      return { error: null };
     }
-    return {error: isSchemaValid.error.errors[0]}
-}
+    return { error: isSchemaValid.error.errors[0] };
+  }
 }

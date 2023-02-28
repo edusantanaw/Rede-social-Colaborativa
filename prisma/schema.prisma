@@ -11,26 +11,32 @@ datasource db {
 }
 
 model User {
-  id             String          @id
-  name           String
-  email          String          @unique
-  password       String
-  roles          String[]
-  Project        Project[]
+  id            String          @id
+  name          String
+  email         String          @unique
+  password      String
+  roles         String[]
+  Project       Project[]
   Collaborators Collaborators[]
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @default(now()) @updatedAt
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now()) @updatedAt
+  Invites       Invites[]
+
+  @@map("user")
 }
 
 model Project {
-  id             String          @id
-  name           String
-  description    String
-  user           User            @relation(fields: [ownerId], references: [id])
-  ownerId        String
+  id            String          @id
+  name          String
+  description   String
+  user          User            @relation(fields: [ownerId], references: [id])
+  ownerId       String
   Collaborators Collaborators[]
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @default(now()) @updatedAt
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now()) @updatedAt
+  Invites       Invites[]
+
+  @@map("project")
 }
 
 model Collaborators {
@@ -39,4 +45,16 @@ model Collaborators {
   userId    String
   project   Project @relation(fields: [projectId], references: [id])
   projectId String
+
+  @@map("collaborators")
+}
+
+model Invites {
+  id        String  @id
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
+  invited   User    @relation(fields: [invitedId], references: [id])
+  invitedId String
+
+  @@map("invites")
 }

@@ -1,11 +1,11 @@
 import { IAuthUsecase } from "../../domain/usecases/authUsecase";
 import { ICompareHash } from "../protocols/helpers/encrypter";
 import { IGenerateToken } from "../protocols/helpers/generateToken";
-import { IAuthRepository } from "../protocols/repositories/authRepository";
+import { ILoadUserByEmailRepository } from "../protocols/repositories/authRepository";
 
 export class AuthUsecase implements IAuthUsecase {
     constructor(
-        private readonly repository: IAuthRepository,
+        private readonly repository: ILoadUserByEmailRepository,
         private readonly encrypter: ICompareHash,
         private readonly generateToken: IGenerateToken
     ){}
