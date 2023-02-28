@@ -2,6 +2,6 @@
 export type IProject = {
     name: string
     description: string
-    owner: string
+    ownerId: string
     collaborators?: string[]
 }

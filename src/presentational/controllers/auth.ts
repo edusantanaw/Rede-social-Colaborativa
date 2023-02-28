@@ -1,9 +1,10 @@
 import { IAuthUsecase } from "../../domain/usecases/authUsecase";
+import { Controller } from "../../main/adapter/adapter";
 import { IAuthSchema } from "../../validation/schema/authSchema";
 import { IValidSchema } from "../../validation/validSchema";
 import { badRequest, error, ok } from "../helpers/http-response";
 
-export class AuthController {
+export class AuthController implements Controller {
   constructor(
     private readonly validSchema: IValidSchema,
     private readonly authUsecase: IAuthUsecase
@@ -11,8 +12,8 @@ export class AuthController {
 
   public async handle(data: IAuthSchema) {
     try {
-      const isSchemaValid = this.validSchema.valid(data);
-      if (isSchemaValid.error) return badRequest(isSchemaValid.error.message);
+      const { error } = this.validSchema.valid(data);
+      if (error) return badRequest(error.message);
       const { token, user } = await this.authUsecase.auth(
         data.email,
         data.password

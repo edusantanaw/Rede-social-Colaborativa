@@ -17,7 +17,7 @@ model User {
   password       String
   roles          String[]
   Project        Project[]
-  Collaborations Collaborators[]
+  Collaborators Collaborators[]
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @default(now()) @updatedAt
 }
@@ -28,7 +28,7 @@ model Project {
   description    String
   user           User            @relation(fields: [ownerId], references: [id])
   ownerId        String
-  Collaborations Collaborators[]
+  Collaborators Collaborators[]
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @default(now()) @updatedAt
 }

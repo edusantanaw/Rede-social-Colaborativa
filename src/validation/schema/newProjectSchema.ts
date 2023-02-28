@@ -9,7 +9,7 @@ export const projectSchema = z.object({
     .string({ required_error: "Description is required!" })
     .min(1)
     .max(250),
-  owner: z.string({ required_error: "Owner id is required!" }),
+  ownerId: z.string({ required_error: "Owner id is required!" }),
 });
 
 export type IProjectSchema = z.infer<typeof projectSchema>;
