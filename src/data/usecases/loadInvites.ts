@@ -1,4 +1,4 @@
-import { ILoadInvites } from "../../domain/usecases/ILoadInvites";
+import { ILoadAllInvites } from "../../domain/usecases/ILoadInvites";
 import { invites } from "../../types/invites";
 import { ILoadUserByIdRepository } from "../protocols/repositories/loadUserById";
 
@@ -6,7 +6,7 @@ interface ILoadInvitesRepository {
   loadAll: (userId: string) => Promise<invites[] | null>;
 }
 
-export class LoadInvitesUsecase implements ILoadInvites {
+export class LoadAllInvitesUsecase implements ILoadAllInvites {
   constructor(
     private readonly invitesRepository: ILoadInvitesRepository,
     private readonly userRepository: ILoadUserByIdRepository

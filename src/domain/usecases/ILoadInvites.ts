@@ -1,5 +1,5 @@
 import { invites } from "../../types/invites";
 
-export interface ILoadInvites {
+export interface ILoadAllInvites {
   loadAll: (userId: string) => Promise<invites[] | null>;
 }
