@@ -50,11 +50,13 @@ model Collaborators {
 }
 
 model Invites {
-  id        String  @id
-  project   Project @relation(fields: [projectId], references: [id])
+  id        String   @id
+  project   Project  @relation(fields: [projectId], references: [id])
   projectId String
-  invited   User    @relation(fields: [invitedId], references: [id])
+  invited   User     @relation(fields: [invitedId], references: [id])
   invitedId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@map("invites")
 }

@@ -11,4 +11,18 @@ export class InviteRepository {
       },
     });
   }
+
+  public async loadAll(userId: string) {
+    const allInvites = await invites.findMany({
+      where: {
+        invitedId: userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      }
+
+    });
+    if (allInvites.length == 0) return null;
+    return allInvites;
+  }
 }

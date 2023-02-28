@@ -20,6 +20,7 @@ export class UserRepository {
     });
     return users;
   }
+  
   public async findById(id: string) {
     const findUser = await user.findFirst({ where: { id } });
     return findUser;
