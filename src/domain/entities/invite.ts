@@ -1,50 +1,56 @@
 import { randomUUID } from "node:crypto";
 
+type inviteData = {
+  invitedId: string;
+  projectId: string;
+  id?: string;
+  status?: string;
+};
 
 export class Invite {
-    private id: string;
-    private invitedId: string;
-    private projectId: string;
-    private status: string;
-    constructor(invitedId: string, projectId: string, id?:string, status?:string){
-        this.invitedId = invitedId;
-        this.projectId = projectId;
-        this.id = id ?? randomUUID();
-        this.status = status ?? "pending"
-    }
-    public getInvite(){
-        return {
-            id: this.id,
-            invitedId: this.invitedId,
-            projectId: this.projectId,
-            status: this.status
-        };
-    }
-    public getId(){
-        return this.id;
-    }
+  private id: string;
+  private invitedId: string;
+  private projectId: string;
+  private status: string;
+  constructor({invitedId, projectId, id, status}: inviteData) {
+    this.invitedId = invitedId;
+    this.projectId = projectId;
+    this.id = id ?? randomUUID();
+    this.status = status ?? "pending";
+  }
+  public getInvite() {
+    return {
+      id: this.id,
+      invitedId: this.invitedId,
+      projectId: this.projectId,
+      status: this.status,
+    };
+  }
+  public getId() {
+    return this.id;
+  }
 
-    public getInvitedId(){
-        return this.invitedId;
-    }
+  public getInvitedId() {
+    return this.invitedId;
+  }
 
-    public getProjectId(){
-        return this.projectId;
-    }
+  public getProjectId() {
+    return this.projectId;
+  }
 
-    public getStatus(){
-        return this.status;
-    }
+  public getStatus() {
+    return this.status;
+  }
 
-    public setInvitedId(invitedId: string){
-        this.invitedId = invitedId
-    }
+  public setInvitedId(invitedId: string) {
+    this.invitedId = invitedId;
+  }
 
-    public setProjectId(projectId: string){
-        this.projectId =  projectId;
-    }
+  public setProjectId(projectId: string) {
+    this.projectId = projectId;
+  }
 
-    public setStatus(status: string){
-        this.status = status;
-    }
+  public setStatus(status: string) {
+    this.status = status;
+  }
 }

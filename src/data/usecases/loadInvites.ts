@@ -13,7 +13,7 @@ export class LoadAllInvitesUsecase implements ILoadAllInvites {
   ) {}
 
   public async loadAll(userId: string): Promise<invites[] | null> {
-    const userExits = await this.userRepository.loadById(userId);
+    const userExits = await this.userRepository.findById(userId);
     if (!userExits) throw new Error("User not exists!");
     const invites = await this.invitesRepository.loadAll(userId);
     return invites;

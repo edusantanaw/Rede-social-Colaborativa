@@ -1,13 +1,11 @@
-import { randomUUID } from "crypto";
+import { Invite } from "../../domain/entities/invite";
 import { invites } from "../prisma";
 
 export class InviteRepository {
-  public async invite(invitedId: string, projectId: string) {
+  public async invite(data: Invite) {
     await invites.create({
       data: {
-        id: randomUUID(),
-        invitedId,
-        projectId,
+        ...data.getInvite(),
       },
     });
   }
@@ -19,8 +17,7 @@ export class InviteRepository {
       },
       orderBy: {
         createdAt: "desc",
-      }
-
+      },
     });
     if (allInvites.length == 0) return null;
     return allInvites;

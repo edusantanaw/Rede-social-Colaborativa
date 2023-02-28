@@ -1,3 +1,4 @@
+import { Invite } from "../../domain/entities/invite";
 import { Project } from "../../domain/entities/project";
 import {
   IInviteCollaboratorUsecase,
@@ -6,7 +7,7 @@ import {
 import { ILoadProjectByIdRepository } from "../protocols/repositories/loadProjectById";
 
 interface IInviteRepository {
-  invite: (invitedId: string, projectId: string) => Promise<void>;
+  invite: (data: Invite) => Promise<void>;
 }
 
 export class InviteCollaboratorUsecase implements IInviteCollaboratorUsecase {
@@ -22,6 +23,7 @@ export class InviteCollaboratorUsecase implements IInviteCollaboratorUsecase {
     const collaborators = project.getCollaborator();
     if (collaborators.includes(data.invitedId))
       throw new Error("User already is a collaborator!");
-    await this.inviteRepository.invite(data.invitedId, project.getId());
+    const invite = new Invite({ ...data });
+    await this.inviteRepository.invite(invite);
   }
 }
