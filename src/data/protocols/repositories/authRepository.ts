@@ -1,6 +1,5 @@
 import { IUser } from "../../../types/user";
 
-export interface IAuthRepository {
+export interface ILoadUserByEmailRepository {
     loadByEmail: (email: string) => Promise< IUser| null> 
-
 }

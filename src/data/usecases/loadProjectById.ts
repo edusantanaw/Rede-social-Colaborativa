@@ -1,9 +1,8 @@
 import { ILoadProjectByIdUsecase } from "../../domain/usecases/loadProjectById";
 import { IProject } from "../../types/project";
+import { ILoadProjectByIdRepository } from "../protocols/repositories/loadProjectById";
 
-interface ILoadProjectByIdRepository {
-  loadById: (id: string) => Promise<IProject | null>;
-}
+
 
 export class LoadProjectById implements ILoadProjectByIdUsecase {
   constructor(private readonly repository: ILoadProjectByIdRepository) {}

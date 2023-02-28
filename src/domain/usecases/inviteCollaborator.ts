@@ -1,7 +1,6 @@
 export type inviteData = {
-    userId: string;
     projectId: string;
-    invitedUser: string;
+    invitedId: string;
 }
 
 export interface IInviteCollaboratorUsecase {

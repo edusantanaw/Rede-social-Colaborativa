@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 export class User {
   private name: string;
   private email: string;
@@ -5,11 +7,11 @@ export class User {
   private id: string;
   private roles: string[] = [];
 
-  constructor(name: string, email: string, password: string, id: string) {
+  constructor(name: string, email: string, password: string) {
     this.name = name;
     this.email = email;
     this.password = password;
-    this.id = id;
+    this.id = randomUUID();
     this.roles = ["USER"];
   }
 
