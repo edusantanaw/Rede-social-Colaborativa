@@ -9,6 +9,6 @@ export class UserAdapter extends Adapter {
   override authorized(req: Request) {
     const token = getToken(req);
     const isValid = jwtToken.tokenIsValid(token);
-    if(!isValid) throw "Token is invalid!"
+    return isValid;
   }
 }

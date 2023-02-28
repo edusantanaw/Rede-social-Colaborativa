@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { httpResponse } from "../../presentational/protocols/httpResponse";
 
-export interface Controller {
+export interface Controller{
   handle: (data: any) => Promise<httpResponse>;
 }
 
 export class Adapter {
   public make(controller: Controller) {
     return async (req: Request, res: Response) => {
+      if (!this.authorized(req)) return res.status(401).json("Unathorized!");
       try {
-        this.authorized(req);
         const { body, statusCode } = await controller.handle({
           ...req.body,
           ...req.params,
@@ -17,12 +17,12 @@ export class Adapter {
         });
         return res.status(statusCode).json(body);
       } catch (error) {
-        return res.status(401).json(error);
+        return res.status(500).json("Internal server error!");
       }
     };
   }
 
   public authorized(req: Request) {
-    return;
+    return true;
   }
 }

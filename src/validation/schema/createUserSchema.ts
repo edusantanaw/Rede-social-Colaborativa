@@ -14,5 +14,3 @@ export const userSchema = z.object({
 
 export type IUserSchema = z.infer<typeof userSchema>;
 
-
-export type ICreateUserSchema = z.ZodObject<any>
