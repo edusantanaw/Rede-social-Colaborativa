@@ -1,4 +1,3 @@
 export interface IAcceptOrDeclineInviteUsecase {
-  accept: (inviteId: string) => Promise<void>;
-  decline: (inviteId: string) => Promise<void>;
+  update: (inviteId: string, status: string) => Promise<void>;
 }

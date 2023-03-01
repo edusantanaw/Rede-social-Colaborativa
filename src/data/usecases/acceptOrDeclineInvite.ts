@@ -1,29 +1,56 @@
 import { Invite } from "../../domain/entities/invite";
+import { Project } from "../../domain/entities/project";
 import { IAcceptOrDeclineInviteUsecase } from "../../domain/usecases/acceptOrDeclineInvite";
 import { invites } from "../../types/invites";
+import { IProject } from "../../types/project";
 
 interface IAcceptOrDeclineInviteRepository {
   loadById: (id: string) => Promise<invites | null>;
-  updateStatus: (inviteId: string) => Promise<void>;
+  updateStatus: (inviteId: string, status: string) => Promise<void>;
+}
+
+interface IUpdateProjectCollaborators {
+  loadById: (id: string) => Promise<IProject | null>;
+}
+
+interface INewCollaboratorRepository {
+    create: (projectId: string, userId: string) => Promise<void>;
 }
 
 export class AcceptOrDeclineInviteUsecase
   implements IAcceptOrDeclineInviteUsecase
 {
   constructor(
-    private readonly inviteRepository: IAcceptOrDeclineInviteRepository
+    private readonly inviteRepository: IAcceptOrDeclineInviteRepository,
+    private readonly projectRepository: IUpdateProjectCollaborators,
+    private readonly collaboratorRepository: INewCollaboratorRepository
   ) {}
 
-  public async accept(inviteId: string): Promise<void> {
+  public async update(inviteId: string, status: string): Promise<void> {
     const invite = await this.getInvite(inviteId);
-    invite.setStatus("accepted");
-    await this.updateStatus(invite.getStatus())
+    invite.setStatus(status);
+    if (status === "accepted") {
+      this.accept(invite);
+    } else {
+      this.updateStatus(invite);
+    }
   }
 
-  public async decline(inviteId: string): Promise<void> {
-    const invite = await this.getInvite(inviteId);
-    invite.setStatus("declined");
-    await this.updateStatus(invite.getStatus())
+  private async accept(invite: Invite) {
+    const maybeProject = await this.projectRepository.loadById(
+      invite.getProjectId()
+    );
+    if (!maybeProject) throw new Error("Project not exists!");
+    const project = new Project(maybeProject);
+    await this.updateStatus(invite);
+    await this.collaboratorRepository.create(project.getId(), invite.getId());
+  }
+
+  private async updateStatus(invite: Invite) {
+    await this.inviteRepository.updateStatus(
+      invite.getId(),
+      invite.getStatus()
+    );
   }
 
   private async getInvite(inviteId: string): Promise<Invite> {
@@ -31,9 +58,5 @@ export class AcceptOrDeclineInviteUsecase
     if (!inviteExits) throw new Error("Invite not exists!");
     const invite = new Invite(inviteExits);
     return invite;
-  }
-
-  private async updateStatus(inviteId: string): Promise<void> {
-    await this.inviteRepository.updateStatus(inviteId);
   }
 }

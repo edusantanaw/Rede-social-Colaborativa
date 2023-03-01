@@ -15,15 +15,15 @@ export class Project {
     this.collaborators = data.collaborators ?? [];
     this.id = randomUUID();
   }
-  
-  public getProject(){
+
+  public getProject() {
     return {
-        id: this.id,
-        name: this.name,
-        description: this.description,
-        owner: this.ownerId,
-        collaborators: this.collaborators
-    }
+      id: this.id,
+      name: this.name,
+      description: this.description,
+      owner: this.ownerId,
+      collaborators: this.collaborators,
+    };
   }
 
   public getId() {
@@ -46,12 +46,18 @@ export class Project {
     return this.collaborators;
   }
 
-
   public setDescription(desc: string) {
     this.description = desc;
   }
 
   public setName(name: string) {
     this.name = name;
+  }
+
+  public addNewColab(userId: string) {
+    const newCollabs = this.collaborators
+      ? [...this.collaborators, userId]
+      : [userId];
+    this.collaborators = newCollabs;
   }
 }
