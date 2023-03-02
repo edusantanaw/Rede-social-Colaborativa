@@ -1,5 +1,6 @@
+import { collabs } from "../../types/collabs";
 
 
 export interface ILoadCollabs {
-    load: (projectId: string) => Promise<string[] | null>
+    load: (projectId: string) => Promise<collabs[] | null>
 }

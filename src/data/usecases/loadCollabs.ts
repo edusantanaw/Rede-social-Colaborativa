@@ -1,8 +1,9 @@
 import { ILoadCollabs } from "../../domain/usecases/loadCollabs";
+import { collabs } from "../../types/collabs";
 import { ILoadProjectByIdRepository } from "../protocols/repositories/loadProjectById";
 
 interface ILoadCollabsRepository {
-  load: (projectId: string) => Promise<string[]>;
+  load: (projectId: string) => Promise<collabs[]>;
 }
 
 export class LoadCollabs implements ILoadCollabs {
@@ -10,9 +11,9 @@ export class LoadCollabs implements ILoadCollabs {
     private readonly collabsRepository: ILoadCollabsRepository,
     private readonly projectRepository: ILoadProjectByIdRepository
   ) {}
-  public async load(projectId: string): Promise<string[] | null> {
+  public async load(projectId: string): Promise<collabs[] | null> {
     const projectExists = !!(await this.projectRepository.loadById(projectId));
-    if(projectExists) throw new Error("Project not exists!")
+    if(!projectExists) throw new Error("Project not exists!")
     const collabs = await this.collabsRepository.load(projectId);
     if (collabs.length === 0) return null;
     return collabs;

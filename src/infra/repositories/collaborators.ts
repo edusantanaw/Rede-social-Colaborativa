@@ -11,4 +11,13 @@ export class CollaboratorRepository {
       },
     });
   }
+
+  public async load(projectId: string) {
+    const collabs = await collaborators.findMany({
+      where: {
+        projectId,
+      },
+    });
+    return collabs;
+  }
 }
