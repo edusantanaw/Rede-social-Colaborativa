@@ -11,7 +11,7 @@ interface IAcceptOrDeclineInviteRepository {
 }
 
 interface INewCollaboratorRepository {
-    create: (projectId: string, userId: string) => Promise<void>;
+  create: (projectId: string, userId: string) => Promise<void>;
 }
 
 export class AcceptOrDeclineInviteUsecase
@@ -26,11 +26,9 @@ export class AcceptOrDeclineInviteUsecase
   public async update(inviteId: string, status: string): Promise<void> {
     const invite = await this.getInvite(inviteId);
     invite.setStatus(status);
-    if (status === "accepted") {
-      this.accept(invite);
-    } else {
-      this.updateStatus(invite);
-    }
+    status === "accepted"
+      ? await this.accept(invite)
+      : await this.updateStatus(invite);
   }
 
   private async accept(invite: Invite) {

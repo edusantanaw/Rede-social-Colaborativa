@@ -21,6 +21,7 @@ model User {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt
   Invites       Invites[]
+  Task          Task[]
 
   @@map("user")
 }
@@ -35,6 +36,7 @@ model Project {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt
   Invites       Invites[]
+  Task          Task[]
 
   @@map("project")
 }
@@ -60,4 +62,17 @@ model Invites {
   updatedAt DateTime @default(now()) @updatedAt
 
   @@map("invites")
+}
+
+model Task {
+  id          String   @id
+  project     Project  @relation(fields: [projectId], references: [id])
+  projectId   String
+  title       String
+  description String
+  done        Boolean
+  user        User     @relation(fields: [assignedTo], references: [id])
+  assignedTo  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
 }
