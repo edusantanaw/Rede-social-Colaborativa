@@ -3,7 +3,7 @@ import { Project } from "../../domain/entities/project";
 import { IProject } from "../../types/project";
 
 export class ProjectRepository {
-  public async save(data: Project) {
+  public async create(data: Project) {
     const newProject = await project.create({
       data: {
         id: data.getId(),

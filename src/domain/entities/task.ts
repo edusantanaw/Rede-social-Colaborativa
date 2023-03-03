@@ -26,6 +26,17 @@ export class Task {
     this.id = id ?? randomUUID();
   }
 
+  public getTask(){
+    return {
+        id: this.id,
+        title: this.title,
+        description: this.description,
+        done: this.done,
+        assignedTo: this.assignedTo,
+        projectId: this.projectId
+    }
+  }
+
   public get getTitle() {
     return this.title;
   }

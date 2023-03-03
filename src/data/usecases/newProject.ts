@@ -1,17 +1,16 @@
 import { Project } from "../../domain/entities/project";
 import { INewProjectUsecase } from "../../domain/usecases/newProject";
 import { IProject } from "../../types/project";
-
-interface ICreateProjectRepository {
-  save: (data: Project) => Promise<IProject>;
-}
+import { ICreateRepository } from "../protocols/repositories/createRepository";
 
 export class NewProjectUsecase implements INewProjectUsecase {
-  constructor(private readonly projectRepository: ICreateProjectRepository) {}
+  constructor(
+    private readonly projectRepository: ICreateRepository<IProject, Project>
+  ) {}
 
   public async create(data: IProject): Promise<IProject> {
     const project = new Project(data);
-    const newProject = await this.projectRepository.save(project);
+    const newProject = await this.projectRepository.create(project);
     return newProject;
   }
 }
