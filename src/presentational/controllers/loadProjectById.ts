@@ -1,5 +1,6 @@
-import { ILoadProjectByIdUsecase } from "../../domain/usecases/loadProjectById";
+import { ILoadByIdUsecase } from "../../domain/usecases/loadProjectById";
 import { Controller } from "../../main/adapter/adapter";
+import { IProject } from "../../types/project";
 import {
   badRequest,
   noContent,
@@ -10,7 +11,7 @@ import {
 type data = { id: string };
 
 export class LoadProjectByIdContoller implements Controller {
-  constructor(private readonly loadProjectUsecase: ILoadProjectByIdUsecase) {}
+  constructor(private readonly loadProjectUsecase: ILoadByIdUsecase<IProject>) {}
 
   public async handle({ id }: data) {
     try {
