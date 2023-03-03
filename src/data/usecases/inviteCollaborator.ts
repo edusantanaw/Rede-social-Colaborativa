@@ -4,7 +4,6 @@ import {
   IInviteCollaboratorUsecase,
   inviteData,
 } from "../../domain/usecases/inviteCollaborator";
-import { invites } from "../../types/invites";
 import { IProject } from "../../types/project";
 import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
 

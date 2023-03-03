@@ -1,10 +1,8 @@
-import { LoadAllInvitesUsecase } from "../../../data/usecases/loadInvites";
+import { LoadAllUsecase } from "../../../data/usecases/loadAll";
 import { InviteRepository } from "../../../infra/repositories/inviteRepository";
-import { UserRepository } from "../../../infra/repositories/userRepository";
 
 
 export function makeLoadAllInvitesUsecase(){
     const inviteRepository = new InviteRepository()
-    const userRepository = new UserRepository()
-    return new LoadAllInvitesUsecase(inviteRepository, userRepository)
+    return new LoadAllUsecase(inviteRepository)
 }
