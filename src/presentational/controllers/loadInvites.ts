@@ -1,4 +1,5 @@
-import { ILoadAllInvites } from "../../domain/usecases/ILoadInvites";
+import { ILoadAll } from "../../domain/usecases/ILoadInvites";
+import { invites } from "../../types/invites";
 import { badRequest, error, noContent, ok } from "../helpers/http-response";
 
 type data = {
@@ -6,7 +7,7 @@ type data = {
 };
 
 export class LoadInviteController {
-  constructor(private readonly loadInvitesUsecase: ILoadAllInvites) {}
+  constructor(private readonly loadInvitesUsecase: ILoadAll<invites>) {}
 
   public async handle({ userId }: data) {
     try {

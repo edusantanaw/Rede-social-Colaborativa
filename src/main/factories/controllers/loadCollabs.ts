@@ -1,6 +1,6 @@
-import { LoadCollabsController } from "../../../presentational/controllers/loadCollabs";
+import { LoadByIdController } from "../../../presentational/controllers/loadById";
 import { makeLoadCollabsUsecase } from "../usecases/loadCollabs";
 
 export function makeLoadCollabsController() {
-  return new LoadCollabsController(makeLoadCollabsUsecase());
+  return new LoadByIdController(makeLoadCollabsUsecase());
 }

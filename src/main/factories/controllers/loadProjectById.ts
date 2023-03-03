@@ -1,6 +1,7 @@
-import { LoadProjectByIdContoller } from "../../../presentational/controllers/loadProjectById";
+import { LoadByIdController } from "../../../presentational/controllers/loadById";
+import { IProject } from "../../../types/project";
 import { makeLoadProjectByIdUsecase } from "../usecases/loadProjectById";
 
 export function makeLoadProjectByIdController() {
-  return new LoadProjectByIdContoller(makeLoadProjectByIdUsecase());
+  return new LoadByIdController<IProject>(makeLoadProjectByIdUsecase());
 }

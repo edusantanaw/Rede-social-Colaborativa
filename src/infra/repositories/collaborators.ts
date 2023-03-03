@@ -12,7 +12,7 @@ export class CollaboratorRepository {
     });
   }
 
-  public async load(projectId: string) {
+  public async loadAll(projectId: string) {
     const collabs = await collaborators.findMany({
       where: {
         projectId,
