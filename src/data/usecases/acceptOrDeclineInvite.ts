@@ -3,14 +3,11 @@ import { Project } from "../../domain/entities/project";
 import { IAcceptOrDeclineInviteUsecase } from "../../domain/usecases/acceptOrDeclineInvite";
 import { invites } from "../../types/invites";
 import { IProject } from "../../types/project";
+import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
 
 interface IAcceptOrDeclineInviteRepository {
   loadById: (id: string) => Promise<invites | null>;
   updateStatus: (inviteId: string, status: string) => Promise<void>;
-}
-
-interface IUpdateProjectCollaborators {
-  loadById: (id: string) => Promise<IProject | null>;
 }
 
 interface INewCollaboratorRepository {
@@ -22,7 +19,7 @@ export class AcceptOrDeclineInviteUsecase
 {
   constructor(
     private readonly inviteRepository: IAcceptOrDeclineInviteRepository,
-    private readonly projectRepository: IUpdateProjectCollaborators,
+    private readonly projectRepository: ILoadByIdRepository<IProject>,
     private readonly collaboratorRepository: INewCollaboratorRepository
   ) {}
 

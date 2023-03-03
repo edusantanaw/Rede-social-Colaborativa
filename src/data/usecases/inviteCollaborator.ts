@@ -4,7 +4,9 @@ import {
   IInviteCollaboratorUsecase,
   inviteData,
 } from "../../domain/usecases/inviteCollaborator";
-import { ILoadProjectByIdRepository } from "../protocols/repositories/loadProjectById";
+import { invites } from "../../types/invites";
+import { IProject } from "../../types/project";
+import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
 
 interface IInviteRepository {
   invite: (data: Invite) => Promise<void>;
@@ -12,7 +14,7 @@ interface IInviteRepository {
 
 export class InviteCollaboratorUsecase implements IInviteCollaboratorUsecase {
   constructor(
-    private readonly loadProject: ILoadProjectByIdRepository,
+    private readonly loadProject: ILoadByIdRepository<IProject>,
     private readonly inviteRepository: IInviteRepository
   ) {}
 

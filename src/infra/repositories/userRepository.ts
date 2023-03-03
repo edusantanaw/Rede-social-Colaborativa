@@ -21,7 +21,7 @@ export class UserRepository {
     return users;
   }
   
-  public async findById(id: string) {
+  public async loadById(id: string) {
     const findUser = await user.findFirst({ where: { id } });
     return findUser;
   }

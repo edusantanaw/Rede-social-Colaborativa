@@ -1,4 +1,4 @@
-import { ILoadByIdUsecase } from "../../domain/usecases/loadProjectById";
+import { ILoadByIdUsecase } from "../../domain/usecases/loadById";
 import { Controller } from "../../main/adapter/adapter";
 import { IProject } from "../../types/project";
 import {

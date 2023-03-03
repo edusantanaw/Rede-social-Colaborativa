@@ -1,6 +1,7 @@
 import { ILoadCollabs } from "../../domain/usecases/loadCollabs";
 import { collabs } from "../../types/collabs";
-import { ILoadProjectByIdRepository } from "../protocols/repositories/loadProjectById";
+import { IProject } from "../../types/project";
+import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
 
 interface ILoadCollabsRepository {
   load: (projectId: string) => Promise<collabs[]>;
@@ -9,7 +10,7 @@ interface ILoadCollabsRepository {
 export class LoadCollabs implements ILoadCollabs {
   constructor(
     private readonly collabsRepository: ILoadCollabsRepository,
-    private readonly projectRepository: ILoadProjectByIdRepository
+    private readonly projectRepository: ILoadByIdRepository<IProject>
   ) {}
   public async load(projectId: string): Promise<collabs[] | null> {
     const projectExists = !!(await this.projectRepository.loadById(projectId));

@@ -1,4 +1,4 @@
-import { LoadById } from "../../../data/usecases/loadProjectById";
+import { LoadById } from "../../../data/usecases/loadById";
 import { ProjectRepository } from "../../../infra/repositories/projectRepository";
 
 export function makeLoadProjectByIdUsecase(){
