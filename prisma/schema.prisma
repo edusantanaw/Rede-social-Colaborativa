@@ -70,9 +70,9 @@ model Task {
   projectId   String
   title       String
   description String
-  done        Boolean
-  user        User     @relation(fields: [assignedTo], references: [id])
-  assignedTo  String
+  done        Boolean  @default(false)
+  user        User?    @relation(fields: [assignedTo], references: [id])
+  assignedTo  String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
 }

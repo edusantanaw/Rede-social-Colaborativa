@@ -5,7 +5,8 @@ import { makeInviteCollaboratorController } from "../factories/controllers/invit
 import { makeLoadCollabsController } from "../factories/controllers/loadCollabs";
 import { makeLoadAllInvitesController } from "../factories/controllers/loadIAllInvites";
 import { makeLoadProjectByIdController } from "../factories/controllers/loadProjectById";
-import { makeNewProjectController } from "../factories/controllers/newProject";
+import { makeNewProjectController } from "../factories/controllers/createProject";
+import { makeCreateTaskController } from "../factories/controllers/createTask";
 
 const userAdapter = new UserAdapter();
 
@@ -15,6 +16,7 @@ export default function (router: Router) {
     "/project/invite",
     userAdapter.make(makeInviteCollaboratorController())
   );
+  router.post("/project/task", userAdapter.make(makeCreateTaskController()));
   router.get(
     "/projects/invites/:userId",
     userAdapter.make(makeLoadAllInvitesController())
