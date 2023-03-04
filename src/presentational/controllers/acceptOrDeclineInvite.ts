@@ -1,4 +1,5 @@
 import { IAcceptOrDeclineInviteUsecase } from "../../domain/usecases/acceptOrDeclineInvite";
+import { Controller } from "../../main/adapter/adapter";
 import { badRequest, error, ok } from "../helpers/http-response";
 
 type data = {
@@ -6,7 +7,7 @@ type data = {
   status: string;
 };
 
-export class AcceptOrDeclineInviteController {
+export class AcceptOrDeclineInviteController implements Controller {
   constructor(
     private readonly acceptOrDeclineInviteUsecase: IAcceptOrDeclineInviteUsecase
   ) {}

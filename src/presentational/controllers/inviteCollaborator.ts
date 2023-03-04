@@ -1,4 +1,5 @@
 import { IInviteCollaboratorUsecase } from "../../domain/usecases/inviteCollaborator";
+import { Controller } from "../../main/adapter/adapter";
 import { badRequest, error, ok } from "../helpers/http-response";
 
 type data = {
@@ -6,7 +7,7 @@ type data = {
   projectId: string;
 };
 
-export class InviteCollaboratorController {
+export class InviteCollaboratorController implements Controller {
   constructor(
     private readonly inviteCollaboratorUsecase: IInviteCollaboratorUsecase
   ) {}

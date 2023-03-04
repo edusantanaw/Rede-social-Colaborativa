@@ -1,9 +1,10 @@
 import { ILoadByIdUsecase } from "../../domain/usecases/loadById";
+import { Controller } from "../../main/adapter/adapter";
 import { badRequest, error, noContent, ok } from "../helpers/http-response";
 
 type data = { id: string };
 
-export class LoadByIdController<T> {
+export class LoadByIdController<T> implements Controller {
   constructor(private readonly usecase: ILoadByIdUsecase<T>) {}
   public async handle({ id }: data) {
     try {

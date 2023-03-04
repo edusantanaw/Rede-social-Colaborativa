@@ -1,12 +1,12 @@
 import { Task } from "../../domain/entities/task";
-import { ICreateTaskUsecase } from "../../domain/usecases/createTask";
+import { ICreateUsecase } from "../../domain/usecases/create";
 import { IProject } from "../../types/project";
 import { ITask } from "../../types/task";
 import { ITaskSchema } from "../../validation/schema/taskSchema";
 import { ICreateRepository } from "../protocols/repositories/createRepository";
 import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
 
-export class CreateTaskUsecase implements ICreateTaskUsecase {
+export class CreateTaskUsecase implements ICreateUsecase<ITaskSchema, ITask> {
   constructor(
     private readonly repository: ICreateRepository<ITask, ITask>,
     private readonly projectRepository: ILoadByIdRepository<IProject>

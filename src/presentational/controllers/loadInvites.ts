@@ -1,4 +1,5 @@
 import { ILoadAll } from "../../domain/usecases/ILoadInvites";
+import { Controller } from "../../main/adapter/adapter";
 import { invites } from "../../types/invites";
 import { badRequest, error, noContent, ok } from "../helpers/http-response";
 
@@ -6,7 +7,7 @@ type data = {
   userId: string;
 };
 
-export class LoadInviteController {
+export class LoadInviteController implements Controller {
   constructor(private readonly loadInvitesUsecase: ILoadAll<invites>) {}
 
   public async handle({ userId }: data) {

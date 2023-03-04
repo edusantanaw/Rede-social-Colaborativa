@@ -1,5 +1,6 @@
+import { taskLoad } from "../../domain/usecases/loadTask";
 import { ITask } from "../../types/task";
-import { task } from "../prisma";
+import { prisma, task } from "../prisma";
 
 export class TaskRepository {
   public async create(data: ITask) {
@@ -11,6 +12,24 @@ export class TaskRepository {
         projectId: data.projectId,
       },
     });
-    return newTask;
+    return newTask as ITask;
+  }
+
+  public async load(data: taskLoad) {
+    const tasks = await task.findMany({
+      where: {
+        AND: [
+          { projectId: data.projectId },
+          { done: data.done },
+          {
+            createdAt: {
+              gt: data.afterDate,
+            },
+          },
+          { createdAt: { lt: data.beforeDate } },
+        ],
+      },
+    });
+    return tasks;
   }
 }

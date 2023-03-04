@@ -1,8 +1,9 @@
 import { ICreateUsecase } from "../../domain/usecases/create";
+import { Controller } from "../../main/adapter/adapter";
 import { IValidSchema } from "../../validation/validSchema";
 import { badRequest, created, error } from "../helpers/http-response";
 
-export class CreateController<T, R> {
+export class CreateController<T, R> implements Controller {
   constructor(
     private readonly createUsecase: ICreateUsecase<T, R>,
     private readonly validSchema: IValidSchema
