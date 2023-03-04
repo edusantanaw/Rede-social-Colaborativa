@@ -1,6 +1,5 @@
-import { taskLoad } from "../../domain/usecases/loadTask";
-import { ITask } from "../../types/task";
-import { prisma, task } from "../prisma";
+import { ITask, taskLoad } from "../../types/task";
+import { task } from "../prisma";
 
 export class TaskRepository {
   public async create(data: ITask) {
@@ -30,6 +29,6 @@ export class TaskRepository {
         ],
       },
     });
-    return tasks;
+    return tasks as ITask[];
   }
 }
