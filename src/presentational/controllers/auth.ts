@@ -14,11 +14,8 @@ export class AuthController implements Controller {
     try {
       const { error } = this.validSchema.valid(data);
       if (error) return badRequest(error.message);
-      const { token, user } = await this.authUsecase.auth(
-        data.email,
-        data.password
-      );
-      return ok({ token, user });
+      const auth = await this.authUsecase.auth(data.email, data.password);
+      return ok(auth);
     } catch (e) {
       return error(e as Error);
     }

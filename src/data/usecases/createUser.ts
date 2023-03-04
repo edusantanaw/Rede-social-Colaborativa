@@ -1,21 +1,21 @@
 import { User } from "../../domain/entities/user";
-import { ICreateUserUsecase } from "../../domain/usecases/createUserUsecase";
 import { IUserSchema } from "../../validation/schema/createUserSchema";
 import { ICreateUserRepository } from "../protocols/repositories/createUserRepositories";
 import { IGenHash } from "../protocols/helpers/encrypter";
 import { IGenerateToken } from "../protocols/helpers/generateToken";
 import { IUser } from "../../types/user";
+import { ICreateUsecase } from "../../domain/usecases/create";
 
 type executeResponse = Promise<{ token: string; user: IUser }>;
 
-export class CreateUserUsecase implements ICreateUserUsecase {
+export class CreateUserUsecase implements ICreateUsecase<IUserSchema, executeResponse> {
   constructor(
     private readonly userRepository: ICreateUserRepository,
     private readonly encrypter: IGenHash,
     private readonly generateToken: IGenerateToken
   ) {}
 
-  public async execute(data: IUserSchema): executeResponse {
+  public async execute(data: IUserSchema): Promise<executeResponse> {
     const emailAlreadyUsed = !!(await this.userRepository.loadByEmail(
       data.email
     ));
