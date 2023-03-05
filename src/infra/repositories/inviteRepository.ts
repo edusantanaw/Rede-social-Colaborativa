@@ -14,6 +14,7 @@ export class InviteRepository {
     const allInvites = await invites.findMany({
       where: {
         invitedId: userId,
+        accepted: undefined
       },
       orderBy: {
         createdAt: "desc",
@@ -29,13 +30,13 @@ export class InviteRepository {
     return invite;
   }
 
-  public async updateStatus(inviteId: string, status: string) {
+  public async updateStatus(inviteId: string, accepted: boolean) {
     await invites.update({
       where: {
         id: inviteId,
       },
       data: {
-        status: status,
+        accepted: accepted,
       },
     });
   }

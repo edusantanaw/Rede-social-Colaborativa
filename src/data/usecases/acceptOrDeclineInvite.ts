@@ -1,5 +1,4 @@
 import { Invite } from "../../domain/entities/invite";
-import { Project } from "../../domain/entities/project";
 import { IAcceptOrDeclineInviteUsecase } from "../../domain/usecases/acceptOrDeclineInvite";
 import { invites } from "../../types/invites";
 import { IProject } from "../../types/project";
@@ -7,7 +6,7 @@ import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
 
 interface IAcceptOrDeclineInviteRepository {
   loadById: (id: string) => Promise<invites | null>;
-  updateStatus: (inviteId: string, status: string) => Promise<void>;
+  updateStatus: (inviteId: string, accepted: boolean) => Promise<void>;
 }
 
 interface INewCollaboratorRepository {
@@ -23,28 +22,25 @@ export class AcceptOrDeclineInviteUsecase
     private readonly collaboratorRepository: INewCollaboratorRepository
   ) {}
 
-  public async update(inviteId: string, status: string): Promise<void> {
+  public async update(inviteId: string, accepted: boolean): Promise<void> {
     const invite = await this.getInvite(inviteId);
-    invite.setStatus(status);
-    status === "accepted"
-      ? await this.accept(invite)
-      : await this.updateStatus(invite);
+    invite.setAccepted(accepted);
+    accepted ? await this.accept(invite) : await this.persiste(invite);
   }
 
   private async accept(invite: Invite) {
-    const maybeProject = await this.projectRepository.loadById(
+    const project = await this.projectRepository.loadById(
       invite.getProjectId()
     );
-    if (!maybeProject) throw new Error("Project not exists!");
-    const project = new Project(maybeProject);
-    await this.updateStatus(invite);
-    await this.collaboratorRepository.create(project.getId(), invite.getId());
+    if (!project) throw new Error("Project not exists!");
+    await this.persiste(invite);
+    await this.collaboratorRepository.create(project.id, invite.getId());
   }
 
-  private async updateStatus(invite: Invite) {
+  private async persiste(invite: Invite) {
     await this.inviteRepository.updateStatus(
       invite.getId(),
-      invite.getStatus()
+      !!(invite.gettAccepted())
     );
   }
 

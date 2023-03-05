@@ -4,26 +4,27 @@ type inviteData = {
   invitedId: string;
   projectId: string;
   id?: string;
-  status?: string;
+  accepted?: boolean;
 };
 
 export class Invite {
   private id: string;
   private invitedId: string;
   private projectId: string;
-  private status: string;
-  constructor({invitedId, projectId, id, status}: inviteData) {
+  private accepted?: boolean
+  ;
+  constructor({invitedId, projectId, id, accepted }: inviteData) {
     this.invitedId = invitedId;
     this.projectId = projectId;
     this.id = id ?? randomUUID();
-    this.status = status ?? "pending";
+    this.accepted = accepted;
   }
   public getInvite() {
     return {
       id: this.id,
       invitedId: this.invitedId,
       projectId: this.projectId,
-      status: this.status,
+      status: this.accepted,
     };
   }
   public getId() {
@@ -38,8 +39,8 @@ export class Invite {
     return this.projectId;
   }
 
-  public getStatus() {
-    return this.status;
+  public gettAccepted() {
+    return this.accepted;
   }
 
   public setInvitedId(invitedId: string) {
@@ -50,7 +51,7 @@ export class Invite {
     this.projectId = projectId;
   }
 
-  public setStatus(status: string) {
-    this.status = status;
+  public setAccepted(accepted: boolean) {
+    this.accepted = accepted;
   }
 }
