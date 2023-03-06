@@ -26,15 +26,15 @@ export class Task {
     this.id = id ?? randomUUID();
   }
 
-  public getTask(){
+  public getTask() {
     return {
-        id: this.id,
-        title: this.title,
-        description: this.description,
-        done: this.done,
-        assignedTo: this.assignedTo,
-        projectId: this.projectId
-    }
+      id: this.id,
+      title: this.title,
+      description: this.description,
+      done: this.done,
+      assignedTo: this.assignedTo,
+      projectId: this.projectId,
+    };
   }
 
   public get getTitle() {
@@ -61,19 +61,19 @@ export class Task {
     return this.assignedTo;
   }
 
-  public set setTitle(title: string) {
+  public setTitle(title: string) {
     this.title = title;
   }
 
-  public set setDescription(desc: string) {
+  public setDescription(desc: string) {
     this.description = desc;
   }
 
-  public set setDone(done: boolean) {
+  public setDone(done: boolean) {
     this.done = done;
   }
 
-  public set setAssignedTo(userId: string) {
+  public setAssignedTo(userId: string) {
     if (this.assignedTo)
       throw new Error("task has already been assigned to another user!");
     this.assignedTo = userId;
