@@ -37,27 +37,27 @@ export class Task {
     };
   }
 
-  public get getTitle() {
+  public  getTitle() {
     return this.title;
   }
 
-  public get getId() {
+  public getId() {
     return this.id;
   }
 
-  public get getDescription() {
+  public getDescription() {
     return this.description;
   }
 
-  public get getDone() {
+  public getDone() {
     return this.done;
   }
 
-  public get getProjectId() {
+  public getProjectId() {
     return this.projectId;
   }
 
-  public get getAssignedTo() {
+  public getAssignedTo() {
     return this.assignedTo;
   }
 
