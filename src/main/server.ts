@@ -1,10 +1,13 @@
 import express from "express";
 import routes from "./config/routes";
 import cors from "cors";
+import http from "http";
+import socket from "./config/socket";
 
 export class Server {
   private app = express();
   private PORT: number = 3000;
+  private server =  http.createServer(this.app);
 
   private middlewares() {
     this.app.use(cors({ credentials: true, origin: "*" }));
@@ -19,6 +22,7 @@ export class Server {
 
   public bootstrap() {
     this.middlewares();
+    socket(this.server);
     routes(this.app);
     this.start();
   }
