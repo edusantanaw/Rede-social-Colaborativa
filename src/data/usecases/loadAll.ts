@@ -5,7 +5,7 @@ export class LoadAllUsecase<T> implements ILoadAll<T> {
   constructor(private readonly repository: ILoadAllRepository<T>) {}
 
   public async loadAll(id: string): Promise<T[] | null> {
-    const invites = await this.repository.loadAll(id);
-    return invites;
+    const data = await this.repository.loadAll(id);
+    return data;
   }
 }

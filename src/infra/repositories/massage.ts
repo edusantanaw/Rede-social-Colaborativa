@@ -6,6 +6,11 @@ export class MessageRepository {
     const newMessage = await message.create({
       data: data,
     });
-    return newMessage as  IMessage;
+    return newMessage as IMessage;
+  }
+
+  public async loadAll() {
+    const messages = await message.findMany();
+    return messages;
   }
 }

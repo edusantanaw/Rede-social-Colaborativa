@@ -1,19 +1,18 @@
 import { ILoadAll } from "../../domain/usecases/ILoadInvites";
 import { Controller } from "../../main/adapter/adapter";
-import { invites } from "../../types/invites";
 import { badRequest, error, noContent, ok } from "../helpers/http-response";
 
 type data = {
-  userId: string;
+  id: string;
 };
 
-export class LoadInviteController implements Controller {
-  constructor(private readonly loadInvitesUsecase: ILoadAll<invites>) {}
+export class LoadAll<T> implements Controller {
+  constructor(private readonly loadAllUsecase: ILoadAll<T>) {}
 
-  public async handle({ userId }: data) {
+  public async handle({ id }: data) {
     try {
-      if (!userId) return badRequest("User id is required!");
-      const invites = await this.loadInvitesUsecase.loadAll(userId);
+      if (!id) return badRequest("id is required!");
+      const invites = await this.loadAllUsecase.loadAll(id);
       if (!invites) return noContent();
       return ok(invites);
     } catch (err) {

@@ -1,6 +1,6 @@
-import { LoadInviteController } from "../../../presentational/controllers/loadInvites";
+import { LoadAll } from "../../../presentational/controllers/loadInvites";
 import { makeLoadAllInvitesUsecase } from "../usecases/loadInvites";
 
-export function makeLoadAllInvitesController(){
-    return new LoadInviteController(makeLoadAllInvitesUsecase())
+export function makeLoadAllInvitesController() {
+  return new LoadAll(makeLoadAllInvitesUsecase());
 }

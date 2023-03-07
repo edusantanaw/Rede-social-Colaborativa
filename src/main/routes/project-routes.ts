@@ -9,6 +9,7 @@ import { makeNewProjectController } from "../factories/controllers/createProject
 import { makeCreateTaskController } from "../factories/controllers/createTask";
 import { makeLoadTaskControlle } from "../factories/controllers/loadTask";
 import { makeAcceptTaskController } from "../factories/controllers/acceptTask";
+import { makeLoadAllMessagesController } from "../factories/controllers/loadAllMessages";
 
 const userAdapter = new UserAdapter();
 
@@ -36,5 +37,9 @@ export default function (router: Router) {
     userAdapter.make(makeLoadCollabsController())
   );
   router.get("/project/tasks", userAdapter.make(makeLoadTaskControlle()));
+  router.get(
+    "/project/messages",
+    userAdapter.make(makeLoadAllMessagesController())
+  );
   router.get("/project/:id", userAdapter.make(makeLoadProjectByIdController()));
 }
