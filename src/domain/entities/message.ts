@@ -23,7 +23,7 @@ export class Message {
       id: this.id,
       message: this.message,
       file: this.file,
-      sender: this.senderId,
+      senderId: this.senderId,
       projectId: this.projectId,
     };
   }
