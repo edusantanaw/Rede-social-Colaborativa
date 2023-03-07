@@ -1,12 +1,13 @@
 import { Message } from "../../domain/entities/message";
 import { ISendMessage, message } from "../../domain/usecases/sendMessage";
+import { IMessage } from "../../types/message";
 import { IProject } from "../../types/project";
 import { ICreateRepository } from "../protocols/repositories/createRepository";
 import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
 
 export class SendMessage implements ISendMessage {
   constructor(
-    private readonly messageRepository: ICreateRepository<message, message>,
+    private readonly messageRepository: ICreateRepository<message, IMessage>,
     private readonly projectRepository: ILoadByIdRepository<IProject>
   ) {}
 
