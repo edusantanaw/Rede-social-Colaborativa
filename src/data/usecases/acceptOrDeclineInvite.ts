@@ -1,17 +1,9 @@
 import { Invite } from "../../domain/entities/invite";
 import { IAcceptOrDeclineInviteUsecase } from "../../domain/usecases/acceptOrDeclineInvite";
-import { invites } from "../../types/invites";
 import { IProject } from "../../types/project";
+import { IAcceptOrDeclineInviteRepository } from "../protocols/repositories/acceptOrDecline";
 import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
-
-interface IAcceptOrDeclineInviteRepository {
-  loadById: (id: string) => Promise<invites | null>;
-  updateStatus: (inviteId: string, accepted: boolean) => Promise<void>;
-}
-
-interface INewCollaboratorRepository {
-  create: (projectId: string, userId: string) => Promise<void>;
-}
+import { INewCollaboratorRepository } from "../protocols/repositories/newCollaborator";
 
 export class AcceptOrDeclineInviteUsecase
   implements IAcceptOrDeclineInviteUsecase
@@ -40,10 +32,10 @@ export class AcceptOrDeclineInviteUsecase
   private async persiste(invite: Invite) {
     await this.inviteRepository.updateStatus(
       invite.getId(),
-      !!(invite.gettAccepted())
+      !!invite.gettAccepted()
     );
   }
-
+  
   private async getInvite(inviteId: string): Promise<Invite> {
     const inviteExits = await this.inviteRepository.loadById(inviteId);
     if (!inviteExits) throw new Error("Invite not exists!");

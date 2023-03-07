@@ -53,11 +53,4 @@ export class Project {
   public setName(name: string) {
     this.name = name;
   }
-
-  public addNewColab(userId: string) {
-    const newCollabs = this.collaborators
-      ? [...this.collaborators, userId]
-      : [userId];
-    this.collaborators = newCollabs;
-  }
 }
