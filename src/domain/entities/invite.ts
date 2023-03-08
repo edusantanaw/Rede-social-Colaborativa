@@ -11,14 +11,15 @@ export class Invite {
   private id: string;
   private invitedId: string;
   private projectId: string;
-  private accepted?: boolean
-  ;
+  private accepted?: boolean;
+  
   constructor({invitedId, projectId, id, accepted }: inviteData) {
     this.invitedId = invitedId;
     this.projectId = projectId;
     this.id = id ?? randomUUID();
     this.accepted = accepted;
   }
+ 
   public getInvite() {
     return {
       id: this.id,
@@ -27,6 +28,7 @@ export class Invite {
       status: this.accepted,
     };
   }
+ 
   public getId() {
     return this.id;
   }
