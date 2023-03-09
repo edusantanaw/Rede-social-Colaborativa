@@ -20,9 +20,20 @@ export class UserRepository {
     });
     return users;
   }
-  
+
   public async loadById(id: string) {
     const findUser = await user.findFirst({ where: { id } });
     return findUser;
+  }
+
+  public async updatePassword(id: string, pass: string) {
+    await user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        password: pass,
+      },
+    });
   }
 }

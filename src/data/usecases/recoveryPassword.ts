@@ -7,7 +7,7 @@ import { IGenHash } from "../protocols/helpers/encrypter";
 import { IGenerateToken } from "../protocols/helpers/generateToken";
 
 interface IUserRepository {
-  findByEmail: (email: string) => Promise<IUser | null>;
+  loadByEmail: (email: string) => Promise<IUser | null>;
   updatePassword: (id: string, password: string) => Promise<void>;
 }
 
@@ -19,7 +19,7 @@ export class RecoveryPassword implements IRecoveryPassword {
   ) {}
 
   public async execute(data: recoveryPassword): Promise<string> {
-    const user = await this.userRepository.findByEmail(data.email);
+    const user = await this.userRepository.loadByEmail(data.email);
     if (!user) throw new Error("User not exists!");
     const hashPassword = await this.encrypter.genHash(data.password);
     await this.userRepository.updatePassword(user.id, hashPassword);
