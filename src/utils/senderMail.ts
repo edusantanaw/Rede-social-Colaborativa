@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import config from "../../config/nodemailer";
 
-type data = {
+export type data = {
   text: string;
   subject: string;
   to: string;
