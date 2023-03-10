@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { Adapter } from "../adapter/adapter";
-import { makeAuthController } from "../factories/controllers/auth-controller";
-import { makeCreateUserController } from "../factories/controllers/createUser";
-import { makeForgetPasswordController } from "../factories/controllers/forgetPassword";
-import { makeRecoveryPasswordController } from "../factories/controllers/recoveryPassword";
+import { makeAuthController } from "../factories/controllers/user/auth-controller";
+import { makeCreateUserController } from "../factories/controllers/user/createUser";
+import { makeForgetPasswordController } from "../factories/controllers/user/forgetPassword";
+import { makeRecoveryPasswordController } from "../factories/controllers/user/recoveryPassword";
 
 const adapter = new Adapter();
 

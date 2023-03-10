@@ -1,16 +1,16 @@
 import { Router } from "express";
 import { UserAdapter } from "../adapter/auth-adapter";
-import { makeAcceptOrDeclieInviteController } from "../factories/controllers/acceptOrDeclineInvite";
-import { makeInviteCollaboratorController } from "../factories/controllers/inviteController";
-import { makeLoadCollabsController } from "../factories/controllers/loadCollabs";
-import { makeLoadAllInvitesController } from "../factories/controllers/loadIAllInvites";
-import { makeLoadProjectByIdController } from "../factories/controllers/loadProjectById";
-import { makeNewProjectController } from "../factories/controllers/createProject";
-import { makeCreateTaskController } from "../factories/controllers/createTask";
-import { makeLoadTaskControlle } from "../factories/controllers/loadTask";
-import { makeAcceptTaskController } from "../factories/controllers/acceptTask";
-import { makeLoadAllMessagesController } from "../factories/controllers/loadAllMessages";
-import { makeLoadProjectByName } from "../factories/controllers/loadByName";
+import { makeAcceptOrDeclieInviteController } from "../factories/controllers/project/acceptOrDeclineInvite";
+import { makeInviteCollaboratorController } from "../factories/controllers/project/inviteController";
+import { makeLoadCollabsController } from "../factories/controllers/project/loadCollabs";
+import { makeLoadAllInvitesController } from "../factories/controllers/user/loadIAllInvites";
+import { makeLoadProjectByIdController } from "../factories/controllers/project/loadProjectById";
+import { makeNewProjectController } from "../factories/controllers/project/createProject";
+import { makeCreateTaskController } from "../factories/controllers/project/createTask";
+import { makeLoadTaskControlle } from "../factories/controllers/project/loadTask";
+import { makeAcceptTaskController } from "../factories/controllers/project/acceptTask";
+import { makeLoadAllMessagesController } from "../factories/controllers/project/loadAllMessages";
+import { makeLoadProjectByName } from "../factories/controllers/project/loadByName";
 
 const userAdapter = new UserAdapter();
 
