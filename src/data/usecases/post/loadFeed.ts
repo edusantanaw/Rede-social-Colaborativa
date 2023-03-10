@@ -1,32 +1,17 @@
-import { IPost } from "../../../types/post";
+import { dataFeed, ILoadFeedUsecase } from "../../../domain/usecases/loadFeed";
+import { ILoadFeedRepository } from "../../protocols/repositories/loadFeed";
 
-type data = {
-  skip?: number;
-  take?: number;
-  userId: string;
-};
-
-type dataRepository = {
-  skip: number;
-  take: number;
-  userId: string;
-};
-
-interface ILoadFeedRepository {
-  loadFeed: (data: dataRepository) => Promise<IPost[]>;
-}
-
-export class LoadFeedUsecase {
+export class LoadFeedUsecase implements ILoadFeedUsecase {
   constructor(private readonly postRepository: ILoadFeedRepository) {}
 
-  public async load(data: data) {
+  public async load(data: dataFeed) {
     const mappedData = this.mapData(data);
     const posts = await this.postRepository.loadFeed(mappedData);
     if (posts.length === 0) return null;
     return posts;
   }
 
-  private mapData(data: data) {
+  private mapData(data: dataFeed) {
     const initialPage = 0;
     const maxLoad = 30;
     return {
