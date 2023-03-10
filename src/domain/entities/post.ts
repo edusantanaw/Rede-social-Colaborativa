@@ -2,15 +2,15 @@ import { randomUUID } from "crypto";
 
 type data = {
   id?: string;
-  content: string;
-  image: string;
+  content?: string;
+  image?: string;
   userId: string;
 };
 
 export class Post {
   private id: string;
-  private content: string;
-  private image: string;
+  private content?: string;
+  private image?: string;
   private userId: string;
 
   constructor(data: data) {
@@ -27,7 +27,7 @@ export class Post {
       id: this.id,
       contente: this.content,
       image: this.image,
-      userid: this.userId,
+      userId: this.userId,
     };
   }
 }
