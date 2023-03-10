@@ -22,7 +22,7 @@ export default function (router: Router) {
     adapter.make(makeRecoveryPasswordController())
   );
   router.post(
-    "/follow/add/userId",
+    "/follow/add/:userId",
     authAdapter.make(makeAddFollowController())
   );
 }
