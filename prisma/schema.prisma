@@ -44,7 +44,7 @@ model Follows {
 model Post {
   id       String     @id
   image    String?
-  content  String
+  content  String?
   user     User       @relation(fields: [userId], references: [id])
   userId   String
   Comments Comments[]
