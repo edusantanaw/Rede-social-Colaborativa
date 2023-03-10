@@ -1,5 +1,5 @@
-import { AcceptTaskUsecase } from "../../../data/usecases/acceptTask";
-import { TaskRepository } from "../../../infra/repositories/task";
+import { AcceptTaskUsecase } from "../../../../data/usecases/project/acceptTask";
+import { TaskRepository } from "../../../../infra/repositories/task";
 
 export function makeAcceptTaskUsecase(){
     const taskRepository = new TaskRepository()

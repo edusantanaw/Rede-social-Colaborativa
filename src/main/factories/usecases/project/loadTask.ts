@@ -1,6 +1,6 @@
-import { LoadTaskUsecase } from "../../../data/usecases/loadTask";
-import { ProjectRepository } from "../../../infra/repositories/projectRepository";
-import { TaskRepository } from "../../../infra/repositories/task";
+import { LoadTaskUsecase } from "../../../../data/usecases/project/loadTask";
+import { ProjectRepository } from "../../../../infra/repositories/projectRepository";
+import { TaskRepository } from "../../../../infra/repositories/task";
 
 export function makeLoadTaskUsecase(){
     const projectRepository = new ProjectRepository();

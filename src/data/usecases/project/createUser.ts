@@ -1,10 +1,10 @@
-import { User } from "../../domain/entities/user";
-import { IUserSchema } from "../../validation/schema/createUserSchema";
-import { ICreateUserRepository } from "../protocols/repositories/createUserRepositories";
-import { IGenHash } from "../protocols/helpers/encrypter";
-import { IGenerateToken } from "../protocols/helpers/generateToken";
-import { IUser } from "../../types/user";
-import { ICreateUsecase } from "../../domain/usecases/create";
+import { User } from "../../../domain/entities/user";
+import { ICreateUsecase } from "../../../domain/usecases/create";
+import { IUser } from "../../../types/user";
+import { IUserSchema } from "../../../validation/schema/createUserSchema";
+import { IGenHash } from "../../protocols/helpers/encrypter";
+import { IGenerateToken } from "../../protocols/helpers/generateToken";
+import { ICreateUserRepository } from "../../protocols/repositories/createUserRepositories";
 
 type executeResponse = Promise<{ token: string; user: IUser }>;
 

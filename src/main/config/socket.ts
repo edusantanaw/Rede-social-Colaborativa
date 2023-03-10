@@ -1,6 +1,6 @@
 import { Server } from "http";
 import socket from "socket.io";
-import { makeSendMessageUsecase } from "../factories/usecases/sendMessage";
+import { makeSendMessageUsecase } from "../factories/usecases/project/sendMessage";
 
 export default (server: Server) => {
   const io = new socket.Server(server, {

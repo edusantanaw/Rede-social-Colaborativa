@@ -1,6 +1,6 @@
-import { LoadCollabs } from "../../../data/usecases/loadCollabs";
-import { CollaboratorRepository } from "../../../infra/repositories/collaborators";
-import { ProjectRepository } from "../../../infra/repositories/projectRepository";
+import { LoadCollabs } from "../../../../data/usecases/project/loadCollabs";
+import { CollaboratorRepository } from "../../../../infra/repositories/collaborators";
+import { ProjectRepository } from "../../../../infra/repositories/projectRepository";
 
 export function makeLoadCollabsUsecase(){
     const collaboratorRepository = new CollaboratorRepository()

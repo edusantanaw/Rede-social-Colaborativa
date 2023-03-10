@@ -1,5 +1,5 @@
-import { LoadAllUsecase } from "../../../data/usecases/loadAll";
-import { MessageRepository } from "../../../infra/repositories/massage";
+import { LoadAllUsecase } from "../../../../data/usecases/generics/loadAll";
+import { MessageRepository } from "../../../../infra/repositories/massage";
 
 export function makeLoadMessages(){
     const messageRepository = new MessageRepository()

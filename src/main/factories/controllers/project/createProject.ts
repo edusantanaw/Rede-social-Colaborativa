@@ -1,7 +1,7 @@
 import { ValidSchema } from "../../../../validation/validSchema";
 import { projectSchema } from "../../../../validation/schema/newProjectSchema";
-import { makeNewProjectUsecase } from "../../usecases/newProject";
 import { CreateController } from "../../../../presentational/controllers/create";
+import { makeNewProjectUsecase } from "../../usecases/project/newProject";
 
 export function makeNewProjectController() {
   const validSchema = new ValidSchema(projectSchema);

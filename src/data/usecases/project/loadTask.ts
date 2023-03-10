@@ -1,8 +1,8 @@
-import { ILoadUsecase } from "../../domain/usecases/load";
-import { IProject } from "../../types/project";
-import { ITask, taskLoad } from "../../types/task";
-import { ILoadRepository } from "../protocols/repositories/load";
-import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
+import { ILoadUsecase } from "../../../domain/usecases/load";
+import { IProject } from "../../../types/project";
+import { ITask, taskLoad } from "../../../types/task";
+import { ILoadRepository } from "../../protocols/repositories/load";
+import { ILoadByIdRepository } from "../../protocols/repositories/loadProjectById";
 
 export class LoadTaskUsecase implements ILoadUsecase<taskLoad, ITask[]> {
   constructor(

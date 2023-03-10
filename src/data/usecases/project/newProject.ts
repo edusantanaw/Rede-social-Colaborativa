@@ -1,7 +1,7 @@
-import { Project } from "../../domain/entities/project";
-import { ICreateUsecase } from "../../domain/usecases/create";
-import { IProject } from "../../types/project";
-import { ICreateRepository } from "../protocols/repositories/createRepository";
+import { Project } from "../../../domain/entities/project";
+import { ICreateUsecase } from "../../../domain/usecases/create";
+import { IProject } from "../../../types/project";
+import { ICreateRepository } from "../../protocols/repositories/createRepository";
 
 export class NewProjectUsecase implements ICreateUsecase<IProject, IProject> {
   constructor(

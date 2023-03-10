@@ -1,6 +1,6 @@
-import { Task } from "../../domain/entities/task";
-import { IAcceptTaskUsecase } from "../../domain/usecases/acceptTask";
-import { ITask } from "../../types/task";
+import { Task } from "../../../domain/entities/task";
+import { IAcceptTaskUsecase } from "../../../domain/usecases/acceptTask";
+import { ITask } from "../../../types/task";
 
 interface IAcceptTaskRepository {
   loadById: (id: string) => Promise<ITask | null>;

@@ -1,8 +1,8 @@
-import { ILoadCollabs } from "../../domain/usecases/loadCollabs";
-import { collabs } from "../../types/collabs";
-import { IProject } from "../../types/project";
-import { ILoadAllRepository } from "../protocols/repositories/loadAll";
-import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
+import { ILoadCollabs } from "../../../domain/usecases/loadCollabs";
+import { collabs } from "../../../types/collabs";
+import { IProject } from "../../../types/project";
+import { ILoadAllRepository } from "../../protocols/repositories/loadAll";
+import { ILoadByIdRepository } from "../../protocols/repositories/loadProjectById";
 
 
 export class LoadCollabs implements ILoadCollabs {

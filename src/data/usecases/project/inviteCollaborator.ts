@@ -1,11 +1,8 @@
-import { Invite } from "../../domain/entities/invite";
-import { Project } from "../../domain/entities/project";
-import {
-  IInviteCollaboratorUsecase,
-  inviteData,
-} from "../../domain/usecases/inviteCollaborator";
-import { IProject } from "../../types/project";
-import { ILoadByIdRepository } from "../protocols/repositories/loadProjectById";
+import { Invite } from "../../../domain/entities/invite";
+import { Project } from "../../../domain/entities/project";
+import { IInviteCollaboratorUsecase, inviteData } from "../../../domain/usecases/inviteCollaborator";
+import { IProject } from "../../../types/project";
+import { ILoadByIdRepository } from "../../protocols/repositories/loadProjectById";
 
 interface IInviteRepository {
   invite: (data: Invite) => Promise<void>;
