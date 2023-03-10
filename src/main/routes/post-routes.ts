@@ -6,6 +6,6 @@ import { makeLoadFeedController } from "../factories/controllers/post/feed";
 const authAdapter = new UserAdapter();
 
 export default function (router: Router) {
-  router.post("post", authAdapter.make(makeCreatePostController()));
-  router.get("feed", authAdapter.make(makeLoadFeedController()));
+  router.post("/post", authAdapter.make(makeCreatePostController()));
+  router.get("/feed/:userId", authAdapter.make(makeLoadFeedController()));
 }

@@ -8,7 +8,6 @@ type dataRepository = {
 };
 
 export class PostRepository {
-  
   public async create(data: IPost) {
     const newPost = await post.create({
       data: data,
@@ -18,14 +17,13 @@ export class PostRepository {
 
   public async loadFeed(data: dataRepository) {
     const posts = (await prisma.$queryRaw`
-      select content, image, post.id, user.id, user.photo
-      from post inner join user on user.id = post.userId
-      inner join follows on follows."followerId" = user.id
-      where user.id = ${data.userId}
-      limit ${data.take} offset ${data.skip}
-      order by post"createAt" desc;
+      select post.content, post.image, post.id, users.name, users.id as "userId"
+      from post inner join follows on follows."followingId" = post."userId"
+      inner join users on users.id = post."userId"
+      where follows."followerId" = ${data.userId} or post."userId" = ${data.userId}
+      order by post."createdAt" desc
+      limit ${data.take} offset ${data.skip};
       `) as IPost[];
-
     return posts;
   }
 }

@@ -28,7 +28,7 @@ model User {
   followers     Follows[]       @relation("follower")
   following     Follows[]       @relation("following")
 
-  @@map("user")
+  @@map("users")
 }
 
 model Follows {
@@ -42,13 +42,14 @@ model Follows {
 }
 
 model Post {
-  id       String     @id
-  image    String?
-  content  String?
-  user     User       @relation(fields: [userId], references: [id])
-  userId   String
-  Comments Comments[]
-  Likes    Likes[]
+  id        String     @id
+  image     String?
+  content   String?
+  user      User       @relation(fields: [userId], references: [id])
+  userId    String
+  Comments  Comments[]
+  Likes     Likes[]
+  createdAt DateTime   @default(now())
 
   @@map("post")
 }

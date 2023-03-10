@@ -25,7 +25,7 @@ export class Post {
   public getPost() {
     return {
       id: this.id,
-      contente: this.content,
+      content: this.content,
       image: this.image,
       userId: this.userId,
     };
