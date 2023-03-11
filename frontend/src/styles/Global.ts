@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -14,3 +14,12 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
     }
 `;
+
+
+export const FlexSection = styled.section`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;;
+`

@@ -7,9 +7,10 @@ import {
 } from "react-router-dom";
 import Auth from "./pages/auth/Auth";
 import Home from "./pages/home/Home";
+import { useIsAuth } from "./hooks/isAuth";
 
 function App() {
-  const auth = false;
+  const {isAuth} = useIsAuth()
   return (
     <div className="App">
       <GlobalStyle />
@@ -17,11 +18,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={auth ? <Home /> : <Navigate to="/auth" />}
+            element={isAuth ? <Home /> : <Navigate to="/auth" />}
           />
           <Route
             path="/auth"
-            element={!auth ? <Auth /> : <Navigate to="/" />}
+            element={!isAuth ? <Auth /> : <Navigate to="/" />}
           />
         </Routes>
       </Router>

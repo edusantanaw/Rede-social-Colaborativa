@@ -11,6 +11,7 @@ export class AuthUsecase implements IAuthUsecase {
     ){}
     public async auth(email: string, password: string){
         const user = await this.repository.loadByEmail(email);
+        console.log(user);
         if(!user) throw new Error("User not found!");
         const passMatch = await this.encrypter.compare(password, user.password);
         if(!passMatch) throw new Error("Password is invalid!")

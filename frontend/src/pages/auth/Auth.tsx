@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Signin from "./Signin";
+import { AuthSection } from "./styles";
 
 const Auth = () => {
   return (
-    <div>Auth</div>
-  )
-}
+    <AuthSection>
+      <Signin />
+    </AuthSection>
+  );
+};
 
-export default Auth
+export default Auth;

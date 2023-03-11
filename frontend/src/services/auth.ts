@@ -8,14 +8,12 @@ type IUser = {
   name: string;
 };
 
-type apiResponse = {
-  data: {
+type apiResponse = { 
     token: string;
     user: IUser;
-  };
 };
 
 export async function signinService(data: signinData) {
     const response = await Api.post<apiResponse>("/signin", data);
-    return response.data;
+    return response;
 }
