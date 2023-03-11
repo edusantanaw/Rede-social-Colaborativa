@@ -9,16 +9,4 @@ export class FollowRepository {
       },
     });
   }
-
-  public async isFollowing(userId: string, followingId: string) {
-    const following = !!(await follows.findFirst({
-      where: {
-        AND: {
-          followerId: userId,
-          followingId: followingId,
-        },
-      },
-    }));
-    return following;
-  }
 }
