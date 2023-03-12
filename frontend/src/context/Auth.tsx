@@ -24,13 +24,12 @@ export function AuthProvider({ children }: props) {
 
   useEffect(() => {
     const token = localStorage.getItem("@App:token");
-    console.log(token)
     if (token) {
       setToken(token);
       setAuth(true);
     }
   }, []);
-  console.log(auth)
+  
   function makeStorage(user: any, token: string) {
     localStorage.setItem("@App:token", token);
     localStorage.setItem("@App:user", JSON.stringify(user));
@@ -39,7 +38,6 @@ export function AuthProvider({ children }: props) {
   async function signin(data: signinData) {
     try {
       const response = await signinService(data);
-      console.log(response.data)
       makeStorage(response.data.user, response.data.token);
       setAuth(true);
       setToken(response.data.token);

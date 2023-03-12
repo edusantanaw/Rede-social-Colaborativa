@@ -6,7 +6,6 @@ export function useIsAuth() {
   const [isAuth, setIsAuth] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(auth);
     setIsAuth(auth);
   }, [auth]);
 
