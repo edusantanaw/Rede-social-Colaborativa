@@ -1,9 +1,13 @@
 
 import React from 'react'
+import NewPost from './components/NewPost'
+import { HomeContainer } from './styles'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <HomeContainer>
+        <NewPost />
+    </HomeContainer>
   )
 }
 
