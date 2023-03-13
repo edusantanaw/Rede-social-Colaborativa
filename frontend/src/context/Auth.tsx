@@ -1,11 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import { signinService } from "../services/auth";
 import { signinData } from "../types/auth";
+import { IUser } from "../types/user";
 
 interface IAuthContext {
   auth: boolean;
   token: string | null;
-  user: null;
+  user: IUser | null;
   error: string | null;
   signin: (data: signinData) => Promise<void>;
 }
@@ -19,17 +20,19 @@ type props = {
 export function AuthProvider({ children }: props) {
   const [auth, setAuth] = useState<boolean>(false);
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("@App:token");
-    if (token) {
+    const user = localStorage.getItem("@App:user");
+    if (token && user) {
       setToken(token);
+      setUser(JSON.parse(user));
       setAuth(true);
     }
   }, []);
-  
+
   function makeStorage(user: any, token: string) {
     localStorage.setItem("@App:token", token);
     localStorage.setItem("@App:user", JSON.stringify(user));

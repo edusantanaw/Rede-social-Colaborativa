@@ -15,7 +15,7 @@ type data = {
   image?: any;
 };
 
-export async function creaetPost(data: data) {
+export async function creaetPost(data: FormData) {
   try {
     const response = await Api.post("/post", data, makeOptions());
     return response;
