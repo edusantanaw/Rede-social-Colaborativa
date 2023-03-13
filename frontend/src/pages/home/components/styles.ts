@@ -6,6 +6,9 @@ export const NewPostContainer = styled.div`
   padding: 1em;
   color: #fff;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
   .new {
     display: flex;
     gap: 1em;
@@ -24,11 +27,28 @@ export const NewPostContainer = styled.div`
       height: 6em;
       padding: 0.5em;
       border-radius: 7px;
-      background-color: #000;
-      color: #fff;
-      &::placeholder {
-        color: #fff;
-      }
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  .prev_img {
+    color: #000;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    img {
+      margin-top: 1em;
+      width: 90%;
+      border-radius: 10px;
+    }
+    span {
+      position: absolute;
+      right: 3%;
+      top: 2px;
+      font-size: 2em;
+      color: red;
     }
   }
   .create {
@@ -36,20 +56,20 @@ export const NewPostContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding-top: 1em;
-    svg{
-        font-size: 1.7em;
-        color: #000;
+    svg {
+      font-size: 1.7em;
+      color: #000;
     }
     #img_file {
-        display: none;
+      display: none;
     }
 
-    button{
-        width: 8em;
-        height: 3em;
-        border: none;
-        border-radius: 5px;
-        background: blue;
+    button {
+      width: 8em;
+      height: 3em;
+      border: none;
+      border-radius: 5px;
+      background: blue;
     }
   }
 `;

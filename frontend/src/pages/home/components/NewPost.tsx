@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NewPostContainer } from "./styles";
 import { BsFillPersonFill, BsCardImage } from "react-icons/bs";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 const NewPost = () => {
   const [image, setImage] = useState<File | null>(null);
@@ -20,6 +21,11 @@ const NewPost = () => {
     }
   }
 
+  function clearImage() {
+    setImage(null);
+    setPrevImage(undefined);
+  }
+
   return (
     <NewPostContainer>
       <div className="new">
@@ -28,6 +34,14 @@ const NewPost = () => {
         </div>
         <textarea placeholder="Criar novo post" />
       </div>
+      {prevImage && (
+        <div className="prev_img">
+          <span onClick={clearImage}>
+            <IoCloseCircleOutline />
+          </span>
+          <img src={prevImage} alt="img" />
+        </div>
+      )}
       <div className="create">
         <label htmlFor="img_file">
           <BsCardImage />
@@ -35,7 +49,6 @@ const NewPost = () => {
         <input type="file" id="img_file" onChange={handleImageChange} />
         <button>Criar</button>
       </div>
-      {prevImage ? <img src={prevImage} alt="img" /> : null}
     </NewPostContainer>
   );
 };
