@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
 type props<T, R, D> = {
-  service: (data: T) => Promise<R[]>;
-  args: T;
+  service: (data: { page: number; args?: T }) => Promise<R[]>;
   ref: React.MutableRefObject<HTMLDivElement | null>;
   dependeces?: D;
 };
@@ -15,7 +14,6 @@ const options = {
 
 export function useInfiniteScroll<T, R, D>({
   service,
-  args,
   dependeces,
   ref,
 }: props<T, R, D>) {
@@ -23,26 +21,17 @@ export function useInfiniteScroll<T, R, D>({
   const [list, setList] = useState<R[]>([]);
 
   useEffect(() => {
-    async () => {
+    (async () => {
+      console.log("fetchingDa");
       await fetchingData();
-    };
+    })();
   }, [page, dependeces]);
 
   useEffect(() => {
-    handleObservable(ref);
-  }, []);
-
-  async function fetchingData() {
-    const data = await service({ ...args, page });
-    setList((list) => [...list, ...data]);
-  }
-
-  function handleObservable(
-    ref: React.MutableRefObject<HTMLDivElement | null>
-  ) {
     const observable = new IntersectionObserver((entry) => {
       const target = entry[0];
       if (target.isIntersecting) {
+        console.log(target.isIntersecting);
         setPage((page) => page + 1);
       }
     }, options);
@@ -50,6 +39,11 @@ export function useInfiniteScroll<T, R, D>({
     if (ref.current) {
       observable.observe(ref.current);
     }
+  }, []);
+
+  async function fetchingData() {
+    const data = await service({ page });
+    setList((list) => [...list, ...data]);
   }
 
   return { list };

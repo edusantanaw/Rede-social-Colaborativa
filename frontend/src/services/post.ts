@@ -21,3 +21,13 @@ export async function creaetPost(data: FormData) {
     return response;
   } catch (error) {}
 }
+
+export async function loadFeed({ page }: { page: number }) {
+  const user = JSON.parse(localStorage.getItem("@App:user") || "{}");
+  const response = await Api.get(
+    `/feed/${user.id}?page=${page}`,
+    makeOptions()
+  );
+  console.log(response);
+  return response.data;
+}
