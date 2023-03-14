@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { signinData } from "../types/auth";
 import { Api } from "../utils/api";
 

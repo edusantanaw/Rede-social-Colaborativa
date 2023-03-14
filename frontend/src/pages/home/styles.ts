@@ -4,6 +4,8 @@ import { FlexSection } from "../../styles/Global";
 
 export const HomeContainer = styled(FlexSection)`
     padding-top: 2em;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     height: 100%;
 `

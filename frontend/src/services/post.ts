@@ -1,3 +1,4 @@
+import { IPost } from "../types/post";
 import { Api } from "../utils/api";
 
 function makeOptions() {
@@ -8,12 +9,6 @@ function makeOptions() {
     },
   };
 }
-
-type data = {
-  userId: string;
-  content?: string;
-  image?: any;
-};
 
 export async function creaetPost(data: FormData) {
   try {
@@ -29,5 +24,5 @@ export async function loadFeed({ page }: { page: number }) {
     makeOptions()
   );
   console.log(response);
-  return response.data;
+  return response.data as IPost[];
 }

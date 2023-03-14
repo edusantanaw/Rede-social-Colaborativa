@@ -4,6 +4,7 @@ type props<T, R, D> = {
   service: (data: { page: number; args?: T }) => Promise<R[]>;
   ref: React.MutableRefObject<HTMLDivElement | null>;
   dependeces?: D;
+  args?:T
 };
 
 const options = {
@@ -16,13 +17,13 @@ export function useInfiniteScroll<T, R, D>({
   service,
   dependeces,
   ref,
+  args
 }: props<T, R, D>) {
   const [page, setPage] = useState<number>(0);
   const [list, setList] = useState<R[]>([]);
 
   useEffect(() => {
     (async () => {
-      console.log("fetchingDa");
       await fetchingData();
     })();
   }, [page, dependeces]);
@@ -42,7 +43,7 @@ export function useInfiniteScroll<T, R, D>({
   }, []);
 
   async function fetchingData() {
-    const data = await service({ page });
+    const data = await service({ page, args });
     setList((list) => [...list, ...data]);
   }
 
