@@ -1,5 +1,4 @@
-import { IPost } from "../../types/post";
-import { post, prisma } from "../prisma";
+import { IPost } from "../../types/post";import { post, prisma } from "../prisma";
 
 type dataRepository = {
   skip: number;
@@ -16,11 +15,12 @@ export class PostRepository {
   }
 
   public async loadFeed(data: dataRepository) {
+    console.log(data);
     const posts = (await prisma.$queryRaw`
       select post.content, post.image, post.id, users.name, users.id as "userId"
-      from post inner join follows on follows."followingId" = post."userId"
-      inner join users on users.id = post."userId"
-      where follows."followerId" = ${data.userId} or post."userId" = ${data.userId}
+      from post inner join users on users.id = post."userId"
+      left join follows on follows."followingId" = post."userId"
+      where users.id = ${data.userId} or follows."followerId" = ${data.userId}
       order by post."createdAt" desc
       limit ${data.take} offset ${data.skip};
       `) as IPost[];

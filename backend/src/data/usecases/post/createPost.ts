@@ -7,7 +7,7 @@ import { ILoadByIdRepository } from "../../protocols/repositories/loadProjectByI
 
 type data = {
   userId: string;
-  image?: string;
+  file?: string;
   content?: string;
 };
 
@@ -17,10 +17,10 @@ export class CreatePostUsecase implements ICreateUsecase<data, IPost> {
     private readonly postRepository: ICreateRepository<IPost, IPost>
   ) {}
 
-  public async execute(data: data): Promise<IPost> {
-    const userExists = await this.userRepository.loadById(data.userId);
+  public async execute({ userId, content, file: image }: data): Promise<IPost> {
+    const userExists = await this.userRepository.loadById(userId);
     if (!userExists) throw new Error("User not exists!");
-    const post = new Post(data);
+    const post = new Post({ userId, content, image });
     const newPost = await this.postRepository.create(post.getPost());
     return newPost;
   }

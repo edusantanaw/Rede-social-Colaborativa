@@ -13,6 +13,7 @@ export class Server {
     this.app.use(cors({ credentials: true, origin: "*" }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use(express.static("public"))
   }
 
   private start() {

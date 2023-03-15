@@ -30,6 +30,7 @@ const NewPost = () => {
       const formData = new FormData()
       image ? formData.append("image", image): null;
       formData.append("content", contentRef.current.value)
+      formData.append("userId", user.id)
       await creaetPost(formData)
     }
   }

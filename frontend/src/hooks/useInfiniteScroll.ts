@@ -4,7 +4,7 @@ type props<T, R, D> = {
   service: (data: { page: number; args?: T }) => Promise<R[]>;
   ref: React.MutableRefObject<HTMLDivElement | null>;
   dependeces?: D;
-  args?:T
+  args?: T;
 };
 
 const options = {
@@ -17,14 +17,15 @@ export function useInfiniteScroll<T, R, D>({
   service,
   dependeces,
   ref,
-  args
+  args,
 }: props<T, R, D>) {
   const [page, setPage] = useState<number>(0);
   const [list, setList] = useState<R[]>([]);
 
   useEffect(() => {
     (async () => {
-      await fetchingData();
+      const data = await service({ page, args });
+      setList((list) => [...list, ...data]);
     })();
   }, [page, dependeces]);
 
@@ -32,7 +33,6 @@ export function useInfiniteScroll<T, R, D>({
     const observable = new IntersectionObserver((entry) => {
       const target = entry[0];
       if (target.isIntersecting) {
-        console.log(target.isIntersecting);
         setPage((page) => page + 1);
       }
     }, options);
@@ -41,11 +41,6 @@ export function useInfiniteScroll<T, R, D>({
       observable.observe(ref.current);
     }
   }, []);
-
-  async function fetchingData() {
-    const data = await service({ page, args });
-    setList((list) => [...list, ...data]);
-  }
-
+  
   return { list };
 }

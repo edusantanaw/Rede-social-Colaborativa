@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
+import { Multer } from "multer";
 import { httpResponse } from "../../presentational/protocols/httpResponse";
 
-export interface Controller{
+export interface Controller {
   handle: (data: any) => Promise<httpResponse>;
 }
 
@@ -14,6 +15,7 @@ export class Adapter {
           ...req.body,
           ...req.params,
           ...req.query,
+          file: req?.file?.filename,
         });
         return res.status(statusCode).json(body);
       } catch (error) {
