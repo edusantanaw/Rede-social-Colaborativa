@@ -10,7 +10,6 @@ const Feed = () => {
     service: loadFeed,
     ref: intersectRef,
   });
-  console.log(list);
   return (
     <FeedContainer>
       <ul>
