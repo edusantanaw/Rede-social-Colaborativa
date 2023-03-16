@@ -24,8 +24,12 @@ export function useInfiniteScroll<T, R, D>({
 
   useEffect(() => {
     (async () => {
-      const data = await service({ page, args });
-      setList((list) => [...list, ...data]);
+      try {
+        const data = await service({ page, args });
+        setList((list) => [...list, ...data]);
+      } catch (error) {
+        console.log(error);
+      }
     })();
   }, [page, dependeces]);
 
@@ -33,7 +37,7 @@ export function useInfiniteScroll<T, R, D>({
     const observable = new IntersectionObserver((entry) => {
       const target = entry[0];
       if (target.isIntersecting) {
-        setPage((page) => page + 1);
+        // setPage((page) => page + 1);
       }
     }, options);
 
@@ -41,6 +45,6 @@ export function useInfiniteScroll<T, R, D>({
       observable.observe(ref.current);
     }
   }, []);
-  
+
   return { list };
 }

@@ -1,5 +1,4 @@
-import { dataFeed, ILoadFeedUsecase } from "../../../domain/usecases/loadFeed";
-import { ILoadFeedRepository } from "../../protocols/repositories/loadFeed";
+import { dataFeed, ILoadFeedUsecase } from "../../../domain/usecases/loadFeed";import { ILoadFeedRepository } from "../../protocols/repositories/loadFeed";
 
 export class LoadFeedUsecase implements ILoadFeedUsecase {
   constructor(private readonly postRepository: ILoadFeedRepository) {}
@@ -14,9 +13,11 @@ export class LoadFeedUsecase implements ILoadFeedUsecase {
   private mapData(data: dataFeed) {
     const initialPage = 0;
     const maxLoad = 30;
+    const skip = Number(data.skip);
+    const take = Number(data.take);
     return {
-      skip: data.skip ? data.skip : initialPage,
-      take: data.take ? (data.take > maxLoad ? maxLoad : data.take) : maxLoad,
+      skip: skip ? skip : initialPage,
+      take: take ? (take > maxLoad ? maxLoad : take) : maxLoad,
       userId: data.userId,
     };
   }

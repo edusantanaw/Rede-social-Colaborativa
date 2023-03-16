@@ -15,7 +15,6 @@ export class PostRepository {
   }
 
   public async loadFeed(data: dataRepository) {
-    console.log(data);
     const posts = (await prisma.$queryRaw`
       select post.content, post.image, post.id, users.name, users.id as "userId"
       from post inner join users on users.id = post."userId"
@@ -24,6 +23,7 @@ export class PostRepository {
       order by post."createdAt" desc
       limit ${data.take} offset ${data.skip};
       `) as IPost[];
-    return posts;
+  console.log(posts)
+return posts;
   }
 }

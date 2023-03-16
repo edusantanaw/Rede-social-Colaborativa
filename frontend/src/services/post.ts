@@ -26,6 +26,6 @@ export async function loadFeed({ page }: { page: number }) {
     `/feed/${user.id}?skip=${page}`,
     makeOptions()
   );
-  console.log(response);
+  console.log("feed:");
   return response.data as IPost[];
 }
