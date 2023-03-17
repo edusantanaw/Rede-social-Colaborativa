@@ -19,15 +19,41 @@ export const HeaderContainer = styled.header`
     justify-content: center;
     align-items: center;
     font-size: 1.4em;
-    
-}
-svg{
+    cursor: pointer;
+  }
+  svg {
     font-weight: bold;
-}
+  }
 
   .list {
     display: flex;
     align-items: center;
     gap: 1em;
+  }
+
+  .perfil {
+    position: relative;
+    ul {
+      all: unset;
+      position: absolute;
+      top: 2.3em;
+      display: flex;
+      flex-direction: column;
+      background-color: #000;
+      padding: 0.6em;
+      border-radius: 5px;
+      li {
+        all: unset;
+        font-size: 0.9em;
+        font-weight: 300;
+        cursor: pointer;
+        padding: 0.5em;
+        a {
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+      
+    }
   }
 `;
