@@ -9,6 +9,7 @@ interface IAuthContext {
   user: IUser | null;
   error: string | null;
   signin: (data: signinData) => Promise<void>;
+  logout: () => void;
 }
 
 export const AuthContext = createContext({} as IAuthContext);
@@ -50,8 +51,16 @@ export function AuthProvider({ children }: props) {
       setError(reponseError.response.data);
     }
   }
+
+  function logout(){
+    setToken(null);
+    setUser(null);
+    localStorage.removeItem("@App:token")
+    localStorage.removeItem("@App:user")
+  }
+
   return (
-    <AuthContext.Provider value={{ auth, token, user, error, signin }}>
+    <AuthContext.Provider value={{ auth, token, user, error, signin, logout }}>
       {children}
     </AuthContext.Provider>
   );

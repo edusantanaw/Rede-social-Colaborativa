@@ -3,3 +3,4 @@ env
 prisma/migrations
 yarn.lock
 config
+public

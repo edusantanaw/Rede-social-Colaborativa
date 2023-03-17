@@ -19,6 +19,11 @@ const Home = () => {
     content && formData.append("content", content);
     user && formData.append("userId", user.id);
     const newPost = await creaetPost(formData);
+    if(newPost && user){
+      newPost.name = user.name;
+      newPost.userId = user.id
+      newPost.perfilPhoto = user.perfilPhoto;
+    }
     setNewPost(newPost)
   };
 

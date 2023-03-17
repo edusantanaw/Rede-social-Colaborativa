@@ -1,11 +1,6 @@
 import { signinData } from "../types/auth";
+import { IUser } from "../types/user";
 import { Api } from "../utils/api";
-
-type IUser = {
-  id: string;
-  email: string;
-  name: string;
-};
 
 type apiResponse = { 
     token: string;
