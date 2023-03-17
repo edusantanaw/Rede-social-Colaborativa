@@ -30,7 +30,14 @@ const NewPost = ({ handleCreate }: props) => {
     if (contentRef.current) {
       const content = contentRef.current.value;
       await handleCreate(image, content);
+      resetComponent();
     }
+  }
+
+  function resetComponent() {
+    setImage(null);
+    setPrevImage(undefined);
+    if (contentRef.current) contentRef.current.value = "";
   }
 
   function clearImage() {

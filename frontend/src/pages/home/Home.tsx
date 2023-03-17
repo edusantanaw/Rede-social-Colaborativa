@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import { useAuth } from "../../hooks/auth";
 import { creaetPost } from "../../services/post";
+import { IPost } from "../../types/post";
 import Feed from "./components/Feed";
 import NewPost from "./components/NewPost";
 import { HomeContainer } from "./styles";
 
 const Home = () => {
-  const [newPost, setNewPost] = useState<any>(null)
+  const [newPost, setNewPost] = useState<IPost | null>(null)
   const { user } = useAuth();
 
   const handleCreatePost = async (
@@ -17,8 +18,8 @@ const Home = () => {
     imagem && formData.append("image", imagem);
     content && formData.append("content", content);
     user && formData.append("userId", user.id);
-    setNewPost(true)
-    await creaetPost(formData);
+    const newPost = await creaetPost(formData);
+    setNewPost(newPost)
   };
 
   return (

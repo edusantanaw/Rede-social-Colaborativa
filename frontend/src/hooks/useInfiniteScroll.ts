@@ -43,7 +43,7 @@ export function useInfiniteScroll<T, R, D>({
   }, []);
 
   const addItem = (item: R) => {
-    setList((list)=> [...list, item])
+    setList((list)=> [item, ...list])
   }
 
   return { list, addItem };

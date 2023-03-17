@@ -12,11 +12,10 @@ function makeOptions() {
 
 export async function creaetPost(data: FormData) {
   try {
-    const response = await Api.post("/post", data, makeOptions());
-    console.log(response)
-    return response;
+    const response = await Api.post<IPost>("/post", data, makeOptions());
+    return response.data;
   } catch (error) {
-    console.log(error)
+   return null
   }
 }
 

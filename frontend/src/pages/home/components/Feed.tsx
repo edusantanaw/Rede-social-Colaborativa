@@ -17,7 +17,7 @@ const Feed = ({ newPost }: props) => {
   });
 
   useEffect(() => {
-    addItem(newPost);
+    if (newPost) addItem(newPost);
   }, [newPost]);
 
   return (
