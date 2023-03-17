@@ -1,15 +1,25 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Post from "../../../components/post/Post";
 import { useInfiniteScroll } from "../../../hooks/useInfiniteScroll";
 import { loadFeed } from "../../../services/post";
 import { FeedContainer } from "./styles";
 
-const Feed = () => {
+interface props {
+  newPost: any;
+}
+
+const Feed = ({ newPost }: props) => {
   const intersectRef = useRef<HTMLDivElement | null>(null);
-  const { list } = useInfiniteScroll({
+
+  const { list, addItem } = useInfiniteScroll({
     service: loadFeed,
     ref: intersectRef,
   });
+
+  useEffect(() => {
+    addItem(newPost);
+  }, [newPost]);
+
   return (
     <FeedContainer>
       <ul>

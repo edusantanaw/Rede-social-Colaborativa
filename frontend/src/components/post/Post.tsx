@@ -2,6 +2,8 @@ import React from "react";
 import { IPost } from "../../types/post";
 import { PostItem } from "./style";
 import defaultImage from "../../assets/default.jpg";
+import { AiFillHeart } from "react-icons/ai";
+import { BiComment} from "react-icons/bi";
 
 const Post = ({ id, userId, name, content, image, perfilPhoto }: IPost) => {
   return (
@@ -14,10 +16,26 @@ const Post = ({ id, userId, name, content, image, perfilPhoto }: IPost) => {
         />
         <div className="content">
           <span>{name}</span>
-          <p>{content}</p>
         </div>
       </div>
-      {image && <img src={image} alt="image" />}
+          <p>{content}</p>
+      {image && (
+        <img
+          src={`http://localhost:3000/${image}`}
+          id="post_image"
+          alt="image"
+        />
+      )}
+      <div className="interactions">
+        <div>
+          <AiFillHeart />
+          Curtir
+        </div>
+        <div>
+          <BiComment />
+          Comentar
+        </div>
+      </div>
     </PostItem>
   );
 };

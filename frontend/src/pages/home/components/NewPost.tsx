@@ -2,13 +2,14 @@ import React, { useRef, useState } from "react";
 import { NewPostContainer } from "./styles";
 import { BsFillPersonFill, BsCardImage } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { useAuth } from "../../../hooks/auth";
-import { creaetPost} from '../../../services/post'
 
-const NewPost = () => {
+interface props {
+  handleCreate: (image: File | null, content: string | null) => Promise<void>;
+}
+
+const NewPost = ({ handleCreate }: props) => {
   const [image, setImage] = useState<File | null>(null);
   const [prevImage, setPrevImage] = useState<string | undefined>();
-  const { user } = useAuth();
   const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -25,13 +26,10 @@ const NewPost = () => {
     }
   }
 
-  async function handleCreate(){
-    if(user && contentRef.current){
-      const formData = new FormData()
-      image ? formData.append("image", image): null;
-      formData.append("content", contentRef.current.value)
-      formData.append("userId", user.id)
-      await creaetPost(formData)
+  async function handleCreatePost() {
+    if (contentRef.current) {
+      const content = contentRef.current.value;
+      await handleCreate(image, content);
     }
   }
 
@@ -61,7 +59,7 @@ const NewPost = () => {
           <BsCardImage />
         </label>
         <input type="file" id="img_file" onChange={handleImageChange} />
-        <button onClick={handleCreate}>Criar</button>
+        <button onClick={handleCreatePost}>Criar</button>
       </div>
     </NewPostContainer>
   );
