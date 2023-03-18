@@ -1,21 +1,13 @@
 import { IPost } from "../types/post";
 import { Api } from "../utils/api";
-
-function makeOptions() {
-  const token = localStorage.getItem("@App:token");
-  return {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  };
-}
+import { makeOptions } from "../utils/makeOptions";
 
 export async function creaetPost(data: FormData) {
   try {
     const response = await Api.post<IPost>("/post", data, makeOptions());
     return response.data;
   } catch (error) {
-   return null
+    return null;
   }
 }
 
