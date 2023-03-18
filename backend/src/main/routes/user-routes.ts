@@ -1,10 +1,10 @@
-import { Router } from "express";
-import { Adapter } from "../adapter/adapter";
+import { Router } from "express";import { Adapter } from "../adapter/adapter";
 import { UserAdapter } from "../adapter/auth-adapter";
 import { makeAddFollowController } from "../factories/controllers/user/addFollow";
 import { makeAuthController } from "../factories/controllers/user/auth-controller";
 import { makeCreateUserController } from "../factories/controllers/user/createUser";
 import { makeForgetPasswordController } from "../factories/controllers/user/forgetPassword";
+import { makeLoadUserByIdController } from "../factories/controllers/user/loadById";
 import { makeRecoveryPasswordController } from "../factories/controllers/user/recoveryPassword";
 
 const adapter = new Adapter();
@@ -25,4 +25,5 @@ export default function (router: Router) {
     "/follow/add/:userId",
     authAdapter.make(makeAddFollowController())
   );
+  router.get("/user/:id", authAdapter.make(makeLoadUserByIdController()));
 }

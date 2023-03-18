@@ -1,9 +1,11 @@
-import React from 'react'
+import { useParams } from "react-router-dom";
 
 const Perfil = () => {
-  return (
-    <div>Perfil</div>
-  )
-}
+  const { id } = useParams<{ id: string }>();
 
-export default Perfil
+  if(!id) return <span>User not exists!</span>
+
+  return <div>Perfil</div>;
+};
+
+export default Perfil;
