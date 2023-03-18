@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <div id="home">
-        <RiHomeLine />
+       <Link to="/"> <RiHomeLine /></Link>
       </div>
       <ul className="list">
         <li>
@@ -31,7 +31,7 @@ const Header = () => {
         <li className="perfil">
           <BsFillPersonFill onClick={handleShowPerfil} />
           {showPerfil && (
-            <ul id="perfil_actions">
+            <ul id="perfil_actions" onClick={handleShowPerfil}>
               <li>{user && <Link to={`/perfil/${user.id}`}>Perfil</Link>}</li>
               <li onClick={logout}>Sair</li>
             </ul>

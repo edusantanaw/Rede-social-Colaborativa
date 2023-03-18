@@ -7,8 +7,8 @@ interface props {
   dependeces: unknown[];
 }
 
-export async function useFetching<T>({ url, dependeces }: props) {
-  const [data, setData] = useState<T | null>();
+export  function useFetching<T>({ url, dependeces }: props) {
+  const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 

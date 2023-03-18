@@ -16,6 +16,8 @@ model User {
   email         String          @unique
   password      String
   roles         String[]
+  perfilPhoto   String?
+  coverImage    String?
   Project       Project[]
   Collaborators Collaborators[]
   createdAt     DateTime        @default(now())

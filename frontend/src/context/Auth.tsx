@@ -1,16 +1,8 @@
 import { createContext, useEffect, useState } from "react";
+import { tokenKey, userKey } from "../constants/keys";
 import { signinService } from "../services/auth";
-import { signinData } from "../types/auth";
+import { IAuthContext, signinData } from "../types/auth";
 import { IUser } from "../types/user";
-
-interface IAuthContext {
-  auth: boolean;
-  token: string | null;
-  user: IUser | null;
-  error: string | null;
-  signin: (data: signinData) => Promise<void>;
-  logout: () => void;
-}
 
 export const AuthContext = createContext({} as IAuthContext);
 
@@ -25,8 +17,8 @@ export function AuthProvider({ children }: props) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("@App:token");
-    const user = localStorage.getItem("@App:user");
+    const token = localStorage.getItem(tokenKey);
+    const user = localStorage.getItem(userKey);
     if (token && user) {
       setToken(token);
       setUser(JSON.parse(user));
@@ -35,8 +27,8 @@ export function AuthProvider({ children }: props) {
   }, []);
 
   function makeStorage(user: any, token: string) {
-    localStorage.setItem("@App:token", token);
-    localStorage.setItem("@App:user", JSON.stringify(user));
+    localStorage.setItem(tokenKey, token);
+    localStorage.setItem(userKey, JSON.stringify(user));
   }
 
   async function signin(data: signinData) {
@@ -52,11 +44,11 @@ export function AuthProvider({ children }: props) {
     }
   }
 
-  function logout(){
+  function logout() {
     setToken(null);
     setUser(null);
-    localStorage.removeItem("@App:token")
-    localStorage.removeItem("@App:user")
+    localStorage.removeItem(tokenKey);
+    localStorage.removeItem(userKey);
   }
 
   return (
