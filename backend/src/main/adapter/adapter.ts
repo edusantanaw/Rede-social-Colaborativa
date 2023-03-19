@@ -9,8 +9,8 @@ export interface Controller {
 export class Adapter {
   public make(controller: Controller) {
     return async (req: Request, res: Response) => {
-      if (!this.authorized(req)) return res.status(401).json("Unathorized!");
       try {
+        if (!this.authorized(req)) return res.status(401).json("Unathorized!");
         const { body, statusCode } = await controller.handle({
           ...req.body,
           ...req.params,

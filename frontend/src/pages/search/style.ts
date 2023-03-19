@@ -23,5 +23,8 @@ export const SearchContainer = styled.section`
 
   ul{
     width: 40%;
-  }
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
 `;

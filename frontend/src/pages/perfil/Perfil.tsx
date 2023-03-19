@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { useFetching } from "../../hooks/useFetching";
 import { IUser } from "../../types/user";
 import { PerfilContainer } from "./style";

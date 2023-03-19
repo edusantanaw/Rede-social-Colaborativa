@@ -22,6 +22,7 @@ export class JwtToken implements IGenerateToken {
   public tokenIsValid(token: string) {
     try {
       jwt.verify(token, this.secret);
+      
       return true;
     } catch (error) {
       return false;

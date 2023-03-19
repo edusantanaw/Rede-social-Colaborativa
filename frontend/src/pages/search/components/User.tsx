@@ -5,6 +5,8 @@ import { IUser } from "../../../types/user";
 import defaultImage from "../../../assets/default.jpg";
 import { Link } from "react-router-dom";
 import { UserContainer } from "./style";
+import { useAuth } from "../../../hooks/auth";
+import { addFollow } from "../../../services/follow";
 
 interface props {
   name: string;
@@ -15,6 +17,19 @@ const User = ({ name }: props) => {
     url: `/user/search/${name}`,
     dependeces: [name],
   });
+
+  const { user } = useAuth();
+
+  async function handleFollow(id: string) {
+    const response = await addFollow(id, user!.id);
+  }
+
+  const showButtomFollow = (id: string) => {
+    if (user!.id === id) {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <ul>
@@ -30,7 +45,9 @@ const User = ({ name }: props) => {
               />
               <span>{item.name}</span>
             </Link>
-            <button>Seguir</button>
+            {showButtomFollow(item.id) && (
+              <button onClick={() => handleFollow(item.id)}>Seguir</button>
+            )}
           </UserContainer>
         ))}
     </ul>
