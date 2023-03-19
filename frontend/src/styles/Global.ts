@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     a {
         text-decoration: none;
+        color: #fff;
     }
 
     li {

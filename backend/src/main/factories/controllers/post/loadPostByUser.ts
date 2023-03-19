@@ -1,6 +1,6 @@
 import { LoadController } from "../../../../presentational/controllers/load";
 import { makeLoadPostByUserUsecase } from "../../usecases/post/loadPostByUser";
 
-export function makeLoadFeedController() {
+export function makeLoadPostByUserController() {
   return new LoadController(makeLoadPostByUserUsecase());
 }

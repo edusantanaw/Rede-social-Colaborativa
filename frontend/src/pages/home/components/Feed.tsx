@@ -14,6 +14,7 @@ const Feed = ({ newPost }: props) => {
   const { list, addItem } = useInfiniteScroll({
     service: loadFeed,
     ref: intersectRef,
+    options: undefined,
   });
 
   useEffect(() => {

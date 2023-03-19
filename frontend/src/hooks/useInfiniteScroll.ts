@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 type props<T, R, D> = {
-  service: (data: { page: number; args?: T }) => Promise<R[]>;
+  service: (page: number, options?: T) => Promise<R[]>;
   ref: React.MutableRefObject<HTMLDivElement | null>;
   dependeces?: D;
-  args?: T;
+  options: T;
 };
 
-const options = {
+const config = {
   root: null,
   rootMargin: "20px",
   threshold: 1.0,
@@ -17,15 +17,15 @@ export function useInfiniteScroll<T, R, D>({
   service,
   dependeces,
   ref,
-  args,
+  options,
 }: props<T, R, D>) {
   const [page, setPage] = useState<number>(0);
   const [list, setList] = useState<R[]>([]);
 
   useEffect(() => {
     (async () => {
-        const data = await service({ page, args });
-        setList((list) => [...list, ...data]);
+      const data = await service(page, options);
+      setList((list) => [...list, ...data]);
     })();
   }, [page, dependeces]);
 
@@ -35,7 +35,7 @@ export function useInfiniteScroll<T, R, D>({
       if (target.isIntersecting) {
         setPage((page) => page + 1);
       }
-    }, options);
+    }, config);
 
     if (ref.current) {
       observable.observe(ref.current);
@@ -43,8 +43,8 @@ export function useInfiniteScroll<T, R, D>({
   }, []);
 
   const addItem = (item: R) => {
-    setList((list)=> [item, ...list])
-  }
+    setList((list) => [item, ...list]);
+  };
 
   return { list, addItem };
 }

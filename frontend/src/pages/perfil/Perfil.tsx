@@ -5,23 +5,26 @@ import { IUser } from "../../types/user";
 import { PerfilContainer } from "./style";
 import defaultImage from "../../assets/default.jpg";
 import defaultBg from "../../assets/defaultBg.jpg";
+import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
+import { loadPostByUser } from "../../services/post";
+import { useRef } from "react";
+import { IPost } from "../../types/post";
+import Post from "./Components/Post";
 
 const Perfil = () => {
   const { id } = useParams<{ id: string }>();
-
-  const navigate = useNavigate();
+  const postEndRef = useRef<HTMLDivElement | null>(null);
 
   const { data, error, isLoading } = useFetching<IUser>({
     url: `/user/${id}`,
     dependeces: [id],
   });
 
-  console.log(data, error, isLoading);
-
   if (!data) {
-    navigate("/");
     return <></>;
   }
+
+
   return (
     <PerfilContainer>
       <div className="content">
@@ -43,6 +46,7 @@ const Perfil = () => {
           </div>
         </div>
       </div>
+      {data && <Post id={data.id } />}
     </PerfilContainer>
   );
 };

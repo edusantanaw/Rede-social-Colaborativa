@@ -18,9 +18,9 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <Router>
+        <div style={{display: "flex", position: "relative"}}>
        { isAuth && <Header />}
-        <div style={{display: "flex", position: "relative", padding: "4.4em 0 0 0"}}>
-          {isAuth && <Nav />}
+          {/* {isAuth && <Nav />} */}
           <Routes>
             <Route
               path="/"

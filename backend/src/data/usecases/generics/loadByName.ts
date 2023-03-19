@@ -1,12 +1,12 @@
 import { ILoadByNameUsecase } from "../../../domain/usecases/loadByName";
 import { ILoadByNameRepository } from "../../protocols/repositories/loadByName";
 
-export class LoadByProjctNameUsecase implements ILoadByNameUsecase {
-  constructor(private readonly projectRepository: ILoadByNameRepository) {}
+export class LoadByNameUsecase<T> implements ILoadByNameUsecase <T>{
+  constructor(private readonly repository: ILoadByNameRepository<T>) {}
 
   public async load({ name }: { name: string }) {
-    const projects = await this.projectRepository.loadByName(name);
-    if (projects.length === 0) return null;
-    return projects;
+    const data = await this.repository.loadByName(name);
+    if (data.length === 0) return null;
+    return data;
   }
 }

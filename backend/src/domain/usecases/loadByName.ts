@@ -1,5 +1,4 @@
-import { IProject } from "../../types/project";
 
-export interface ILoadByNameUsecase {
-  load: ({ name }: { name: string }) => Promise<IProject[] | null>;
+export interface ILoadByNameUsecase <T>{
+  load: ({ name }: { name: string }) => Promise<T[] | null>;
 }

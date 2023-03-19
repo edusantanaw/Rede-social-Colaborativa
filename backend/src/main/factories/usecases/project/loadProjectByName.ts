@@ -1,7 +1,7 @@
-import { LoadByProjctNameUsecase } from "../../../../data/usecases/generics/loadByName"
+import { LoadByNameUsecase } from "../../../../data/usecases/generics/loadByName"
 import { ProjectRepository } from "../../../../infra/repositories/projectRepository"
 
 export function makeLoadProjectByNameUsecase(){
     const projectRepository = new ProjectRepository()
-    return new LoadByProjctNameUsecase(projectRepository)
+    return new LoadByNameUsecase(projectRepository)
 }

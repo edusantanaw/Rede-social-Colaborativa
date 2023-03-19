@@ -12,12 +12,21 @@ export async function creaetPost(data: FormData) {
   }
 }
 
-export async function loadFeed({ page }: { page: number }) {
+export async function loadFeed(page: number) {
   const user = JSON.parse(localStorage.getItem(userKey) || "{}");
   const response = await Api.get(
     `/feed/${user.id}?skip=${page}`,
     makeOptions()
   );
   console.log("feed:", response.data);
+  return response.data as IPost[];
+}
+
+export async function loadPostByUser(page: number, userId?: string) {
+  const response = await Api.get(
+    `/post/perfil/${userId}?skip=${page}`,
+    makeOptions()
+  );
+  console.log(response)
   return response.data as IPost[];
 }

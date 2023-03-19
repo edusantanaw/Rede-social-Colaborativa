@@ -1,6 +1,6 @@
 import { User } from "../../domain/entities/user";
 import { IUser } from "../../types/user";
-import { user } from "../prisma";
+import { prisma, user } from "../prisma";
 
 export class UserRepository {
   public async save(data: User): Promise<IUser> {
@@ -35,5 +35,14 @@ export class UserRepository {
         password: pass,
       },
     });
+  }
+
+  public async loadByName(name: string) {
+    const users = await prisma.$queryRaw`
+      select id, name, email, perfilPhoto 
+      from users
+      where name like ${"%"+name+"%"}
+    ` as IUser[]
+    return users;
   }
 }

@@ -4,7 +4,9 @@ export const PerfilContainer = styled.section`
   padding: 1em 8em;
   width: 100%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2em;
   .content {
     width: 80%;
     background-color: #fff;
@@ -38,5 +40,11 @@ export const PerfilContainer = styled.section`
       font-size: 2em;
       font-weight: 500;
     }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;

@@ -35,6 +35,7 @@ export class PostRepository {
     order by post."createdAt" desc
     limit ${take} offset ${skip * take};
     `) as IPost[];
+    console.log(posts)
     return posts;
   }
 }

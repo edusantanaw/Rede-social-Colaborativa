@@ -1,5 +1,5 @@
 import { IProject } from "../../../types/project";
 
-export interface ILoadByNameRepository {
-    loadByName: (name: string) => Promise<IProject[]>;
+export interface ILoadByNameRepository<T> {
+    loadByName: (name: string) => Promise<T[]>;
   }
