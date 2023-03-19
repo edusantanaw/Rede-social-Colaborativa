@@ -7,6 +7,7 @@ import { makeCreateUserController } from "../factories/controllers/user/createUs
 import { makeForgetPasswordController } from "../factories/controllers/user/forgetPassword";
 import { makeLoadUserByIdController } from "../factories/controllers/user/loadById";
 import { makeLoadUserByNameController } from "../factories/controllers/user/loadByName";
+import { makeLoadFollowController } from "../factories/controllers/user/loadFollow";
 import { makeRecoveryPasswordController } from "../factories/controllers/user/recoveryPassword";
 
 const adapter = new Adapter();
@@ -32,4 +33,5 @@ export default function (router: Router) {
     authAdapter.make(makeLoadUserByNameController())
   );
   router.get("/user/:id", authAdapter.make(makeLoadUserByIdController()));
+  router.get("/follow/following/:id", authAdapter.make(makeLoadFollowController()));
 }
