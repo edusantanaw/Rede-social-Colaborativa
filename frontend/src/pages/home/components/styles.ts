@@ -8,11 +8,13 @@ export const NewPostContainer = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-
+  gap: 1em;
   .new {
+    width: 100%;
     display: flex;
     gap: 1em;
-    div {
+    color: #000;
+    #photo_perfil {
       background-color: #000;
       width: 3em;
       height: 3em;
@@ -21,15 +23,11 @@ export const NewPostContainer = styled.div`
       align-items: center;
       justify-content: center;
     }
+  }
 
-    textarea {
-      width: 90%;
-      height: 6em;
-      padding: 0.5em;
-      border-radius: 7px;
-      background-color: transparent;
-      border: none;
-    }
+  #editor {
+    height: 5em;
+
   }
 
   .prev_img {
@@ -55,7 +53,7 @@ export const NewPostContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1em;
+    margin-top: 4em;
     svg {
       font-size: 1.7em;
       color: #000;
@@ -92,4 +90,11 @@ export const ProjectContainer = styled.div`
   width: 25%;
   height: 30em;
   position: -webkit-sticky;
+  border-radius: 10px;
+  padding: 1em;
+  text-align: center;
+
+  span{
+    font-size: 1.3em;
+  }
 `;

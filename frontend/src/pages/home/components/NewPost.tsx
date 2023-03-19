@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { NewPostContainer } from "./styles";
 import { BsFillPersonFill, BsCardImage } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import Editor from "../../../components/editor/Editor";
 
 interface props {
   handleCreate: (image: File | null, content: string | null) => Promise<void>;
@@ -10,8 +11,7 @@ interface props {
 const NewPost = ({ handleCreate }: props) => {
   const [image, setImage] = useState<File | null>(null);
   const [prevImage, setPrevImage] = useState<string | undefined>();
-  const contentRef = useRef<HTMLTextAreaElement | null>(null);
-
+  const [content, setContent] = useState<string | null>(null);
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
     const files = e.target.files;
     const reader = new FileReader();
@@ -27,31 +27,32 @@ const NewPost = ({ handleCreate }: props) => {
   }
 
   async function handleCreatePost() {
-    if (contentRef.current) {
-      const content = contentRef.current.value;
-      await handleCreate(image, content);
-      resetComponent();
-    }
+    if(!content) return;
+    await handleCreate(image, content);
+    resetComponent();
   }
 
   function resetComponent() {
     setImage(null);
     setPrevImage(undefined);
-    if (contentRef.current) contentRef.current.value = "";
+    setContent(null);
   }
 
   function clearImage() {
     setImage(null);
-    setPrevImage(undefined);
+  }
+
+  function getContent(data: string) {
+    setContent(data);
   }
 
   return (
     <NewPostContainer>
       <div className="new">
-        <div>
+        <div id="photo_perfil">
           <BsFillPersonFill />
         </div>
-        <textarea placeholder="Criar novo post" ref={contentRef} />
+        <Editor getContent={getContent} />
       </div>
       {prevImage && (
         <div className="prev_img">

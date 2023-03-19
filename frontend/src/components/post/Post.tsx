@@ -3,7 +3,7 @@ import { IPost } from "../../types/post";
 import { PostItem } from "./style";
 import defaultImage from "../../assets/default.jpg";
 import { AiFillHeart } from "react-icons/ai";
-import { BiComment} from "react-icons/bi";
+import { BiComment } from "react-icons/bi";
 
 const Post = ({ id, userId, name, content, image, perfilPhoto }: IPost) => {
   return (
@@ -18,7 +18,7 @@ const Post = ({ id, userId, name, content, image, perfilPhoto }: IPost) => {
           <span>{name}</span>
         </div>
       </div>
-          <p>{content}</p>
+      {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
       {image && (
         <img
           src={`http://localhost:3000/${image}`}

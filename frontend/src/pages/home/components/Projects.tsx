@@ -4,7 +4,7 @@ import { ProjectContainer } from './styles'
 const Projects = () => {
   return (
     <ProjectContainer>
-        <span>Seus projetos</span>
+        <span>Projetos</span>
     </ProjectContainer>
   )
 }
