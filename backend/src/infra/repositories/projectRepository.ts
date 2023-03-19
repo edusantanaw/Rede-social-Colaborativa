@@ -23,7 +23,7 @@ export class ProjectRepository {
   public async loadByName(name: string) {
     const projects = (await prisma.$queryRaw`
       SELECT * FROM project 
-      WHERE name LIKE ${`'%${name}%'`};`) as IProject[];
+      WHERE lower(name) LIKE ${`'%${name.toLowerCase()}%'`};`) as IProject[];
     return projects;
   }
 }

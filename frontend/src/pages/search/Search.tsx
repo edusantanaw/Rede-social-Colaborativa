@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useFetching } from "../../hooks/useFetching";
+import Projects from "./components/Projects";
+import User from "./components/User";
+import { SearchContainer } from "./style";
 
-const url = "search";
 const Search = () => {
   const { name } = useParams<{ name: string }>();
   const [typeSearch, setTypeSearch] = useState("user");
-  const {data, error} = useFetching({
-    url: `/${typeSearch}/${url}/${name}`,
-    dependeces: [name, setTypeSearch],
-  });
 
-  console.log(data, error)
-
-  return <div>Search</div>;
+  return (
+    <SearchContainer>
+        <div className="top">
+            <span onClick={()=> setTypeSearch("user")}>Usuarios</span>
+            <span  onClick={()=> setTypeSearch("project")}>Projetos</span>
+        </div>
+      {typeSearch === "user" ? (
+        <User name={name!} />
+      ) : (
+        <Projects name={name!} />
+      )}
+    </SearchContainer>
+  );
 };
 
 export default Search;
