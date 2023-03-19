@@ -39,10 +39,11 @@ export class UserRepository {
 
   public async loadByName(name: string) {
     const users = await prisma.$queryRaw`
-      select id, name, email, perfilPhoto 
+      select id, name, email, "perfilPhoto" 
       from users
       where name like ${"%"+name+"%"}
     ` as IUser[]
+    
     return users;
   }
 }

@@ -56,4 +56,30 @@ export const HeaderContainer = styled.header`
       
     }
   }
+
+  .search_bar{
+    display: flex;
+    align-items: center;
+    input {
+      padding: 1em;
+      width: 26em;
+      height: 3em;
+      border-radius: 5px 0 0 5px;
+      background: #e2e2e2;
+      border: none;
+    }
+
+    button {
+      width: 3em;
+      height: 3em;
+      border: none;
+      background-color: #000;
+      color: #fff;
+      border-radius: 0px 5px 5px 0px ;
+      cursor: pointer;
+      svg{
+        font-size: 1.4em;
+      }
+    }
+  }
 `;

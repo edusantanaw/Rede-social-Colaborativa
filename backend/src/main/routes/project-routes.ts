@@ -42,6 +42,6 @@ export default function (router: Router) {
     "/project/messages",
     userAdapter.make(makeLoadAllMessagesController())
   );
-  router.get("/project/name/:name", userAdapter.make(makeLoadProjectByName()));
+  router.get("/project/seatch/:name", userAdapter.make(makeLoadProjectByName()));
   router.get("/project/:id", userAdapter.make(makeLoadProjectByIdController()));
 }

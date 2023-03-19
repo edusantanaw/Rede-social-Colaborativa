@@ -10,6 +10,7 @@ import Home from "./pages/home/Home";
 import { useIsAuth } from "./hooks/isAuth";
 import Header from "./layout/header/Header";
 import Perfil from "./pages/perfil/Perfil";
+import Search from "./pages/search/Search";
 
 function App() {
   const { isAuth } = useIsAuth();
@@ -27,6 +28,10 @@ function App() {
             <Route
               path="/perfil/:id"
               element={isAuth ? <Perfil /> : <Navigate to="/auth" />}
+            />
+            <Route
+              path="/search/:name"
+              element={isAuth ? <Search /> : <Navigate to="/auth" />}
             />
             <Route
               path="/auth"
