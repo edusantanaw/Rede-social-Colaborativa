@@ -9,7 +9,6 @@ import Auth from "./pages/auth/Auth";
 import Home from "./pages/home/Home";
 import { useIsAuth } from "./hooks/isAuth";
 import Header from "./layout/header/Header";
-import Nav from "./layout/nav/Nav";
 import Perfil from "./pages/perfil/Perfil";
 
 function App() {
@@ -18,9 +17,8 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <Router>
-        <div style={{display: "flex", position: "relative"}}>
-       { isAuth && <Header />}
-          {/* {isAuth && <Nav />} */}
+        {isAuth && <Header />}
+        <div style={{ display: "flex", position: "relative" }}>
           <Routes>
             <Route
               path="/"

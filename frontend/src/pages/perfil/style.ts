@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const PerfilContainer = styled.section`
-  padding: 1em 8em;
+  padding: 5.5em 0em;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 2em;
   .content {
-    width: 80%;
+    width: 60%;
     background-color: #fff;
     border-radius: 10px;
   }
@@ -42,9 +42,14 @@ export const PerfilContainer = styled.section`
     }
   }
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .posts {
+    width: 100%;
+      ul {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2em;
+      }
   }
 `;

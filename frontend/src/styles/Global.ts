@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
     }
     body {
-        background-color: #DFDCDC;
+        background-color: #e0e0e0;
     }
 `;
 

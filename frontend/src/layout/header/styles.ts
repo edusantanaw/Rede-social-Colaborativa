@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-  width: 5em;
-  height: 100vh;
-  padding: 3em 0;
+  width: 100%;
+  padding: 0.7em 2em;
   display: flex;
-  flex-direction: column;
   background-color: #fff;
-  align-items: center;
+  justify-content: space-between;
   position: fixed;
   z-index: 2;
   #home,
@@ -29,7 +27,6 @@ export const HeaderContainer = styled.header`
 
   .list {
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 1em;
   }
@@ -51,11 +48,12 @@ export const HeaderContainer = styled.header`
         font-weight: 300;
         cursor: pointer;
         padding: 0.5em;
+        color: #fff;
         a {
-          color: #fff;
           text-decoration: none;
         }
       }
+      
     }
   }
 `;

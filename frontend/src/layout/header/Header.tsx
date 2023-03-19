@@ -18,13 +18,10 @@ const Header = () => {
 
   return (
     <HeaderContainer>
+      <div id="home">
+       <Link to="/"> <RiHomeLine /></Link>
+      </div>
       <ul className="list">
-        <li>
-          <Link to="/">
-            {" "}
-            <RiHomeLine />
-          </Link>
-        </li>
         <li>
           <IoNotificationsOutline />
         </li>

@@ -18,7 +18,7 @@ const Post = ({ id }: props) => {
   });
   console.log(list)
   return (
-    <div>
+    <div className="posts">
       <ul>
         {list.length > 0 && list.map((item, i) => <PostItem key={i} {...item} />)}
       </ul>
