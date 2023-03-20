@@ -2,6 +2,7 @@ import { Router } from "express";import { UserAdapter } from "../adapter/auth-ad
 import { makeAddOrRemovePostLikeController } from "../factories/controllers/post/addOrRemoveLike";
 import { makeCreatePostController } from "../factories/controllers/post/createPost";
 import { makeLoadFeedController } from "../factories/controllers/post/feed";
+import { makeLoadLikeController } from "../factories/controllers/post/loadLike";
 import { makeLoadPostByUserController } from "../factories/controllers/post/loadPostByUser";
 import { fileUpload } from "../middlewares/upload-file";
 
@@ -24,6 +25,6 @@ export default function (router: Router) {
   );
   router.get(
     "/post/like/:id",
-    authAdapter.make(makeAddOrRemovePostLikeController())
+    authAdapter.make(makeLoadLikeController())
   );
 }

@@ -17,6 +17,7 @@ export  function useFetching<T>({ url, dependeces }: props) {
       setIsLoading(true);
       try {
         const response = await Api.get(url, makeOptions());
+        
         setData(response.data);
       } catch (error) {
         const err = error as { response: { data: string } };

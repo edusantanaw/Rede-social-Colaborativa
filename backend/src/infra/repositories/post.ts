@@ -1,4 +1,5 @@
-import { loadPostByUserId } from "../../data/protocols/repositories/loadPostByUser";import { ILike } from "../../types/like";
+import { loadPostByUserId } from "../../data/protocols/repositories/loadPostByUser";
+import { ILike } from "../../types/like";
 import { IPost } from "../../types/post";
 import { likes, post, prisma } from "../prisma";
 
@@ -70,10 +71,11 @@ export class PostRepository {
   }
 
   public async loadLikes(id: string) {
-    const likes = (await prisma.$queryRaw`
-      select "userId" from likes
-      where "postId" = ${id}
-    `) as string[];
-    return likes;
+    const userLikes = await likes.findMany({
+      where: {
+        postId: id,
+      },
+    });
+    return userLikes.map((like) => like.userId);
   }
 }

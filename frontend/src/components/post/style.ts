@@ -49,6 +49,11 @@ export const PostItem = styled.li`
       svg {
         font-size: 1.5em;
       }
+      cursor: pointer;
     }
+  }
+
+  #liked {
+    color: red;
   }
 `;

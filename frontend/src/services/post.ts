@@ -40,8 +40,3 @@ export async function addOrRemoveLike(postId: string, userId: string) {
   console.log(response);
   return response.data;
 }
-
-export async function loadPostLikes(postId: string) {
-  const response = await Api.get("/post/likes/" + postId, makeOptions());
-  return response.data;
-}
