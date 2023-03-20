@@ -27,6 +27,21 @@ export async function loadPostByUser(page: number, userId?: string) {
     `/post/perfil/${userId}?skip=${page}`,
     makeOptions()
   );
-  console.log(response)
+  console.log(response);
   return response.data as IPost[];
+}
+
+export async function addOrRemoveLike(postId: string, userId: string) {
+  const response = await Api.post(
+    "/post/like/" + userId,
+    { postId },
+    makeOptions()
+  );
+  console.log(response);
+  return response.data;
+}
+
+export async function loadPostLikes(postId: string) {
+  const response = await Api.get("/post/likes/" + postId, makeOptions());
+  return response.data;
 }

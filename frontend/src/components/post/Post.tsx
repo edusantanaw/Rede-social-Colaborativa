@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { IPost } from "../../types/post";
 import { PostItem } from "./style";
 import defaultImage from "../../assets/default.jpg";
 import { AiFillHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
+import { useAuth } from "../../hooks/auth";
 
 const Post = ({ id, userId, name, content, image, perfilPhoto }: IPost) => {
+  const [likes, setLikes] = useState<string[]>([]);
+  const [liked, setLiked] = useState<boolean>(false);
+
+  const { user } = useAuth();
+
+  async function handleLike() {
+    setLiked((current) => (current ? false : true));
+  }
+
   return (
     <PostItem>
       <div className="top">

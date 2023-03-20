@@ -1,5 +1,4 @@
-import { Router } from "express";
-import { UserAdapter } from "../adapter/auth-adapter";
+import { Router } from "express";import { UserAdapter } from "../adapter/auth-adapter";
 import { makeAddOrRemovePostLikeController } from "../factories/controllers/post/addOrRemoveLike";
 import { makeCreatePostController } from "../factories/controllers/post/createPost";
 import { makeLoadFeedController } from "../factories/controllers/post/feed";
@@ -21,6 +20,10 @@ export default function (router: Router) {
   router.get("/feed/:userId", authAdapter.make(makeLoadFeedController()));
   router.post(
     "/post/like/:userId",
+    authAdapter.make(makeAddOrRemovePostLikeController())
+  );
+  router.get(
+    "/post/like/:id",
     authAdapter.make(makeAddOrRemovePostLikeController())
   );
 }
