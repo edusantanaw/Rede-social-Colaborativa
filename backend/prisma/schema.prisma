@@ -29,6 +29,7 @@ model User {
   Likes         Likes[]
   followers     Follows[]       @relation("follower")
   following     Follows[]       @relation("following")
+  Comments      Comments[]
 
   @@map("users")
 }
@@ -61,6 +62,8 @@ model Comments {
   post      Post?       @relation(fields: [postId], references: [id])
   postId    String?
   content   String
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String
   createdAt DateTime    @default(now())
   comment   Responses[] @relation("comment")
   response  Responses[] @relation("response")

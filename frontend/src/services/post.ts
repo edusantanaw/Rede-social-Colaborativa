@@ -1,4 +1,5 @@
 import { userKey } from "../constants/keys";
+import { IComment } from "../types/comment";
 import { IPost } from "../types/post";
 import { Api } from "../utils/api";
 import { makeOptions } from "../utils/makeOptions";
@@ -38,5 +39,11 @@ export async function addOrRemoveLike(postId: string, userId: string) {
     makeOptions()
   );
   console.log(response);
+  return response.data;
+}
+
+
+export async function createComment(data: IComment) {
+  const response =await Api.post<IComment>("/post/comment", data, makeOptions())
   return response.data;
 }

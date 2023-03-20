@@ -1,5 +1,7 @@
-import { Router } from "express";import { UserAdapter } from "../adapter/auth-adapter";
+import { Router } from "express";
+import { UserAdapter } from "../adapter/auth-adapter";
 import { makeAddOrRemovePostLikeController } from "../factories/controllers/post/addOrRemoveLike";
+import { makeCreateCommentController } from "../factories/controllers/post/createComment";
 import { makeCreatePostController } from "../factories/controllers/post/createPost";
 import { makeLoadFeedController } from "../factories/controllers/post/feed";
 import { makeLoadLikeController } from "../factories/controllers/post/loadLike";
@@ -23,8 +25,6 @@ export default function (router: Router) {
     "/post/like/:userId",
     authAdapter.make(makeAddOrRemovePostLikeController())
   );
-  router.get(
-    "/post/like/:id",
-    authAdapter.make(makeLoadLikeController())
-  );
+  router.get("/post/like/:id", authAdapter.make(makeLoadLikeController()));
+  router.post("/post/comment", authAdapter.make(makeCreateCommentController()));
 }
