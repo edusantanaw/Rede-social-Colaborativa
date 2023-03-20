@@ -1,5 +1,4 @@
-import { Router } from "express";
-import { Adapter } from "../adapter/adapter";
+import { Router } from "express";import { Adapter } from "../adapter/adapter";
 import { UserAdapter } from "../adapter/auth-adapter";
 import { makeAddFollowController } from "../factories/controllers/user/addFollow";
 import { makeAuthController } from "../factories/controllers/user/auth-controller";
@@ -33,5 +32,8 @@ export default function (router: Router) {
     authAdapter.make(makeLoadUserByNameController())
   );
   router.get("/user/:id", authAdapter.make(makeLoadUserByIdController()));
-  router.get("/follow/following/:id", authAdapter.make(makeLoadFollowController()));
+  router.get(
+    "/follow/following/:id",
+    authAdapter.make(makeLoadFollowController())
+  );
 }

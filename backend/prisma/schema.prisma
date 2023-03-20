@@ -94,6 +94,7 @@ model Project {
   description   String
   user          User            @relation(fields: [ownerId], references: [id])
   ownerId       String
+  perfilImage String?
   Collaborators Collaborators[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt

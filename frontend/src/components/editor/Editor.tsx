@@ -44,13 +44,16 @@ function Editor({ getContent }: props) {
     ],
   };
   return (
-    <ReactQuill
-      id="editor"
-      value={content}
-      onChange={handleContentChange}
-      modules={modules}
-      formats={formats}
-    />
+    <div id="editor">
+      <ReactQuill
+        id="editor_cp"
+        value={content}
+        onChange={handleContentChange}
+        modules={modules}
+        formats={formats}
+        placeholder="No que está pensando?"
+      />
+    </div>
   );
 }
 

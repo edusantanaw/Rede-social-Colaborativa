@@ -12,7 +12,7 @@ export class FollowRepository {
 
   public async loadFollowing(id: string) {
     const users = (await prisma.$queryRaw`
-      SELECT users.* FROM followers 
+      SELECT users.* FROM follows 
       JOIN users ON follows."followingId" = users.id 
       WHERE follows."followerId" = ${id};
     `) as IUser[];

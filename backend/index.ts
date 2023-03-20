@@ -1,4 +1,4 @@
-import { Server } from "./main/server";
+import { Server } from "./src/main/server";
 
 const server  = new Server();
 

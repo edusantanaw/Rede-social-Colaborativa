@@ -11,6 +11,7 @@ import { useIsAuth } from "./hooks/isAuth";
 import Header from "./layout/header/Header";
 import Perfil from "./pages/perfil/Perfil";
 import Search from "./pages/search/Search";
+import Chat from "./layout/chat/Chat";
 
 function App() {
   const { isAuth } = useIsAuth();
@@ -19,6 +20,7 @@ function App() {
       <GlobalStyle />
       <Router>
         {isAuth && <Header />}
+        {isAuth && <Chat />}
         <div style={{ display: "flex", position: "relative" }}>
           <Routes>
             <Route

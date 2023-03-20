@@ -4,12 +4,14 @@ import { creaetPost } from "../../services/post";
 import { IPost } from "../../types/post";
 import Feed from "./components/Feed";
 import NewPost from "./components/NewPost";
+import NewPostModal from "./components/NewPostModal";
 import Projects from "./components/Projects";
 import { HomeContainer } from "./styles";
 
 const Home = () => {
   const [newPost, setNewPost] = useState<IPost | null>(null);
   const { user } = useAuth();
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleCreatePost = async (
     imagem: File | null,
@@ -28,11 +30,16 @@ const Home = () => {
     setNewPost(newPost);
   };
 
+  function handleShowModal() {
+    setShowModal((show) => (show ? false : true));
+  }
+
   return (
     <HomeContainer>
+      { showModal && <NewPostModal handleCreate={handleCreatePost} handleModal = {handleShowModal} />}
       <Projects />
       <div className="main">
-        <NewPost handleCreate={handleCreatePost} />
+        <NewPost handleShowModal={handleShowModal} />
         <Feed newPost={newPost} />
       </div>
     </HomeContainer>
