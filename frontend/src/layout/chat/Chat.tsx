@@ -6,11 +6,11 @@ import { baseUrl } from "../../constants/baseUrl";
 import { IUser } from "../../types/user";
 import { loadFollowing } from "../../services/follow";
 import ChatMensagens from "./ChatMensagens";
+import { joinRoom } from "../../services/chat";
 
 const Chat = () => {
   const { user } = useAuth();
   const [showChat, setShowChat] = useState<boolean>(false);
-  const [currentRoom, setCurrentRoom] = useState<number | null>(null)
 
   const image = (userFollowing: IUser) =>
     userFollowing.perfilPhoto
@@ -19,7 +19,8 @@ const Chat = () => {
 
   const [following, setFollowing] = useState<IUser[]>([]);
 
-  function handleShowMensagem() {
+  function handleShowMensagem(id: string) {
+    room(id);
     setShowChat((show) => (show ? false : true));
   }
 
@@ -30,8 +31,8 @@ const Chat = () => {
     })();
   }, []);
 
-  function getRoom(){
-    
+  async function room(followingId: string) {
+    await joinRoom(user!.id, followingId);
   }
 
   return (
@@ -45,7 +46,7 @@ const Chat = () => {
         <ul className="following">
           {following.length > 0 &&
             following.map((userItem, i) => (
-              <li key={i} onClick={handleShowMensagem}>
+              <li key={i} onClick={() => handleShowMensagem(userItem.id)}>
                 <img src={image(userItem)} alt="user_photo" />
                 <span>{userItem.name}</span>
               </li>
