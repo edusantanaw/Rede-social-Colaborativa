@@ -11,8 +11,8 @@ export class CommentRepository {
 
   public async loadAll(postId: string){
     const data = await prisma.$queryRaw`
-      select perfilPhoto, name, users.id  as "userId", content, "postId"
-      from comments inner join users on users.id = comments."userId"
+      select "perfilPhoto", name, users.id  as "userId", content, "postId"
+      from comment inner join users on users.id = comment."userId"
       where "postId" = ${postId};
     ` as IComment[]
     return data;

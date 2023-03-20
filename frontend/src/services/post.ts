@@ -47,3 +47,15 @@ export async function createComment(data: IComment) {
   const response =await Api.post<IComment>("/post/comment", data, makeOptions())
   return response.data;
 }
+
+type comment = {
+  content: string;
+  userId: string;
+  perfilPhoto?: string;
+}
+
+export async function loadComments(id: string) {
+    const response = await Api.get<comment[]>("/post/comment/"+id, makeOptions())
+    console.log(response)
+    return response.data;
+}

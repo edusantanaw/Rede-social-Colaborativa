@@ -1,23 +1,36 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { IPost } from "../../types/post";
 import { PostModalContainer } from "./style";
 import defaultImage from "../../assets/default.jpg";
 import { baseUrl } from "../../constants/baseUrl";
 import { useAuth } from "../../hooks/auth";
-import { createComment } from "../../services/post";
+import { createComment, loadComments } from "../../services/post";
 
 interface props {
   post: IPost;
   handleModal: () => void;
 }
 
+type IComment = {
+  content: string;
+  userId: string;
+  perfilPhoto?: string;
+};
+
 const PostModal = ({ handleModal, post }: props) => {
   const { user } = useAuth();
-
+  const [comments, setComments] = useState<IComment[]>([]);
   const commentRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (commentRef.current) commentRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const loadedComments = await loadComments(post.id);
+      setComments((current) => [...loadedComments]);
+    })();
   }, []);
 
   const userImage = post.perfilPhoto
@@ -28,12 +41,12 @@ const PostModal = ({ handleModal, post }: props) => {
     if (!commentRef.current) return;
     const comment = commentRef.current.value;
     if (comment.length === 0) return;
-    const newComment =await createComment({
+    const newComment = await createComment({
       content: comment,
       userId: user!.id,
       postId: post.id,
     });
-    console.log(newComment)
+    setComments((current) => [...current, newComment]);
   }
 
   return (
@@ -66,7 +79,13 @@ const PostModal = ({ handleModal, post }: props) => {
             <button onClick={handleCreateComment}>Enviar</button>
           </div>
           <span>Comentarios:</span>
-          <ul></ul>
+          <ul>
+            {comments.length > 0 && comments.map((comment, i)=>(
+              <li key={i}>
+                {comment.content}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </PostModalContainer>
