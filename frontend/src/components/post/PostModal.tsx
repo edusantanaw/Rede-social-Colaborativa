@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { IPost } from "../../types/post";
 import { PostModalContainer } from "./style";
 import defaultImage from "../../assets/default.jpg";
 import { baseUrl } from "../../constants/baseUrl";
+import { useAuth } from "../../hooks/auth";
+import { createComment } from "../../services/post";
 
 interface props {
   post: IPost;
@@ -10,9 +12,29 @@ interface props {
 }
 
 const PostModal = ({ handleModal, post }: props) => {
+  const { user } = useAuth();
+
+  const commentRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (commentRef.current) commentRef.current.focus();
+  }, []);
+
   const userImage = post.perfilPhoto
     ? `${baseUrl}/${post.perfilPhoto}`
     : defaultImage;
+
+  async function handleCreateComment() {
+    if (!commentRef.current) return;
+    const comment = commentRef.current.value;
+    if (comment.length === 0) return;
+    const newComment =await createComment({
+      content: comment,
+      userId: user!.id,
+      postId: post.id,
+    });
+    console.log(newComment)
+  }
 
   return (
     <PostModalContainer>
@@ -35,13 +57,16 @@ const PostModal = ({ handleModal, post }: props) => {
           )}
         </div>
         <div className="comments">
-            <div className="new_comment">
-                <input type="text" placeholder="Digite o seu comentario..." />
-                <button>Enviar</button>
-            </div>
-            <span>Comentarios:</span>
-            <ul>
-            </ul>
+          <div className="new_comment">
+            <input
+              type="text"
+              placeholder="Digite o seu comentario..."
+              ref={commentRef}
+            />
+            <button onClick={handleCreateComment}>Enviar</button>
+          </div>
+          <span>Comentarios:</span>
+          <ul></ul>
         </div>
       </div>
     </PostModalContainer>
