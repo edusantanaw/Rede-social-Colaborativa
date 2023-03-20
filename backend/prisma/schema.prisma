@@ -100,7 +100,6 @@ model Project {
   updatedAt     DateTime        @default(now()) @updatedAt
   Invites       Invites[]
   Task          Task[]
-  Message       Message[]
 
   @@map("project")
 }
@@ -147,8 +146,7 @@ model Message {
   id        String  @id
   message   String?
   file      String?
-  project   Project @relation(fields: [projectId], references: [id])
-  projectId String
+  room String
   user      User    @relation(fields: [senderId], references: [id])
   senderId  String
 

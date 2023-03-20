@@ -1,4 +1,4 @@
 
 export interface ILoadAll<T> {
-  loadAll: (userId: string) => Promise<T[] | null>;
+  load: (id: string) => Promise<T[] | null>;
 }

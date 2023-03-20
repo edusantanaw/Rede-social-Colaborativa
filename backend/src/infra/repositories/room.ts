@@ -12,7 +12,7 @@ export class RoomRepository {
   public async loadRoom(userId: string, followingId: string) {
     const mayberRoom = await room.findFirst({
       where: {
-        AND: [
+        OR: [
           {
             userId: userId,
             followingId: followingId,
@@ -26,5 +26,14 @@ export class RoomRepository {
     });
     if (mayberRoom) return mayberRoom.id;
     return null;
+  }
+
+  public async loadById(roomId: string) {
+    const mayberRoom = await room.findFirst({
+      where: {
+        id: roomId,
+      },
+    });
+    return mayberRoom;
   }
 }

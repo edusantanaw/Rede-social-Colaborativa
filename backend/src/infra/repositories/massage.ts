@@ -9,8 +9,12 @@ export class MessageRepository {
     return newMessage as IMessage;
   }
 
-  public async loadAll() {
-    const messages = await message.findMany();
-    return messages;
+  public async loadAll(room: string) {
+    const messages = await message.findMany({
+      where: {
+        room: room
+      }
+    });
+    return messages as IMessage[];
   }
 }

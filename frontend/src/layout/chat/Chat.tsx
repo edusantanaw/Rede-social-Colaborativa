@@ -12,6 +12,7 @@ const Chat = () => {
   const { user } = useAuth();
   const [showChat, setShowChat] = useState<boolean>(false);
   const [currentContact, setCurrentContact] = useState<IUser | null>(null);
+  const [currentRoom, setCurrentRoom] = useState<string | null>(null)
 
   const image = (userFollowing: IUser) =>
     userFollowing.perfilPhoto
@@ -20,9 +21,9 @@ const Chat = () => {
 
   const [following, setFollowing] = useState<IUser[]>([]);
 
-  function handleShowMensagem(userItem: IUser) {
+  async function handleShowMensagem(userItem: IUser) {
     setCurrentContact(userItem);
-    room(userItem.id);
+     await room(userItem.id);
     setShowChat((show) => (show ? false : true));
   }
 
@@ -32,9 +33,10 @@ const Chat = () => {
       setFollowing(response);
     })();
   }, []);
-
+  
   async function room(followingId: string) {
-    await joinRoom(user!.id, followingId);
+    const data = await joinRoom(user!.id, followingId);
+    setCurrentRoom(data)
   }
 
   return (
@@ -54,8 +56,8 @@ const Chat = () => {
             ))}
         </ul>
       </div>
-      {showChat && currentContact && (
-        <ChatMensagens following={currentContact} />
+      {showChat && currentContact && currentRoom && (
+        <ChatMensagens following={currentContact} room={currentRoom} />
       )}
     </ChatContainer>
   );

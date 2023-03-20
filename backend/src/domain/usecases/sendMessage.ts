@@ -3,7 +3,7 @@ export type message = {
   senderId: string;
   message?: string;
   file?: string;
-  projectId: string;
+  room: string;
 };
 
 export interface ISendMessage {

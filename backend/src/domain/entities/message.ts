@@ -6,7 +6,7 @@ export class Message {
   private message?: string;
   private file?: string;
   private senderId: string;
-  private projectId: string;
+  private room: string;
 
   constructor(data: message) {
     if (!data.message && !data.file)
@@ -15,7 +15,7 @@ export class Message {
     this.message = data.message;
     this.file = data.file;
     this.senderId = data.senderId;
-    this.projectId = data.projectId;
+    this.room = data.room;
   }
 
   public getMessageContent() {
@@ -24,7 +24,7 @@ export class Message {
       message: this.message,
       file: this.file,
       senderId: this.senderId,
-      projectId: this.projectId,
+      room: this.room,
     };
   }
 
@@ -44,8 +44,8 @@ export class Message {
     return this.senderId;
   }
 
-  public getProjectId() {
-    return this.projectId;
+  public getRoom() {
+    return this.room;
   }
   public setMessage(msg: string) {
     this.message = msg;

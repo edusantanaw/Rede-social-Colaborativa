@@ -1,7 +1,7 @@
 export type IMessage = {
     id: string;
     senderId: string;
-    projectId: string;
+    room: string;
     message?: string;
     file?: string;
 }

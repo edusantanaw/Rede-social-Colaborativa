@@ -47,14 +47,13 @@ export const ChatContainer = styled.div`
 `;
 
 export const ChatMessageContainer = styled.div`
-  top: 5em;
-  right: 1em;
   height: 26em;
   width: 20em;
   background-color: #fff;
   z-index: 4;
   border-radius: 5px;
-
+  display: flex;
+  flex-direction: column;
   .head {
     display: flex;
     align-items: center;
@@ -65,6 +64,28 @@ export const ChatMessageContainer = styled.div`
       width: 2.5em;
       height: 2.5em;
       border-radius: 50%;
+    }
+  }
+
+  .messages {
+    height: 77.5%;
+  }
+
+  .send_message {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    input {
+      width: 80%;
+      height: 2.5em;
+    }
+    button {
+      width: 20%;
+      height: 2.7em;
+      border: none;
+      background-color: #000;
+      color: #fff;
+      cursor: pointer;
     }
   }
 `;
