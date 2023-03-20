@@ -1,5 +1,4 @@
-import { Server } from "socket.io";
-import { DefaultEventsMap } from "socket.io/dist/typed-events";
+import { Server } from "socket.io";import { DefaultEventsMap } from "socket.io/dist/typed-events";
 import { makeSendMessageUsecase } from "../factories/usecases/project/sendMessage";
 
 export default (
@@ -16,6 +15,7 @@ export default (
       const room = data.room;
       const sendMessage = makeSendMessageUsecase();
       const newMessage = await sendMessage.send(message);
+      console.log(data);
       socket.to(room).emit("receive_message", newMessage);
     });
   });

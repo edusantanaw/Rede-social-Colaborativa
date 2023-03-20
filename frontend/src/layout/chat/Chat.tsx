@@ -11,6 +11,7 @@ import { joinRoom } from "../../services/chat";
 const Chat = () => {
   const { user } = useAuth();
   const [showChat, setShowChat] = useState<boolean>(false);
+  const [currentContact, setCurrentContact] = useState<IUser | null>(null);
 
   const image = (userFollowing: IUser) =>
     userFollowing.perfilPhoto
@@ -19,8 +20,9 @@ const Chat = () => {
 
   const [following, setFollowing] = useState<IUser[]>([]);
 
-  function handleShowMensagem(id: string) {
-    room(id);
+  function handleShowMensagem(userItem: IUser) {
+    setCurrentContact(userItem);
+    room(userItem.id);
     setShowChat((show) => (show ? false : true));
   }
 
@@ -36,9 +38,8 @@ const Chat = () => {
   }
 
   return (
-    <>
-      {showChat && <ChatMensagens />}
-      <ChatContainer>
+    <ChatContainer>
+      <div className="contacts">
         <div className="header">
           <img src={image(user!)} alt="user_photo" />
           <span>Mensagens</span>
@@ -46,14 +47,17 @@ const Chat = () => {
         <ul className="following">
           {following.length > 0 &&
             following.map((userItem, i) => (
-              <li key={i} onClick={() => handleShowMensagem(userItem.id)}>
+              <li key={i} onClick={() => handleShowMensagem(userItem)}>
                 <img src={image(userItem)} alt="user_photo" />
                 <span>{userItem.name}</span>
               </li>
             ))}
         </ul>
-      </ChatContainer>
-    </>
+      </div>
+      {showChat && currentContact && (
+        <ChatMensagens following={currentContact} />
+      )}
+    </ChatContainer>
   );
 };
 
