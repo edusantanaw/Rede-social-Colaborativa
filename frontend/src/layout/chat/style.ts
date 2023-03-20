@@ -69,6 +69,20 @@ export const ChatMessageContainer = styled.div`
 
   .messages {
     height: 77.5%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    li {
+      padding: 0.5em;
+      color: #fff;
+      font-family: 300;
+      border-radius: 5px;
+    }
+    .user {
+      align-self: flex-end;
+      background-color: blue;
+    }
   }
 
   .send_message {

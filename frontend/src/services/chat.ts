@@ -2,15 +2,10 @@ import { Api } from "../utils/api";
 import { makeOptions } from "../utils/makeOptions";
 import io from "socket.io-client";
 import { baseUrl } from "../constants/baseUrl";
+import { IMessage } from "../types/message";
 
 const socket = io(baseUrl);
 socket.connect();
-
-type ISend_message = {
-  message: string;
-  senderId: string;
-  room: string;
-};
 
 export async function joinRoom(userId: string, followerId: string) {
   const response = await Api.get<string>(
@@ -22,8 +17,13 @@ export async function joinRoom(userId: string, followerId: string) {
   return room;
 }
 
-export async function sendMessage(data: ISend_message) {
+export async function sendMessage(data: IMessage) {
   socket.emit("send_message", data);
 }
 
-  export default socket;
+export async function loadMessages(room: string) {
+  const response = await Api.get<IMessage[]>("/messages/" + room, makeOptions());
+  return response.data;
+}
+
+export default socket;

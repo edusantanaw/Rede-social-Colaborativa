@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IUser } from "../../types/user";
 import { ChatMessageContainer } from "./style";
 import imageDefault from "../../assets/default.jpg";
 import { baseUrl } from "../../constants/baseUrl";
-import socket, { sendMessage } from "../../services/chat";
+import socket, { loadMessages, sendMessage } from "../../services/chat";
 import { useAuth } from "../../hooks/auth";
+import { IMessage } from "../../types/message";
 
 interface props {
   following: IUser;
@@ -12,20 +13,27 @@ interface props {
 }
 
 const ChatMensagens = ({ following, room }: props) => {
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const messageRef = useRef<HTMLInputElement | null>(null);
+
   const { user } = useAuth();
 
   useEffect(() => {
     if (messageRef.current) {
       messageRef.current.focus();
     }
+    (async () => {
+      const loadedMessage = await loadMessages(room);
+      setMessages((current) => [...current, ...loadedMessage]);
+    })();
   }, []);
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       console.log(data);
+      setMessages((current) => [...current, data]);
     });
   }, [socket]);
-  console.log("renderizou")
 
   const image = following.perfilPhoto
     ? baseUrl + following.perfilPhoto
@@ -45,7 +53,11 @@ const ChatMensagens = ({ following, room }: props) => {
         <img src={image} alt="perfil_photo" />
         {following.name}
       </div>
-      <div className="messages"></div>
+      <ul className="messages">
+        {messages.map((message, i) => (
+          <li key={i} className={message.senderId === user!.id ? "user": "contact"}>{message.message}</li>
+        ))}
+      </ul>
       <div className="send_message">
         <input type="text" placeholder="enviar mensagem" ref={messageRef} />
         <button onClick={handleMessage}>Enviar</button>
