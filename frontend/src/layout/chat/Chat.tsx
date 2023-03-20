@@ -6,13 +6,13 @@ import { baseUrl } from "../../constants/baseUrl";
 import { IUser } from "../../types/user";
 import { loadFollowing } from "../../services/follow";
 import ChatMensagens from "./ChatMensagens";
-import { joinRoom } from "../../services/chat";
+import { joinRoom, leaveRoom } from "../../services/chat";
 
 const Chat = () => {
   const { user } = useAuth();
   const [showChat, setShowChat] = useState<boolean>(false);
   const [currentContact, setCurrentContact] = useState<IUser | null>(null);
-  const [currentRoom, setCurrentRoom] = useState<string | null>(null)
+  const [currentRoom, setCurrentRoom] = useState<string | null>(null);
 
   const image = (userFollowing: IUser) =>
     userFollowing.perfilPhoto
@@ -23,7 +23,7 @@ const Chat = () => {
 
   async function handleShowMensagem(userItem: IUser) {
     setCurrentContact(userItem);
-     await room(userItem.id);
+    await room(userItem.id);
     setShowChat((show) => (show ? false : true));
   }
 
@@ -33,10 +33,16 @@ const Chat = () => {
       setFollowing(response);
     })();
   }, []);
-  
+
   async function room(followingId: string) {
+    if (currentRoom) {
+      leaveRoom(currentRoom);
+      setCurrentRoom(null)
+      setCurrentContact(null)
+      return;
+    }
     const data = await joinRoom(user!.id, followingId);
-    setCurrentRoom(data)
+    setCurrentRoom(data);
   }
 
   return (

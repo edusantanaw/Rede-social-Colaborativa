@@ -83,6 +83,10 @@ export const ChatMessageContainer = styled.div`
       align-self: flex-end;
       background-color: blue;
     }
+
+    #end {
+      padding-top: 1em;
+    }
   }
 
   .send_message {
@@ -92,6 +96,7 @@ export const ChatMessageContainer = styled.div`
     input {
       width: 80%;
       height: 2.5em;
+      padding: 0.5em;
     }
     button {
       width: 20%;

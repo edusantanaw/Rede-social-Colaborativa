@@ -1,5 +1,7 @@
-import { loadPostByUserId } from "../../data/protocols/repositories/loadPostByUser";import { IPost } from "../../types/post";
-import { post, prisma } from "../prisma";
+import { loadPostByUserId } from "../../data/protocols/repositories/loadPostByUser";
+import { ILike } from "../../types/like";
+import { IPost } from "../../types/post";
+import { likes, post, prisma } from "../prisma";
 
 type dataFeed = {
   skip: number;
@@ -35,7 +37,31 @@ export class PostRepository {
     order by post."createdAt" desc
     limit ${take} offset ${skip * take};
     `) as IPost[];
-    console.log(posts)
+    console.log(posts);
     return posts;
+  }
+
+  public async loadLike(userId: string, postId: string) {
+    const like = await likes.findFirst({
+      where: {
+        postId,
+        userId,
+      },
+    });
+    return like as ILike;
+  }
+
+  public async addLike(data: ILike) {
+    await likes.create({
+      data: data,
+    });
+  }
+
+  public async removeLike(id: string) {
+    await likes.delete({
+      where: {
+        id: id,
+      },
+    });
   }
 }

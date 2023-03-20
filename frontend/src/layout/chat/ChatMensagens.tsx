@@ -15,13 +15,18 @@ interface props {
 const ChatMensagens = ({ following, room }: props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const messageRef = useRef<HTMLInputElement | null>(null);
+  const endRef = useRef<HTMLLIElement | null>(null);
 
   const { user } = useAuth();
 
   useEffect(() => {
-    if (messageRef.current) {
+    if (messageRef.current && endRef.current) {
+      endRef.current.scrollIntoView({ behavior: "smooth" });
       messageRef.current.focus();
     }
+  }, [messages]);
+
+  useEffect(() => {
     (async () => {
       const loadedMessage = await loadMessages(room);
       setMessages((current) => [...current, ...loadedMessage]);
@@ -30,7 +35,6 @@ const ChatMensagens = ({ following, room }: props) => {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log(data);
       setMessages((current) => [...current, data]);
     });
   }, [socket]);
@@ -43,7 +47,12 @@ const ChatMensagens = ({ following, room }: props) => {
     if (messageRef.current) {
       const message = messageRef.current.value;
       if (message.length === 0) return;
-      await sendMessage({ message, room, senderId: user!.id });
+      const newMessage = { message, room, senderId: user!.id };
+      await sendMessage(newMessage);
+      messageRef.current.value = "";
+      setMessages((current) => [...current, newMessage]);
+      endRef.current!.scrollIntoView({ behavior: "smooth" });
+
     }
   }
 
@@ -55,8 +64,14 @@ const ChatMensagens = ({ following, room }: props) => {
       </div>
       <ul className="messages">
         {messages.map((message, i) => (
-          <li key={i} className={message.senderId === user!.id ? "user": "contact"}>{message.message}</li>
+          <li
+            key={i}
+            className={message.senderId === user!.id ? "user" : "contact"}
+          >
+            {message.message}
+          </li>
         ))}
+        <li ref={endRef} id="end" />
       </ul>
       <div className="send_message">
         <input type="text" placeholder="enviar mensagem" ref={messageRef} />
