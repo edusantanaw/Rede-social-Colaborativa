@@ -7,9 +7,13 @@ import { BiComment } from "react-icons/bi";
 import { useAuth } from "../../hooks/auth";
 import { useFetching } from "../../hooks/useFetching";
 import { addOrRemoveLike } from "../../services/post";
+import PostModal from "./PostModal";
 
-const Post = ({ id, userId, name, content, image, perfilPhoto }: IPost) => {
+const Post = (post: IPost) => {
+  const { id, userId, name, content, image, perfilPhoto } = post;
   const [liked, setLiked] = useState<boolean>(false);
+  const [totLikes, setTotLikes] = useState<number>(0);
+  const [showPostModal, setShowPostModal] = useState<boolean>(false);
 
   const { user } = useAuth();
 
@@ -20,48 +24,67 @@ const Post = ({ id, userId, name, content, image, perfilPhoto }: IPost) => {
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       if (data.includes(user!.id)) {
         setLiked((liked) => true);
+        setTotLikes(data.length);
       }
     }
   }, [data]);
 
   async function handleLike() {
     await addOrRemoveLike(id, user!.id);
-    setLiked((current) => (current ? false : true));
+    if (liked) {
+      setLiked(false);
+      setTotLikes((tot) => tot - 1);
+      return;
+    }
+    setLiked(true);
+    setTotLikes((tot) => tot + 1);
+  }
+
+  function handlePostModal() {
+    console.log(showPostModal);
+    setShowPostModal((show) => (show ? false : true));
   }
 
   return (
-    <PostItem>
-      <div className="top">
-        <img
-          id="perfil_image"
-          src={perfilPhoto ?? defaultImage}
-          alt="user_photo"
-        />
-        <div className="content">
-          <span>{name}</span>
+    <>
+      {showPostModal && <PostModal post={post} handleModal={handlePostModal} />}
+      <PostItem>
+        <div className="top">
+          <img
+            id="perfil_image"
+            src={perfilPhoto ?? defaultImage}
+            alt="user_photo"
+          />
+          <div className="content">
+            <span>{name}</span>
+          </div>
         </div>
-      </div>
-      {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
-      {image && (
-        <img
-          src={`http://localhost:3000/${image}`}
-          id="post_image"
-          alt="image"
-        />
-      )}
-      <div className="interactions">
-        <div onClick={handleLike}>
-          <AiFillHeart id={liked ? "liked" : ""} />
-          Curtir
+        {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
+        {image && (
+          <img
+            src={`http://localhost:3000/${image}`}
+            id="post_image"
+            alt="image"
+          />
+        )}
+        <div className="likes">
+          <span>{totLikes} Curtidas</span>
         </div>
-        <div>
-          <BiComment />
-          Comentar
+        <div className="interactions">
+          <div onClick={handleLike}>
+            <AiFillHeart id={liked ? "liked" : ""} />
+            Curtir
+          </div>
+          <div onClick={handlePostModal}>
+            <BiComment />
+            Comentar
+          </div>
         </div>
-      </div>
-    </PostItem>
+      </PostItem>
+    </>
   );
 };
 

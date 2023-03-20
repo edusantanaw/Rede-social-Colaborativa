@@ -58,8 +58,8 @@ model Post {
 
 model Comments {
   id        String      @id
-  post      Post        @relation(fields: [postId], references: [id])
-  postId    String
+  post      Post?       @relation(fields: [postId], references: [id])
+  postId    String?
   content   String
   createdAt DateTime    @default(now())
   comment   Responses[] @relation("comment")
@@ -143,12 +143,12 @@ model Task {
 }
 
 model Message {
-  id        String  @id
-  message   String?
-  file      String?
-  room String
-  user      User    @relation(fields: [senderId], references: [id])
-  senderId  String
+  id       String  @id
+  message  String?
+  file     String?
+  room     String
+  user     User    @relation(fields: [senderId], references: [id])
+  senderId String
 
   @@map("message")
 }

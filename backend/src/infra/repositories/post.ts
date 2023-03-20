@@ -46,7 +46,7 @@ export class PostRepository {
     return posts;
   }
 
-  public async loadLike(userId: string, postId: string) {
+  public async loadLike(postId: string, userId:string) {
     const like = await likes.findFirst({
       where: {
         postId,
