@@ -12,6 +12,7 @@ const {
   follows,
   likes,
   responses,
+  room
 } = prisma;
 
 export {
@@ -27,5 +28,5 @@ export {
   comments,
   follows,
   likes,
-  
+  room  
 };

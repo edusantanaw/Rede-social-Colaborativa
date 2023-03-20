@@ -94,7 +94,7 @@ model Project {
   description   String
   user          User            @relation(fields: [ownerId], references: [id])
   ownerId       String
-  perfilImage String?
+  perfilImage   String?
   Collaborators Collaborators[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now()) @updatedAt
@@ -153,4 +153,12 @@ model Message {
   senderId  String
 
   @@map("message")
+}
+
+model Room {
+  id          String @id
+  followingId String
+  userId      String
+
+  @@map("room")
 }
