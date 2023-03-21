@@ -14,6 +14,7 @@ export class LoadRecentMessages
 
   public async load(id: string): Promise<IRecentMessages[] | null> {
     const messages = await this.messagesRepository.loadReceivedMessages(id);
+    console.log(id, messages)
     if (messages.length === 0) return null;
     return messages;
   }

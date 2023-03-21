@@ -7,15 +7,21 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { useAuth } from "../../hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
+import Messages from "./components/Messages";
 
 const Header = () => {
   const [showPerfil, setShowPerfil] = useState<boolean>(false);
+  const [showMessages, setShowMessages] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement | null>(null);
   const { logout, user } = useAuth();
   const navigate = useNavigate();
 
   function handleShowPerfil() {
     setShowPerfil((show) => (show ? false : true));
+  }
+
+  function handleShowMessages() {
+    setShowMessages((show) => (show ? false : true));
   }
 
   function handleSearch() {
@@ -44,7 +50,8 @@ const Header = () => {
           <IoNotificationsOutline />
         </li>
         <li>
-          <BiMessageSquare />
+          <BiMessageSquare onClick={handleShowMessages} />
+          {showMessages && <Messages />}
         </li>
         <li className="perfil">
           <BsFillPersonFill onClick={handleShowPerfil} />

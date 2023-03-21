@@ -12,5 +12,5 @@ export async function addFollow(followingId: string, userId: string) {
 export async function loadFollowing(userId: string) {
   const response = await Api.get<IUser[]>("/follow/following/" + userId, makeOptions());
     console.log(response)
-  return response.data;
+  return response.data.length == 0 ? [] : response.data;
 }

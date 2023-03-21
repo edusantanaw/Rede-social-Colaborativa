@@ -83,15 +83,22 @@ export const ChatMessageContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.7em;
+    padding: 0.5em;
     li {
       padding: 0.5em;
       color: #fff;
       font-family: 300;
       border-radius: 5px;
+      max-width: 70%;
     }
     .user {
       align-self: flex-end;
       background-color: blue;
+    }
+
+    .contact {
+      background-color :  #c2c2c2;
+      align-self: flex-start;
     }
 
     #end {

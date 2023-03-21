@@ -19,14 +19,17 @@ export class MessageRepository {
 
   public async loadReceivedMessages(userId: string) {
     const recentMessages = await prisma.$queryRaw`
-      select distinct(users.id) as "userId", "perfilPhoto", message.message 
-      from  users inner join message on message."senderId" = users.id
-      where "senderId" in (
-        select "userId" from users inner join room
-        on room."followingId" = users.id
-        where "followingId" = ${userId}
+    select m."room", m."message" AS latestMessage, m."createdAt"
+    from (
+      select distinct on ("room") "room", "message", "createdAt"
+      from "message"
+      where "room" in (
+      select "id" from "room"
+      where "userId" = ${userId} OR "followingId" = ${userId}
       )
-    `;
+      order by "room", "createdAt" desc
+    ) as m
+    order by m."createdAt" desc;`;
     return recentMessages as IRecentMessages[];
   }
 }
