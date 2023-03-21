@@ -1,5 +1,4 @@
-import { IMessage } from "../../types/message";
-import { message } from "../prisma";
+import { IMessage } from "../../types/message";import { message, prisma } from "../prisma";
 
 export class MessageRepository {
   public async create(data: IMessage) {
@@ -12,9 +11,22 @@ export class MessageRepository {
   public async loadAll(room: string) {
     const messages = await message.findMany({
       where: {
-        room: room
-      }
+        room: room,
+      },
     });
     return messages as IMessage[];
+  }
+
+  public async loadReceivedMessages(userId: string) {
+    const recentMessages = await prisma.$queryRaw`
+      select distinct(users.id) as "userId", "perfilPhoto", "senderId", message.message 
+      from  users inner join message on message."senderId" = users.id
+      where "senderId" in (
+        select "userId" from users inner join room
+        on room."followingId" = users.id
+        where "followingId" = ${userId}
+      )
+    `;
+    return recentMessages;
   }
 }

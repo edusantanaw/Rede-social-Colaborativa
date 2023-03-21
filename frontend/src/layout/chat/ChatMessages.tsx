@@ -1,18 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IUser } from "../../types/user";
 import { ChatMessageContainer } from "./style";
-import imageDefault from "../../assets/default.jpg";
-import { baseUrl } from "../../constants/baseUrl";
 import socket, { loadMessages, sendMessage } from "../../services/chat";
 import { useAuth } from "../../hooks/auth";
 import { IMessage } from "../../types/message";
+import { formatImage } from "../../utils/formatImage";
 
 interface props {
   following: IUser;
   room: string;
 }
 
-const ChatMensagens = ({ following, room }: props) => {
+const ChatMessages = ({ following, room }: props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const messageRef = useRef<HTMLInputElement | null>(null);
   const endRef = useRef<HTMLLIElement | null>(null);
@@ -39,9 +38,7 @@ const ChatMensagens = ({ following, room }: props) => {
     });
   }, [socket]);
 
-  const image = following.perfilPhoto
-    ? baseUrl + following.perfilPhoto
-    : imageDefault;
+
 
   async function handleMessage() {
     if (messageRef.current) {
@@ -59,7 +56,7 @@ const ChatMensagens = ({ following, room }: props) => {
   return (
     <ChatMessageContainer>
       <div className="head">
-        <img src={image} alt="perfil_photo" />
+        <img src={formatImage(user?.perfilPhoto)} alt="perfil_photo" />
         {following.name}
       </div>
       <ul className="messages">
@@ -81,4 +78,4 @@ const ChatMensagens = ({ following, room }: props) => {
   );
 };
 
-export default ChatMensagens;
+export default ChatMessages;

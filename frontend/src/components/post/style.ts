@@ -173,5 +173,34 @@ export const PostModalContainer = styled.div`
         cursor: pointer;
       }
     }
+    ul{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.9em;
+      li {
+        padding: 0.8em 0.5em;
+        width: 100%;
+        background-color: #e5e5e5;
+        border-radius: 6px;
+        #autor {
+          display: flex;
+          align-items: center;
+          gap: 1em;
+          padding-bottom: 0.3em;
+          img {
+            width: 2.5em;
+            height: 2.5em;
+            border-radius: 50%;
+            border: 1px solid #fff;
+          }
+        }
+        p{
+            padding-left: 0.5em;
+          font-weight: 300;
+        }
+      }
+    }
   }
 `;

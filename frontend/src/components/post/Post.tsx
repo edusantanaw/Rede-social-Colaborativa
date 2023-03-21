@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { IPost } from "../../types/post";
-import { PostItem } from "./style";
-import defaultImage from "../../assets/default.jpg";
+import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
+import defaultImage from "../../assets/default.jpg";
 import { useAuth } from "../../hooks/auth";
 import { useFetching } from "../../hooks/useFetching";
 import { addOrRemoveLike } from "../../services/post";
+import { IPost } from "../../types/post";
 import PostModal from "./PostModal";
+import { PostItem } from "./style";
 
 const Post = (post: IPost) => {
   const { id, userId, name, content, image, perfilPhoto } = post;
@@ -26,7 +26,7 @@ const Post = (post: IPost) => {
     if (data) {
       console.log(data);
       if (data.includes(user!.id)) {
-        setLiked((liked) => true);
+        setLiked(() => true);
         setTotLikes(data.length);
       }
     }

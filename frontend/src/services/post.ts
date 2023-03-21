@@ -52,6 +52,7 @@ type comment = {
   content: string;
   userId: string;
   perfilPhoto?: string;
+  name: string
 }
 
 export async function loadComments(id: string) {

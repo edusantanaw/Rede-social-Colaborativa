@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { ChatContainer } from "./style";
-import defaultImage from "../../assets/default.jpg";
 import { useAuth } from "../../hooks/auth";
-import { baseUrl } from "../../constants/baseUrl";
 import { IUser } from "../../types/user";
 import { loadFollowing } from "../../services/follow";
-import ChatMensagens from "./ChatMensagens";
+import ChatMessages from "./ChatMessages";
 import { joinRoom, leaveRoom } from "../../services/chat";
+import { formatImage } from "../../utils/formatImage";
+import {FaAngleUp, FaAngleDown} from 'react-icons/fa'
 
-const Chat = () => {
+const Contacts = () => {
   const { user } = useAuth();
   const [showChat, setShowChat] = useState<boolean>(false);
   const [currentContact, setCurrentContact] = useState<IUser | null>(null);
   const [currentRoom, setCurrentRoom] = useState<string | null>(null);
-
-  const image = (userFollowing: IUser) =>
-    userFollowing.perfilPhoto
-      ? baseUrl + userFollowing.perfilPhoto
-      : defaultImage;
+  const [showContacts, setShowContacts] = useState<boolean>(false)
 
   const [following, setFollowing] = useState<IUser[]>([]);
 
@@ -45,28 +41,35 @@ const Chat = () => {
     setCurrentRoom(data);
   }
 
+  function handleShowContact(){
+    setShowContacts((show)=> show ? false : true); 
+  }
+
   return (
     <ChatContainer>
       <div className="contacts">
         <div className="header">
-          <img src={image(user!)} alt="user_photo" />
-          <span>Mensagens</span>
+        <div>
+          <img src={formatImage(user?.perfilPhoto)} alt="user_photo" />
+          <span>Contatos</span>
         </div>
-        <ul className="following">
+        {!showContacts ? <FaAngleUp onClick={handleShowContact} />: <FaAngleDown  onClick={handleShowContact}/>}
+        </div>
+      {showContacts &&   <ul className="following">
           {following.length > 0 &&
             following.map((userItem, i) => (
               <li key={i} onClick={() => handleShowMensagem(userItem)}>
-                <img src={image(userItem)} alt="user_photo" />
+                <img src={formatImage(userItem.perfilPhoto)} alt="user_photo" />
                 <span>{userItem.name}</span>
               </li>
             ))}
-        </ul>
+        </ul>}
       </div>
       {showChat && currentContact && currentRoom && (
-        <ChatMensagens following={currentContact} room={currentRoom} />
+        <ChatMessages following={currentContact} room={currentRoom} />
       )}
     </ChatContainer>
   );
 };
 
-export default Chat;
+export default Contacts;

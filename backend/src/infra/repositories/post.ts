@@ -1,5 +1,4 @@
-import { loadPostByUserId } from "../../data/protocols/repositories/loadPostByUser";
-import { ILike } from "../../types/like";
+import { loadPostByUserId } from "../../data/protocols/repositories/loadPostByUser";import { ILike } from "../../types/like";
 import { IPost } from "../../types/post";
 import { likes, post, prisma } from "../prisma";
 
@@ -46,7 +45,7 @@ export class PostRepository {
     return posts;
   }
 
-  public async loadLike(postId: string, userId:string) {
+  public async loadLike(postId: string, userId: string) {
     const like = await likes.findFirst({
       where: {
         postId,
@@ -63,11 +62,16 @@ export class PostRepository {
   }
 
   public async removeLike(id: string) {
-    await likes.delete({
-      where: {
-        id: id,
-      },
-    });
+    try {
+      await likes.delete({
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      // Already deleted
+      // Capture a possible error if then user spams the like button
+    }
   }
 
   public async loadLikes(id: string) {

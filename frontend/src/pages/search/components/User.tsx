@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { UserContainer } from "./style";
 import { useAuth } from "../../../hooks/auth";
 import { addFollow, loadFollowing } from "../../../services/follow";
+import { formatImage } from "../../../utils/formatImage";
 
 interface props {
   name: string;
@@ -47,19 +48,16 @@ const User = ({ name }: props) => {
         data.map((item, i) => (
           <UserContainer key={i}>
             <Link to={`/perfil/${item.id}`}>
-              <img
-                src={
-                  item.perfilPhoto ? baseUrl + item.perfilPhoto : defaultImage
-                }
-                alt="user_photo"
-              />
+              <img src={formatImage(item.perfilPhoto)} alt="user_photo" />
               <span>{item.name}</span>
             </Link>
-            {!following.includes(item.id)
-              ? showButtomFollow(item.id) && (
-                  <button onClick={() => handleFollow(item.id)}>Seguir</button>
-                )
-              : <button>Seguindo</button>}
+            {!following.includes(item.id) ? (
+              showButtomFollow(item.id) && (
+                <button onClick={() => handleFollow(item.id)}>Seguir</button>
+              )
+            ) : (
+              <button>Seguindo</button>
+            )}
           </UserContainer>
         ))}
     </ul>

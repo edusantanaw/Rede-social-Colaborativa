@@ -20,7 +20,6 @@ export class InviteRepository {
         createdAt: "desc",
       },
     });
-    if (allInvites.length == 0) return null;
     return allInvites;
   }
 

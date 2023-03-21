@@ -19,9 +19,19 @@ export const ChatContainer = styled.div`
       padding: 0.5em;
       display: flex;
       align-items: center;
-      gap: 1em;
+      justify-content: space-between;
       cursor: pointer;
       border-bottom: 1px solid #a2a2a2;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+      }
+
+      svg{
+        font-size: 1.3em;
+      }
     }
     img {
       width: 2em;

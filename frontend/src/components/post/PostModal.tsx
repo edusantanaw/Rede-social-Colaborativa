@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
-import { IPost } from "../../types/post";
-import { PostModalContainer } from "./style";
-import defaultImage from "../../assets/default.jpg";
-import { baseUrl } from "../../constants/baseUrl";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../hooks/auth";
 import { createComment, loadComments } from "../../services/post";
+import { IPost } from "../../types/post";
+import { formatImage } from "../../utils/formatImage";
+import { PostModalContainer } from "./style";
 
 interface props {
   post: IPost;
@@ -15,6 +14,7 @@ type IComment = {
   content: string;
   userId: string;
   perfilPhoto?: string;
+  name: string;
 };
 
 const PostModal = ({ handleModal, post }: props) => {
@@ -29,13 +29,9 @@ const PostModal = ({ handleModal, post }: props) => {
   useEffect(() => {
     (async () => {
       const loadedComments = await loadComments(post.id);
-      setComments((current) => [...loadedComments]);
+      setComments(() => [...loadedComments]);
     })();
   }, []);
-
-  const userImage = post.perfilPhoto
-    ? `${baseUrl}/${post.perfilPhoto}`
-    : defaultImage;
 
   async function handleCreateComment() {
     if (!commentRef.current) return;
@@ -46,7 +42,8 @@ const PostModal = ({ handleModal, post }: props) => {
       userId: user!.id,
       postId: post.id,
     });
-    setComments((current) => [...current, newComment]);
+    commentRef.current.value = ""
+    setComments((current) => [...current, { ...newComment, name: user!.name }]);
   }
 
   return (
@@ -55,7 +52,7 @@ const PostModal = ({ handleModal, post }: props) => {
       <div className="content" id={post.image ? "hor" : "vert"}>
         <div className="post">
           <div className="user">
-            <img src={userImage} alt="user_photo" />
+            <img src={formatImage(post.perfilPhoto)} alt="user_photo" />
             <span>{post.name}</span>
           </div>
           {post.content && (
@@ -80,11 +77,19 @@ const PostModal = ({ handleModal, post }: props) => {
           </div>
           <span>Comentarios:</span>
           <ul>
-            {comments.length > 0 && comments.map((comment, i)=>(
-              <li key={i}>
-                {comment.content}
-              </li>
-            ))}
+            {comments.length > 0 &&
+              comments.map((comment, i) => (
+                <li key={i}>
+                  <div id="autor">
+                    <img
+                      src={formatImage(comment.perfilPhoto)}
+                      alt="autor_photo"
+                    />
+                    <span>{comment.name}</span>
+                  </div>
+                  <p>{comment.content}</p>
+                </li>
+              ))}
           </ul>
         </div>
       </div>

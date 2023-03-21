@@ -6,6 +6,7 @@ import { baseUrl } from "../../../constants/baseUrl";
 import { useAuth } from "../../../hooks/auth";
 import { Modal } from "./styles";
 import imageDefault from "../../../assets/default.jpg";
+import { formatImage } from "../../../utils/formatImage";
 
 interface props {
   handleCreate: (image: File | null, content: string | null) => Promise<void>;
@@ -18,9 +19,6 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
   const [content, setContent] = useState<string | null>(null);
 
   const { user } = useAuth();
-  const userImage = user!.perfilPhoto
-    ? baseUrl + user!.perfilPhoto
-    : imageDefault;
 
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
     const files = e.target.files;
@@ -61,7 +59,7 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
       <div className="close" onClick={handleModal} />
       <div className="new_project">
         <div className="user">
-          <img src={userImage} alt="user_photo" />
+          <img src={formatImage(user?.perfilPhoto)} alt="user_photo" />
           <span>{user!.name}</span>
         </div>
         <Editor getContent={getContent} />
