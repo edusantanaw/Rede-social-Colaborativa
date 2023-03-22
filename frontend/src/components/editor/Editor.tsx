@@ -4,9 +4,10 @@ import "react-quill/dist/quill.snow.css";
 
 interface props {
   getContent: (data: string) => void;
+  placeholder: string;
 }
 
-function Editor({ getContent }: props) {
+function Editor({ getContent, placeholder }: props) {
   const [content, setContent] = useState("");
 
   function handleContentChange(value: string) {
@@ -51,7 +52,7 @@ function Editor({ getContent }: props) {
         onChange={handleContentChange}
         modules={modules}
         formats={formats}
-        placeholder="No que está pensando?"
+        placeholder= {placeholder}
       />
     </div>
   );

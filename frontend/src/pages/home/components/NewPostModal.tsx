@@ -62,7 +62,7 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
           <img src={formatImage(user?.perfilPhoto)} alt="user_photo" />
           <span>{user!.name}</span>
         </div>
-        <Editor getContent={getContent} />
+        <Editor getContent={getContent} placeholder="No que está pensando?" />
         {prevImage && (
           <div className="prev_img">
             <span onClick={clearImage}>

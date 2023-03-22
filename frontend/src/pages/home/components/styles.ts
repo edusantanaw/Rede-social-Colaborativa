@@ -28,7 +28,7 @@ export const NewPostContainer = styled.div`
     width: 90%;
     background-color: #f2f2f2;
     border-radius: 40px;
-    span{
+    span {
       font-weight: 300;
     }
   }
@@ -206,6 +206,73 @@ export const Modal = styled.div`
       top: 2px;
       font-size: 2em;
       color: red;
+    }
+  }
+`;
+
+export const NewProject = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .close {
+    background-color: #0005;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .new {
+    width: 30em;
+    background-color: #fff;
+    z-index: 5;
+    border-radius: 8px;
+
+    #input {
+      padding: 1em;
+      width: 100%;
+      label {
+        display: block;
+        font-size: 1.1em;
+        padding-bottom: 0.5em;
+      }
+
+      input {
+        width: 100%;
+        height: 3em;
+        padding: 1em;
+        border-radius: 5px;
+      }
+    }
+    #editor {
+      height: 20em;
+      padding: 0.5em 1em;
+      #editor_cp {
+        height: 14em;
+      }
+    }
+    .create {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 1em;
+      button {
+        width: 15em;
+        height: 3.5em;
+        border: none;
+        border-radius: 5px;
+        background-color: blue;
+        color: #fff;
+        cursor: pointer;
+      }
+
     }
   }
 `;
