@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { ChatContainer } from "./style";
+import { useEffect, useState } from "react";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { useAuth } from "../../hooks/auth";
-import { IUser } from "../../types/user";
-import { loadFollowing } from "../../services/follow";
-import ChatMessages from "./ChatMessages";
-import { getRoom, joinRoom, leaveRoom } from "../../services/chat";
-import { formatImage } from "../../utils/formatImage";
-import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 import { useChat } from "../../hooks/useChat";
+import { getRoom } from "../../services/chat";
+import { loadFollowing } from "../../services/follow";
+import { IUser } from "../../types/user";
+import { formatImage } from "../../utils/formatImage";
+import ChatMessages from "./components/ChatMessages";
+import Following from "./components/Following";
+import { ChatContainer } from "./style";
 
 const Contacts = () => {
   const { user } = useAuth();
@@ -24,7 +25,7 @@ const Contacts = () => {
 
   const [following, setFollowing] = useState<IUser[]>([]);
 
-  async function handleShowMensagem(userItem: IUser) {
+  async function handleShowMessage(userItem: IUser) {
     handleContact(userItem);
     await room(userItem.id);
     handleShowChat();
@@ -42,9 +43,7 @@ const Contacts = () => {
     await handleRoom(room);
   }
 
-  console.log(showChat, currentContact, currentRoom)
   function handleShowContact() {
-    console.log(showContacts)
     setShowContacts((show) => (show ? false : true));
   }
 
@@ -63,18 +62,10 @@ const Contacts = () => {
           )}
         </div>
         {showContacts && (
-          <ul className="following">
-            {following.length > 0 &&
-              following.map((userItem, i) => (
-                <li key={i} onClick={() => handleShowMensagem(userItem)}>
-                  <img
-                    src={formatImage(userItem.perfilPhoto)}
-                    alt="user_photo"
-                  />
-                  <span>{userItem.name}</span>
-                </li>
-              ))}
-          </ul>
+          <Following
+            following={following}
+            handleShowMessage={handleShowMessage}
+          />
         )}
       </div>
       {showChat && currentContact && currentRoom && (

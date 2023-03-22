@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { IUser } from "../../types/user";
-import { ChatMessageContainer } from "./style";
-import socket, { loadMessages, sendMessage } from "../../services/chat";
-import { useAuth } from "../../hooks/auth";
-import { IMessage } from "../../types/message";
-import { formatImage } from "../../utils/formatImage";
+import { IUser } from "../../../types/user";
+import { ChatMessageContainer } from "../style";
+import socket, { loadMessages, sendMessage } from "../../../services/chat";
+import { useAuth } from "../../../hooks/auth";
+import { IMessage } from "../../../types/message";
+import { formatImage } from "../../../utils/formatImage";
+import { IoMdClose } from "react-icons/io";
+import { useChat } from "../../../hooks/useChat";
 
 interface props {
   following: IUser;
@@ -15,6 +17,8 @@ const ChatMessages = ({ following, room }: props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const messageRef = useRef<HTMLInputElement | null>(null);
   const endRef = useRef<HTMLLIElement | null>(null);
+
+  const { reset} = useChat()
 
   const { user } = useAuth();
 
@@ -38,8 +42,6 @@ const ChatMessages = ({ following, room }: props) => {
     });
   }, [socket]);
 
-
-
   async function handleMessage() {
     if (messageRef.current) {
       const message = messageRef.current.value;
@@ -49,15 +51,17 @@ const ChatMessages = ({ following, room }: props) => {
       messageRef.current.value = "";
       setMessages((current) => [...current, newMessage]);
       endRef.current!.scrollIntoView({ behavior: "smooth" });
-
     }
   }
 
   return (
     <ChatMessageContainer>
       <div className="head">
-        <img src={formatImage(user?.perfilPhoto)} alt="perfil_photo" />
-        {following.name}
+        <div className="head_user">
+          <img src={formatImage(user?.perfilPhoto)} alt="perfil_photo" />
+          <span>{following.name}</span>
+        </div>
+        <IoMdClose onClick={reset} />
       </div>
       <ul className="messages">
         {messages.map((message, i) => (

@@ -29,7 +29,7 @@ export const ChatContainer = styled.div`
         gap: 1em;
       }
 
-      svg{
+      svg {
         font-size: 1.3em;
       }
     }
@@ -53,7 +53,32 @@ export const ChatContainer = styled.div`
         gap: 1em;
       }
     }
+
+    span {
+      font-weight: 300;
+      text-align: center;
+      width: 100%;
+      font-size: 0.9em;
+    }
   }
+  .search {
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    label {
+      font-size: 1em;
+      font-weight: 300;
+    }
+
+    input {
+      width: 100%;
+      height: 2.5em;
+      border-radius: 5px;
+      padding: 0.5em;
+    }
+  }
+
 `;
 
 export const ChatMessageContainer = styled.div`
@@ -67,16 +92,27 @@ export const ChatMessageContainer = styled.div`
   .head {
     display: flex;
     align-items: center;
-    gap: 0.8em;
+    justify-content: space-between;
     padding: 0.5em;
     border-bottom: 1px solid #c2c2c2;
+    .head_user {
+      display: flex;
+      align-items: center;
+      gap: 0.8em;
+    }
     img {
       width: 2.5em;
       height: 2.5em;
       border-radius: 50%;
     }
+
+    svg {
+      font-size: 1.3em;
+      cursor: pointer;
+    }
   }
 
+  
   .messages {
     height: 77.5%;
     overflow: auto;
@@ -97,7 +133,7 @@ export const ChatMessageContainer = styled.div`
     }
 
     .contact {
-      background-color :  #c2c2c2;
+      background-color: #c2c2c2;
       align-self: flex-start;
     }
 

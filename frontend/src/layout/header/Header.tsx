@@ -51,7 +51,7 @@ const Header = () => {
         </li>
         <li>
           <BiMessageSquare onClick={handleShowMessages} />
-          {showMessages && <Messages />}
+          {showMessages && <Messages handleShowMessages={handleShowMessages} />}
         </li>
         <li className="perfil">
           <BsFillPersonFill onClick={handleShowPerfil} />

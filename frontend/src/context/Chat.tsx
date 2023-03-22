@@ -7,6 +7,7 @@ interface IChatContext {
   currentContact: IUser | null;
   showChat: boolean;
   handleShowChat: () => void;
+  reset: () => void;
   handleContact: (data: IUser) => void;
   handleRoom: (data: string | null) => Promise<void>;
 }
@@ -55,6 +56,7 @@ export function ChatProvider({ children }: props) {
         handleShowChat,
         handleContact,
         handleRoom,
+        reset
       }}
     >
       {children}

@@ -13,7 +13,11 @@ type IRecentMessages = {
   email: string;
 };
 
-const Messages = () => {
+interface props {
+  handleShowMessages: () => void;
+}
+
+const Messages = ({ handleShowMessages }: props) => {
   const { user } = useAuth();
   const url = `/messages/recent/${user!.id}`;
   const { data, error } = useFetching<IRecentMessages[]>({
@@ -21,7 +25,7 @@ const Messages = () => {
     dependeces: [],
   });
 
-  const { handleRoom, handleShowChat, handleContact } = useChat();
+  const { handleRoom, handleShowChat, handleContact, showChat } = useChat();
 
   async function handleChat(data: IRecentMessages) {
     handleContact({
@@ -31,7 +35,9 @@ const Messages = () => {
       perfilPhoto: data.perfilPhoto,
     });
     await handleRoom(data.room);
-    handleShowChat()
+    handleShowMessages();
+    if (showChat) return;
+    handleShowChat();
   }
 
   return (
@@ -40,7 +46,7 @@ const Messages = () => {
       <ul>
         {data &&
           data.map((item, i) => (
-            <li key={i} onClick={()=> handleChat(item)}>
+            <li key={i} onClick={() => handleChat(item)}>
               <img src={formatImage(item.perfilPhoto)} alt="user_photo" />
               <div className="right">
                 <span>{item.name}</span>
