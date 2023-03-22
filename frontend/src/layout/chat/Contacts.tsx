@@ -7,20 +7,27 @@ import ChatMessages from "./ChatMessages";
 import { getRoom, joinRoom, leaveRoom } from "../../services/chat";
 import { formatImage } from "../../utils/formatImage";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
+import { useChat } from "../../hooks/useChat";
 
 const Contacts = () => {
   const { user } = useAuth();
-  const [showChat, setShowChat] = useState<boolean>(false);
-  const [currentContact, setCurrentContact] = useState<IUser | null>(null);
-  const [currentRoom, setCurrentRoom] = useState<string | null>(null);
+  const {
+    currentContact,
+    currentRoom,
+    handleContact,
+    handleRoom,
+    handleShowChat,
+    showChat,
+  } = useChat();
+
   const [showContacts, setShowContacts] = useState<boolean>(false);
 
   const [following, setFollowing] = useState<IUser[]>([]);
 
   async function handleShowMensagem(userItem: IUser) {
-    setCurrentContact(userItem);
+    handleContact(userItem);
     await room(userItem.id);
-    setShowChat((show) => (show ? false : true));
+    handleShowChat();
   }
 
   useEffect(() => {
@@ -31,18 +38,13 @@ const Contacts = () => {
   }, []);
 
   async function room(followingId: string) {
-    if (currentRoom) {
-      leaveRoom(currentRoom);
-      setCurrentRoom(null);
-      setCurrentContact(null);
-      return;
-    }
     const room = await getRoom(user!.id, followingId);
-    const data = await joinRoom(room);
-    setCurrentRoom(data);
+    await handleRoom(room);
   }
 
+  console.log(showChat, currentContact, currentRoom)
   function handleShowContact() {
+    console.log(showContacts)
     setShowContacts((show) => (show ? false : true));
   }
 

@@ -1,4 +1,5 @@
 import { useAuth } from "../../../hooks/auth";
+import { useChat } from "../../../hooks/useChat";
 import { useFetching } from "../../../hooks/useFetching";
 import { formatImage } from "../../../utils/formatImage";
 import { MessagesContainer } from "./style";
@@ -9,6 +10,7 @@ type IRecentMessages = {
   message: string;
   name: string;
   room: string;
+  email: string;
 };
 
 const Messages = () => {
@@ -19,7 +21,18 @@ const Messages = () => {
     dependeces: [],
   });
 
-  console.log(data);
+  const { handleRoom, handleShowChat, handleContact } = useChat();
+
+  async function handleChat(data: IRecentMessages) {
+    handleContact({
+      email: data.email,
+      id: data.userId,
+      name: data.name,
+      perfilPhoto: data.perfilPhoto,
+    });
+    await handleRoom(data.room);
+    handleShowChat()
+  }
 
   return (
     <MessagesContainer>
@@ -27,7 +40,7 @@ const Messages = () => {
       <ul>
         {data &&
           data.map((item, i) => (
-            <li key={i}>
+            <li key={i} onClick={()=> handleChat(item)}>
               <img src={formatImage(item.perfilPhoto)} alt="user_photo" />
               <div className="right">
                 <span>{item.name}</span>

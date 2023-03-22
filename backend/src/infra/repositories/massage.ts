@@ -35,11 +35,11 @@ export class MessageRepository {
     const data: IRecentMessages[] = [];
     for (let i = 0; i < recentMessages.length; i++) {
       const user = (await prisma.$queryRaw`
-      select users.id, "perfilPhoto", name
+      select users.id, "perfilPhoto", name, email
       from users inner join room 
       on room."userId" = users.id or room."followingId" = users.id
       where room.id = ${recentMessages[i].room} and  users.id != ${userId};  
-    `) as { id: string; perfilPhoto: string; name: string }[];
+    `) as { id: string; perfilPhoto: string; name: string, email: string }[];
 
       data.push({
         userId: user[0].id,
@@ -47,6 +47,7 @@ export class MessageRepository {
         room: recentMessages[i].room,
         perfilPhoto: user[0].perfilPhoto,
         name: user[0].name,
+        email: user[0].email
       } as IRecentMessages);
     }
 

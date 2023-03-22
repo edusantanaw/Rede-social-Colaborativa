@@ -42,6 +42,7 @@ export function ChatProvider({ children }: props) {
       reset();
       return;
     }
+    setCurrentRoom(room);
     await joinRoom(room);
   }
 
@@ -56,7 +57,7 @@ export function ChatProvider({ children }: props) {
         handleRoom,
       }}
     >
-        {children}
+      {children}
     </ChatContext.Provider>
   );
 }
