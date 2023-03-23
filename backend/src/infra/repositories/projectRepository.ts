@@ -29,8 +29,8 @@ export class ProjectRepository {
 
   public async loadUserProjects(userId: string) {
     const projects = await prisma.$queryRaw`
-      select p.id, p.name, p."perfilPhoto" from project as p
-      inner join collaborators as c on c."projectId" = p.i 
+      select p.id, p.name, p."perfilImage" from project as p
+      left join collaborators as c on c."projectId" = p.id
       where p."ownerId" = ${userId} or c."userId" = ${userId}
      ` as IProject[]
      return projects;

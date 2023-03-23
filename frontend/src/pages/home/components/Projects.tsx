@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { ProjectContainer } from "./styles";
 import { MdCreate } from "react-icons/md";
-import defaultImage from "../../../assets/default.jpg";
 import { NewProjectModal } from "./NewProjectModal";
+import { useFetching } from "../../../hooks/useFetching";
+import { useAuth } from "../../../hooks/auth";
+import { formatImage } from "../../../utils/formatImage";
+import { Link } from "react-router-dom";
+
+type IProject = {
+  id: string;
+  name: string;
+  perfilImage?: string;
+};
 
 const Projects = () => {
   const [newProjectModal, setNewProjectModal] = useState<boolean>(false);
+  const { user } = useAuth();
 
-  const projects = [
-    {
-      name: "Project",
-      image: defaultImage,
-    },
-  ];
+  const { data, error } = useFetching<IProject[]>({
+    url: `/project/user/${user!.id}`,
+    dependeces: [],
+  });
 
   function handleProjectModal() {
     setNewProjectModal((show) => (show ? false : true));
@@ -21,7 +29,7 @@ const Projects = () => {
   return (
     <>
       {newProjectModal && (
-       <NewProjectModal handleProjectModal={handleProjectModal} />
+        <NewProjectModal handleProjectModal={handleProjectModal} />
       )}
       <ProjectContainer>
         <div className="top">
@@ -34,12 +42,18 @@ const Projects = () => {
             </div>
             <span>Criar novo projeto</span>
           </li>
-          {projects.map((project, i) => (
-            <li key={i} className="project">
-              <img src={project.image} alt="project_image" />
-              <span>{project.name}</span>
-            </li>
-          ))}
+          {data &&
+            data.map((project, i) => (
+              <li key={i} className="project">
+                <Link to={`/project/${project.id}`}>
+                  <img
+                    src={formatImage(project.perfilImage)}
+                    alt="project_image"
+                  />
+                  <span>{project.name}</span>
+                </Link>
+              </li>
+            ))}
         </ul>
       </ProjectContainer>
     </>

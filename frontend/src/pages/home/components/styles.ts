@@ -68,16 +68,18 @@ export const ProjectContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1em;
-    li {
+    li, a {
       display: flex;
       align-items: center;
       gap: 0.8em;
+      color: #000;
       cursor: pointer;
       span {
         font-size: 1em;
         font-weight: 300;
       }
     }
+   
     .project {
       img {
         width: 2.2em;
