@@ -22,7 +22,7 @@ export const NewProjectModal = ({ handleProjectModal }: props) => {
     if(!nameRef.current)return;
     const name = nameRef.current.value;
     if(name.length === 0 || description.length === 0) return;
-    await createProject({description, name, onwerId: user!.id })
+    await createProject({description, name, ownerId: user!.id })
   }
 
   return (
@@ -40,7 +40,7 @@ export const NewProjectModal = ({ handleProjectModal }: props) => {
         </div>
         <Editor getContent={getContent} placeholder= "Descrição do projeto" />
         <div className="create">
-            <button>Criar</button>
+            <button onClick={handleCreate}>Criar</button>
         </div>
       </div>
     </NewProject>

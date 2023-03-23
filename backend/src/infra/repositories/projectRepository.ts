@@ -26,4 +26,13 @@ export class ProjectRepository {
       WHERE lower(name) LIKE ${`'%${name.toLowerCase()}%'`};`) as IProject[];
     return projects;
   }
+
+  public async loadUserProjects(userId: string) {
+    const projects = await prisma.$queryRaw`
+      select p.id, p.name, p."perfilPhoto" from project as p
+      inner join collaborators as c on c."projectId" = p.i 
+      where p."ownerId" = ${userId} or c."userId" = ${userId}
+     ` as IProject[]
+     return projects;
+  }
 }
