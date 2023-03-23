@@ -1,8 +1,8 @@
-import React from "react";
 import {
   BrowserRouter as Router,
-  Routes,
+  Navigate,
   Route,
+  Routes,
 } from "react-router-dom";
 import { useIsAuth } from "../hooks/isAuth";
 import Contacts from "../layout/chat/Contacts";

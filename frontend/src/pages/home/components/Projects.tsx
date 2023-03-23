@@ -24,7 +24,8 @@ const Projects = () => {
 
   function handleProjectModal() {
     setNewProjectModal((show) => (show ? false : true));
-  }
+  } 
+  console.log(data, "data")
 
   return (
     <>
