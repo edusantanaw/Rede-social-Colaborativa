@@ -15,6 +15,9 @@ const Chat = () => {
   const messageRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.focus();
+    }
     (async () => {
       const response = await loadMessages(id!);
       setMessages(() => response);
@@ -35,13 +38,11 @@ const Chat = () => {
     const newMessage = { message, room: id!, senderId: user!.id };
     await sendMessage(newMessage);
     setMessages((current) => [...current, newMessage]);
+    messageRef.current.value = "";
   };
 
   return (
     <ChatContainer>
-      <div className="top">
-        <h3>Chat</h3>
-      </div>
       <ul className="messages">
         {messages.length > 0 &&
           messages.map((message, i) => (

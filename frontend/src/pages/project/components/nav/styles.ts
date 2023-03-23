@@ -4,7 +4,7 @@ export const NavContainer = styled.div`
   padding: 1em;
   width: 20em;
   height: 100%;
-  background-color: #6000aa;
+  background-color: #10111A;
 
   .project {
     display: flex;
@@ -35,7 +35,7 @@ export const NavContainer = styled.div`
       svg {
         padding: 0.2em;
         font-size: 2.4em;
-        background-color: #000;
+        background-color: #0004;
         color: #fff;
         border-radius: 5px;
       }

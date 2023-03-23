@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const ChatContainer = styled.div`
   width: 60%;
   height: 100%;
-  background-color: #c1c1c1;
   position: relative;
+  color: #fff;
   .input {
     position: absolute;
     bottom: 0;

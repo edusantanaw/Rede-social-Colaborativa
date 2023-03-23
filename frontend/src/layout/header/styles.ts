@@ -4,7 +4,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   padding: 0.7em 2em;
   display: flex;
-  background-color: #fff;
+  background-color: #0E0815;
   justify-content: space-between;
   position: fixed;
   z-index: 2;
@@ -12,7 +12,6 @@ export const HeaderContainer = styled.header`
   li {
     color: #fff;
     border-radius: 50%;
-    background-color: #000;
     width: 2.1em;
     height: 2.1em;
     display: flex;
@@ -39,7 +38,7 @@ export const HeaderContainer = styled.header`
       top: 2.3em;
       display: flex;
       flex-direction: column;
-      background-color: #000;
+      background-color: #fff;
       padding: 0.6em;
       border-radius: 5px;
       li {
@@ -48,8 +47,9 @@ export const HeaderContainer = styled.header`
         font-weight: 300;
         cursor: pointer;
         padding: 0.5em;
-        color: #fff;
+        color: #000;
         a {
+          color: #000;
           text-decoration: none;
         }
       }
@@ -65,7 +65,7 @@ export const HeaderContainer = styled.header`
       width: 26em;
       height: 3em;
       border-radius: 5px 0 0 5px;
-      background: #e2e2e2;
+      background: #fff;
       border: none;
     }
 
