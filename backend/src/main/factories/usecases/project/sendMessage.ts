@@ -3,6 +3,5 @@ import { RoomRepository } from "../../../../infra/repositories/room";
 
 export function makeSendMessageUsecase() {
   const messageRepository = new MessageRepository();
-  const roomRepository = new RoomRepository();
-  return new SendMessage(messageRepository, roomRepository);
+  return new SendMessage(messageRepository);
 }

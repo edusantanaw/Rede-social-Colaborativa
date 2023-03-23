@@ -149,7 +149,6 @@ model Message {
   id        String   @id
   message   String?
   file      String?
-  Room      Room     @relation(fields: [room], references: [id])
   room      String
   user      User     @relation(fields: [senderId], references: [id])
   senderId  String
@@ -162,7 +161,6 @@ model Room {
   id          String    @id
   followingId String
   userId      String
-  Message     Message[]
 
   @@map("room")
 }

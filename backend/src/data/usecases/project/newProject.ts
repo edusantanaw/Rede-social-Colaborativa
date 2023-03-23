@@ -5,8 +5,7 @@ import { ICreateRepository } from "../../protocols/repositories/createRepository
 
 export class NewProjectUsecase implements ICreateUsecase<IProject, IProject> {
   constructor(
-    private readonly projectRepository: ICreateRepository<IProject, Project>
-  ) {}
+    private readonly projectRepository: ICreateRepository<IProject, Project>,  ) {}
 
   public async execute(data: IProject): Promise<IProject> {
     const project = new Project(data);

@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IUser } from "../../../types/user";
 import { ChatMessageContainer } from "../style";
-import socket, { loadMessages, sendMessage } from "../../../services/chat";
+import { loadMessages, sendMessage } from "../../../services/chat";
 import { useAuth } from "../../../hooks/auth";
 import { IMessage } from "../../../types/message";
 import { formatImage } from "../../../utils/formatImage";
 import { IoMdClose } from "react-icons/io";
 import { useChat } from "../../../hooks/useChat";
+import socket from "../../../utils/socket";
 
 interface props {
   following: IUser;

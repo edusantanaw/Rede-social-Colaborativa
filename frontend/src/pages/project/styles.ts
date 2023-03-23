@@ -5,4 +5,9 @@ export const ProjectContainer = styled.section`
     height: 100vh;
     width: 100%;
     display: flex;
+
+    .tab {
+        width: 70%;
+        height: 100%;
+    }
 `

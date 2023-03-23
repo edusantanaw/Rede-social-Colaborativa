@@ -31,7 +31,7 @@ export const NavContainer = styled.div`
       align-items: center;
       gap: 0.5em;
       color: #fff;
-
+      cursor: pointer;
       svg {
         padding: 0.2em;
         font-size: 2.4em;

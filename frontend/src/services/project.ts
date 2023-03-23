@@ -1,5 +1,6 @@
 import { Api } from "../utils/api";
 import { makeOptions } from "../utils/makeOptions";
+import socket from "../utils/socket";
 
 type project = {
   ownerId: string;
@@ -12,4 +13,9 @@ export async function createProject(data: project) {
   const response = await Api.post(`/project`, data, makeOptions());
   console.log(response);
   return response.data;
+}
+
+
+export async function joinProjectChat(projectId: string){
+    socket.emit('join_room', projectId)
 }

@@ -1,0 +1,63 @@
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../../../hooks/auth";
+import { loadMessages, sendMessage } from "../../../../services/chat";
+import { IMessage } from "../../../../types/message";
+import socket from "../../../../utils/socket";
+import MessageItem from "./MessageItem";
+import { ChatContainer } from "./style";
+
+const Chat = () => {
+  const { id } = useParams<{ id: string }>();
+
+  const [messages, setMessages] = useState<IMessage[]>([]);
+  const { user } = useAuth();
+  const messageRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const response = await loadMessages(id!);
+      setMessages(() => response);
+    })();
+  }, []);
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessages((current) => [...current, data]);
+    });
+  }, [socket]);
+
+  const pressEnter = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Enter") return;
+    if (!messageRef.current) return;
+    const message = messageRef.current.value;
+    if (message.length === 0) return;
+    const newMessage = { message, room: id!, senderId: user!.id };
+    await sendMessage(newMessage);
+    setMessages((current) => [...current, newMessage]);
+  };
+
+  return (
+    <ChatContainer>
+      <div className="top">
+        <h3>Chat</h3>
+      </div>
+      <ul className="messages">
+        {messages.length > 0 &&
+          messages.map((message, i) => (
+            <MessageItem message={message} key={i} />
+          ))}
+      </ul>
+      <div className="input">
+        <input
+          type="text"
+          placeholder="Conversar no chat"
+          ref={messageRef}
+          onKeyPress={(e) => pressEnter(e)}
+        />
+      </div>
+    </ChatContainer>
+  );
+};
+
+export default Chat;

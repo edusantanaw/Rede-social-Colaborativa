@@ -1,11 +1,8 @@
 import { Api } from "../utils/api";
 import { makeOptions } from "../utils/makeOptions";
-import io from "socket.io-client";
-import { baseUrl } from "../constants/baseUrl";
 import { IMessage } from "../types/message";
+import socket from "../utils/socket";
 
-const socket = io(baseUrl);
-socket.connect();
 
 export async function getRoom(userId: string, followerId: string) {
   const response = await Api.get<string>(
@@ -37,4 +34,3 @@ export async function loadMessages(room: string) {
   return response.data;
 }
 
-export default socket;
