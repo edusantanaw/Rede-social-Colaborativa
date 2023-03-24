@@ -19,15 +19,33 @@ export const ChatContainer = styled.div`
   ul {
     display: flex;
     flex-direction: column;
-    gap: 1em;
     padding: 1em;
+
+    li + li {
+      margin-top: 1em;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 1em;
+      color: #c2c2c2;
+      letter-spacing: 1.3px;
+    }
+
+    p + p {
+      padding-top: 0.5em;
+    }
+
+    #same_user {
+      margin-left: 3.7em;
+    }
   }
 `;
 
 export const MessageContainer = styled.li`
   display: flex;
   align-items: center;
-  gap: 0.8em;
+  gap: 1em;
   .user {
     img {
       width: 2.7em;
@@ -35,7 +53,8 @@ export const MessageContainer = styled.li`
       border-radius: 50%;
     }
   }
-  p {
-    font-weight: 300;
+  span {
+    font-size: 1.1em;
+    letter-spacing: 1.5px;
   }
 `;

@@ -18,6 +18,7 @@ const Chat = () => {
     if (messageRef.current) {
       messageRef.current.focus();
     }
+
     (async () => {
       const response = await loadMessages(id!);
       setMessages(() => response);
@@ -45,9 +46,12 @@ const Chat = () => {
     <ChatContainer>
       <ul className="messages">
         {messages.length > 0 &&
-          messages.map((message, i) => (
-            <MessageItem message={message} key={i} />
-          ))}
+          messages.map((message, i, arr) => {
+           if(i > 0 && arr[i].senderId === arr[i - 1].senderId) {
+              return <p id="same_user">{message.message}</p>
+           }
+            return <MessageItem message={message} key={i} />;
+          })}
       </ul>
       <div className="input">
         <input
