@@ -3,15 +3,17 @@ import styled from "styled-components";
 export const MessagesContainer = styled.div`
   position: absolute;
   top: 3.3em;
+  width: 15em;
   right: 1.5em;
-  background-color: #e8e8e8;
+  background-color: rgb(18, 18, 18);
   border-radius: 5px;
-  color: #000;
+  color: #fff;
   h3 {
     text-align: center;
     font-size: 1em;
     border-bottom: 1px solid #a1a1a1;
     padding: 0.6em;
+    font-weight: 500;
     cursor: auto;
   }
 
@@ -45,10 +47,10 @@ export const MessagesContainer = styled.div`
       border-radius: 50%;
     }
     span {
-      font-size: 0.9em;
+      font-size: 0.85em;
     }
     p {
-      font-size: 0.9em;
+      font-size: 0.7em;
       max-height: 1em;
       overflow: hidden;
     }

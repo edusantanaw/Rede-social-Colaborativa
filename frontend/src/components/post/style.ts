@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const PostItem = styled.li`
   width: 40em;
   padding: 1em;
-  background-color: #e8e8e8;
+  background-color: rgb(10, 10, 10);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 0.8em;
   min-height: 5.5em;
+  color: #fff;
   .top {
     display: flex;
     align-items: center;
@@ -46,7 +47,7 @@ export const PostItem = styled.li`
 
   .interactions {
     display: flex;
-    border-top: 1px solid #000;
+    border-top: 1px solid #fff;
     div {
       width: 48%;
       display: flex;
@@ -75,6 +76,7 @@ export const PostModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #fff;
   .close {
     position: absolute;
     top: 0;
@@ -90,6 +92,7 @@ export const PostModalContainer = styled.div`
     z-index: 3;
     min-height: 10em;
     height: min-content;
+    background-color: rgb(10, 10, 10);
     .post {
       display: flex;
       flex-direction: column;
@@ -102,7 +105,10 @@ export const PostModalContainer = styled.div`
     display: flex;
     height: max-content;
     #post_image {
+      padding: 1em;
       max-height: 30em;
+      max-width: 50em;
+      border-radius: 10px;
     }
 
     .post {

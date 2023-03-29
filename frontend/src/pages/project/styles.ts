@@ -5,7 +5,7 @@ export const ProjectContainer = styled.section`
     height: 100vh;
     width: 100%;
     display: flex;
-    background-color: #1A1B24;
+    background-color:rgb(15, 15, 15);
     .tab {
         width: 70%;
         height: 100%;

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { tokenKey, userKey } from "../../constants/keys";
-import { signinService } from "../../services/auth";
-import { IAuthContext, signinData } from "../types/auth";
+import { authService } from "../../services/auth";
+import { IAuthContext } from "../types/auth";
 import { IUser } from "../types/user";
 
 
@@ -30,9 +30,9 @@ export function AuthProvider({ children }: props) {
     localStorage.setItem(userKey, JSON.stringify(user));
   }
 
-  async function signin(data: signinData) {
+  async function handleAuth<T>(data: T, url: string) {
     try {
-      const response = await signinService(data);
+      const response = await authService(data, url);
       makeStorage(response.data.user, response.data.token);
       setToken(response.data.token);
       setUser(response.data.user);
@@ -43,14 +43,14 @@ export function AuthProvider({ children }: props) {
   }
 
   function logout() {
-    setToken(null);
-    setUser(null);
+    setToken(()=> null);
+    setUser(()=> null);
     localStorage.removeItem(tokenKey);
     localStorage.removeItem(userKey);
   }
 
   return (
-    <AuthContext.Provider value={{ token, user, error, signin, logout }}>
+    <AuthContext.Provider value={{ token, user, error, handleAuth, logout }}>
       {children}
     </AuthContext.Provider>
   );

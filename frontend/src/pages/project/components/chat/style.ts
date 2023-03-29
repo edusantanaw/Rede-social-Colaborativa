@@ -11,9 +11,16 @@ export const ChatContainer = styled.div`
     width: 100%;
     padding: 0.5em;
     input {
+      background-color: rgba(255, 255, 255, 0.1);
       width: 100%;
-      height: 3em;
+      height: 3.5em;
       padding: 1em;
+      border: none;
+      color: #fff;
+      font-weight: 300;
+      &:focus {
+        outline: none;
+      }
     }
   }
   ul {

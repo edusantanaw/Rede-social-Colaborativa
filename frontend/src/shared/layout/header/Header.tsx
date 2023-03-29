@@ -18,10 +18,12 @@ const Header = () => {
 
   function handleShowPerfil() {
     setShowPerfil((show) => (show ? false : true));
+    if(showMessages) setShowMessages(()=> false);
   }
 
   function handleShowMessages() {
     setShowMessages((show) => (show ? false : true));
+    if(showPerfil) setShowPerfil(()=> false)
   }
 
   function handleSearch() {
@@ -34,26 +36,24 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <div id="home">
-        <Link to="/">
-          <RiHomeLine />
-        </Link>
-      </div>
       <div className="search_bar">
-        <input type="search" placeholder="pesquisar" ref={searchRef} />
-        <button onClick={handleSearch}>
-          <BiSearchAlt2 />
-        </button>
+        <h2>Social</h2>
+        <input type="search" placeholder="Pesquisar..." ref={searchRef} />
       </div>
       <ul className="list">
+        <li id="home">
+          <Link to="/">
+            <RiHomeLine />
+          </Link>
+        </li>
         <li>
           <IoNotificationsOutline />
         </li>
-        <li>
+        <li className={`${showMessages && "active"}`}>
           <BiMessageSquare onClick={handleShowMessages} />
           {showMessages && <Messages handleShowMessages={handleShowMessages} />}
         </li>
-        <li className="perfil">
+        <li className={`perfil ${showPerfil && "active"}`}>
           <BsFillPersonFill onClick={handleShowPerfil} />
           {showPerfil && (
             <ul id="perfil_actions" onClick={handleShowPerfil}>

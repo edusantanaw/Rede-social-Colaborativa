@@ -56,10 +56,9 @@ const Chat = () => {
       <div className="input">
         <input
           type="text"
-          placeholder="Conversar no chat"
+          placeholder="Conversar..."
           ref={messageRef}
           onKeyPress={(e) => pressEnter(e)}
-          
         />
       </div>
     </ChatContainer>

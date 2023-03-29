@@ -18,15 +18,13 @@ const Projects = () => {
   const { user } = useAuth();
 
   const { data, error } = useFetching<IProject[]>({
-    url: `/project/user/${user!.id}`,
+    url: `/project/user/${user?.id}`,
     dependeces: [],
   });
 
   function handleProjectModal() {
     setNewProjectModal((show) => (show ? false : true));
   } 
-  console.log(data, "data")
-
   return (
     <>
       {newProjectModal && (

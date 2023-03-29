@@ -34,7 +34,7 @@ const Feed = ({ newPost }: props) => {
               variant="rectangular"
               width="40em"
               height="10em"
-              sx={{borderRadius: "8px"}}
+              sx={{borderRadius: "8px", background: "rgb(10, 10, 10)"}}
             />
           ))}
         </ul>

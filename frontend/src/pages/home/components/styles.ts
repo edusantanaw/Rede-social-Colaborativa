@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NewPostContainer = styled.div`
   width: 40em;
-  background-color: #e8e8e8;
+  background-color: rgb(10, 10, 10);
   padding: 1em;
   color: #fff;
   border-radius: 10px;
@@ -48,10 +48,11 @@ export const FeedContainer = styled.div`
 `;
 
 export const ProjectContainer = styled.div`
-   background-color: #e8e8e8;
+  background-color: rgb(10, 10, 10);
   width: 25%;
   height: 30em;
   position: sticky;
+  color: #fff;
   border-radius: 10px;
   text-align: center;
   top: 5.5em;
@@ -68,18 +69,18 @@ export const ProjectContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1em;
-    li, a {
+    li,
+    a {
       display: flex;
       align-items: center;
       gap: 0.8em;
-      color: #000;
       cursor: pointer;
       span {
         font-size: 1em;
         font-weight: 300;
       }
     }
-   
+
     .project {
       img {
         width: 2.2em;
@@ -274,7 +275,6 @@ export const NewProject = styled.div`
         color: #fff;
         cursor: pointer;
       }
-
     }
   }
 `;

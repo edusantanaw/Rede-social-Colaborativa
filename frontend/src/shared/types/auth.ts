@@ -6,10 +6,9 @@ export type signinData = {
   };
 
   export interface IAuthContext {
-    auth: boolean;
     token: string | null;
     user: IUser | null;
     error: string | null;
-    signin: (data: signinData) => Promise<void>;
+    handleAuth: <T>(data: T, url: string) => Promise<void>;
     logout: () => void;
   }

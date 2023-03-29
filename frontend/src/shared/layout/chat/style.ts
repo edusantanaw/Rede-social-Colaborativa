@@ -11,7 +11,8 @@ export const ChatContainer = styled.div`
   .contacts {
     width: 16em;
     z-index: 3;
-    background-color: #e8e8e8;
+    background-color: rgb(10, 10, 10);
+    color: #fff;
     box-shadow: 0 0 2px #a2a2a2;
     border-radius: 5px 5px 0 0;
     bottom: 0;
@@ -78,13 +79,13 @@ export const ChatContainer = styled.div`
       padding: 0.5em;
     }
   }
-
 `;
 
 export const ChatMessageContainer = styled.div`
   height: 26em;
   width: 20em;
-  background-color: #e8e8e8;
+  background-color: rgb(10, 10, 10);
+  color: #fff;
   z-index: 4;
   border-radius: 5px;
   display: flex;
@@ -112,7 +113,6 @@ export const ChatMessageContainer = styled.div`
     }
   }
 
-  
   .messages {
     height: 77.5%;
     overflow: auto;
@@ -129,11 +129,11 @@ export const ChatMessageContainer = styled.div`
     }
     .user {
       align-self: flex-end;
-      background-color: blue;
+      background-color: blueviolet;
     }
 
     .contact {
-      background-color: #c2c2c2;
+      background-color: #a2a2a2;
       align-self: flex-start;
     }
 
@@ -147,15 +147,22 @@ export const ChatMessageContainer = styled.div`
     display: flex;
     align-items: center;
     input {
-      width: 80%;
+      width: 20em;
       height: 2.5em;
       padding: 0.5em;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      height: 100%;
+      color: #fff;
+      &:focus {
+        outline: none;
+      }
     }
     button {
-      width: 20%;
       height: 2.7em;
+      width: 4em;
       border: none;
-      background-color: #000;
+      background-color: rgba(255, 255, 255, 0.2);
       color: #fff;
       cursor: pointer;
     }

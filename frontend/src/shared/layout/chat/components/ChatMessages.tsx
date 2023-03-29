@@ -7,7 +7,8 @@ import { IUser } from "../../../types/user";
 import { formatImage } from "../../../utils/formatImage";
 import socket from "../../../utils/socket";
 import { ChatMessageContainer } from "../style";
-import {IoMdClose} from 'react-icons/io'
+import { IoMdClose } from "react-icons/io";
+import SendIcon from "@mui/icons-material/Send";
 
 interface props {
   following: IUser;
@@ -19,7 +20,7 @@ const ChatMessages = ({ following, room }: props) => {
   const messageRef = useRef<HTMLInputElement | null>(null);
   const endRef = useRef<HTMLLIElement | null>(null);
 
-  const { reset} = useChat()
+  const { reset } = useChat();
 
   const { user } = useAuth();
 
@@ -76,8 +77,10 @@ const ChatMessages = ({ following, room }: props) => {
         <li ref={endRef} id="end" />
       </ul>
       <div className="send_message">
-        <input type="text" placeholder="enviar mensagem" ref={messageRef} />
-        <button onClick={handleMessage}>Enviar</button>
+        <input type="text" placeholder="Messagem" ref={messageRef} />
+        <button onClick={handleMessage}>
+          <SendIcon fontSize="small" />
+        </button>
       </div>
     </ChatMessageContainer>
   );

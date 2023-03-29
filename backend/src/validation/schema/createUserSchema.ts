@@ -4,7 +4,7 @@ export const userSchema = z.object({
   name: z
     .string({required_error: "Name is required!"})
     .min(3, "Name must have more than 3 characteres!")
-    .max(15, "Name must have less than 15 characteres!"),
+    .max(30, "Name must have less than 30 characteres!"),
   email: z.string({required_error: "Email is required!"}).email(),
   password: z
     .string({required_error: "Password is required!"})

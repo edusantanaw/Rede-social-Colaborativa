@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const NavContainer = styled.div`
   padding: 1em;
-  width: 20em;
+  width: 15em;
   height: 100%;
-  background-color: #10111A;
+  background-color: rgb(10, 10, 10);
 
   .project {
     display: flex;

@@ -5,13 +5,14 @@ import {
   Routes,
 } from "react-router-dom";
 import { useIsAuth } from "../shared/hooks/isAuth";
-import Auth from "../pages/auth/Auth";
+import Signin from "../pages/auth/Signin";
 import Home from "../pages/home/Home";
 import Perfil from "../pages/perfil/Perfil";
 import Project from "../pages/project/Project";
 import Search from "../pages/search/Search";
 import Header from "../shared/layout/header/Header";
 import Contacts from "../shared/layout/chat/Contacts";
+import Signup from "../pages/auth/Signup";
 
 const Main = () => {
   const { isAuth } = useIsAuth();
@@ -24,23 +25,27 @@ const Main = () => {
         <Routes>
           <Route
             path="/"
-            element={isAuth ? <Home /> : <Navigate to="/auth" />}
+            element={isAuth ? <Home /> : <Navigate to="/signin" />}
           />
           <Route
             path="/perfil/:id"
-            element={isAuth ? <Perfil /> : <Navigate to="/auth" />}
+            element={isAuth ? <Perfil /> : <Navigate to="/signin" />}
           />
           <Route
             path="/search/:name"
-            element={isAuth ? <Search /> : <Navigate to="/auth" />}
+            element={isAuth ? <Search /> : <Navigate to="/signin" />}
           />
           <Route
             path="project/:id"
-            element={isAuth ? <Project /> : <Navigate to="/auth" />}
+            element={isAuth ? <Project /> : <Navigate to="/signin" />}
           />
           <Route
-            path="/auth"
-            element={!isAuth ? <Auth /> : <Navigate to="/" />}
+            path="/signin"
+            element={!isAuth ? <Signin /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/signup"
+            element={!isAuth ? <Signup /> : <Navigate to="/" />}
           />
         </Routes>
       </div>

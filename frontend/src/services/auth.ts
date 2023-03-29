@@ -7,7 +7,7 @@ type apiResponse = {
     user: IUser;
 };
 
-export async function signinService(data: signinData) {
-    const response = await Api.post<apiResponse>("/signin", data);
+export async function authService<T>(data: T, url: string) {
+    const response = await Api.post<apiResponse>(url, data);
     return response;
 }
