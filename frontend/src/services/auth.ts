@@ -1,6 +1,6 @@
-import { signinData } from "../types/auth";
-import { IUser } from "../types/user";
-import { Api } from "../utils/api";
+import { signinData } from "../shared/types/auth";
+import { IUser } from "../shared/types/user";
+import { Api } from "../shared/utils/api";
 
 type apiResponse = { 
     token: string;

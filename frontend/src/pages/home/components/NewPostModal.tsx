@@ -3,10 +3,10 @@ import { BsCardImage } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Editor from "../../../components/editor/Editor";
 import { baseUrl } from "../../../constants/baseUrl";
-import { useAuth } from "../../../hooks/auth";
+import { useAuth } from "../../../shared/hooks/auth";
 import { Modal } from "./styles";
 import imageDefault from "../../../assets/default.jpg";
-import { formatImage } from "../../../utils/formatImage";
+import { formatImage } from "../../../shared/utils/formatImage";
 
 interface props {
   handleCreate: (image: File | null, content: string | null) => Promise<void>;

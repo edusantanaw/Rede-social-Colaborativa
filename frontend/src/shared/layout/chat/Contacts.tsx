@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { getRoom } from "../../../services/chat";
+import { loadFollowing } from "../../../services/follow";
 import { useAuth } from "../../hooks/auth";
 import { useChat } from "../../hooks/useChat";
-import { getRoom } from "../../services/chat";
-import { loadFollowing } from "../../services/follow";
 import { IUser } from "../../types/user";
 import { formatImage } from "../../utils/formatImage";
 import ChatMessages from "./components/ChatMessages";

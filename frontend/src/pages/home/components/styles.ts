@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NewPostContainer = styled.div`
   width: 40em;
-  background-color: #fff;
+  background-color: #e8e8e8;
   padding: 1em;
   color: #fff;
   border-radius: 10px;
@@ -48,7 +48,7 @@ export const FeedContainer = styled.div`
 `;
 
 export const ProjectContainer = styled.div`
-  background-color: #fff;
+   background-color: #e8e8e8;
   width: 25%;
   height: 30em;
   position: sticky;

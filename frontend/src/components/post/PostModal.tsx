@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { useAuth } from "../../hooks/auth";
+import { useAuth } from "../../shared/hooks/auth";
 import { createComment, loadComments } from "../../services/post";
-import { IPost } from "../../types/post";
-import { formatImage } from "../../utils/formatImage";
+import { IPost } from "../../shared/types/post";
+import { formatImage } from "../../shared/utils/formatImage";
 import { PostModalContainer } from "./style";
 
 interface props {

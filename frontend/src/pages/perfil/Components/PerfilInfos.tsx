@@ -1,7 +1,7 @@
 import React from "react";
-import { IUser } from "../../../types/user";
-import defaultImage from "../../../assets/default.jpg";
-import defaultBg from "../../../assets/defaultBg.jpg";
+import { IUser } from "../../../shared/types/user";
+import defaultImage from "../../../shared/assets/default.jpg";
+import defaultBg from "../../../shared/assets/defaultBg.jpg";
 import { baseUrl } from "../../../constants/baseUrl";
 
 interface props {

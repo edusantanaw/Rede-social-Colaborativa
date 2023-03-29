@@ -1,6 +1,6 @@
 import {  useParams } from "react-router-dom";
-import { useFetching } from "../../hooks/useFetching";
-import { IUser } from "../../types/user";
+import { useFetching } from "../../shared/hooks/useFetching";
+import { IUser } from "../../shared/types/user";
 import { PerfilContainer } from "./style";
 
 import Post from "./Components/Post";

@@ -1,6 +1,6 @@
-import { Api } from "../utils/api";
-import { makeOptions } from "../utils/makeOptions";
-import socket from "../utils/socket";
+import { Api } from "../shared/utils/api";
+import { makeOptions } from "../shared/utils/makeOptions";
+import socket from "../shared/utils/socket";
 
 type project = {
   ownerId: string;

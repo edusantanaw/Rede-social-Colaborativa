@@ -11,7 +11,7 @@ export const ChatContainer = styled.div`
   .contacts {
     width: 16em;
     z-index: 3;
-    background-color: #fff;
+    background-color: #e8e8e8;
     box-shadow: 0 0 2px #a2a2a2;
     border-radius: 5px 5px 0 0;
     bottom: 0;
@@ -84,7 +84,7 @@ export const ChatContainer = styled.div`
 export const ChatMessageContainer = styled.div`
   height: 26em;
   width: 20em;
-  background-color: #fff;
+  background-color: #e8e8e8;
   z-index: 4;
   border-radius: 5px;
   display: flex;

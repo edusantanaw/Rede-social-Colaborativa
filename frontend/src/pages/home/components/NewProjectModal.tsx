@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import Editor from "../../../components/editor/Editor";
-import { useAuth } from "../../../hooks/auth";
+import { useAuth } from "../../../shared/hooks/auth";
 import { createProject } from "../../../services/project";
 import { NewProject } from "./styles";
 

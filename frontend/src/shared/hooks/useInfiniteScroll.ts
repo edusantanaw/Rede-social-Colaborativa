@@ -21,11 +21,15 @@ export function useInfiniteScroll<T, R, D>({
 }: props<T, R, D>) {
   const [page, setPage] = useState<number>(0);
   const [list, setList] = useState<R[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       const data = await service(page, options);
       setList((list) => [...list, ...data]);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     })();
   }, [page, dependeces]);
 
@@ -46,5 +50,5 @@ export function useInfiniteScroll<T, R, D>({
     setList((list) => [item, ...list]);
   };
 
-  return { list, addItem };
+  return { list, addItem, loading };
 }

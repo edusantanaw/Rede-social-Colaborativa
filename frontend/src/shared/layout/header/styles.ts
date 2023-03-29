@@ -38,7 +38,7 @@ export const HeaderContainer = styled.header`
       top: 2.3em;
       display: flex;
       flex-direction: column;
-      background-color: #fff;
+      background-color: #e8e8e8;
       padding: 0.6em;
       border-radius: 5px;
       li {

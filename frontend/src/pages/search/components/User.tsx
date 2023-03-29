@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { baseUrl } from "../../../constants/baseUrl";
-import { useFetching } from "../../../hooks/useFetching";
-import { IUser } from "../../../types/user";
+import { useFetching } from "../../../shared/hooks/useFetching";
+import { IUser } from "../../../shared/types/user";
 import defaultImage from "../../../assets/default.jpg";
 import { Link } from "react-router-dom";
 import { UserContainer } from "./style";
-import { useAuth } from "../../../hooks/auth";
+import { useAuth } from "../../../shared/hooks/auth";
 import { addFollow, loadFollowing } from "../../../services/follow";
-import { formatImage } from "../../../utils/formatImage";
+import { formatImage } from "../../../shared/utils/formatImage";
 
 interface props {
   name: string;

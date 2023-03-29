@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { joinRoom, leaveRoom } from "../services/chat";
+import { joinRoom, leaveRoom } from "../../services/chat";
 import { IUser } from "../types/user";
 
 interface IChatContext {

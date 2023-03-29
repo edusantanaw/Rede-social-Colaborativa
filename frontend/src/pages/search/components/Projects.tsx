@@ -1,4 +1,4 @@
-import { useFetching } from "../../../hooks/useFetching";
+import { useFetching } from "../../../shared/hooks/useFetching";
 
 interface props {
   name: string;

@@ -2,12 +2,13 @@ import { useLayoutEffect, useState } from "react";
 import { useAuth } from "./auth";
 
 export function useIsAuth() {
-  const { auth } = useAuth();
+  const { token, user } = useAuth();
   const [isAuth, setIsAuth] = useState<boolean>(false);
 
   useLayoutEffect(() => {
-    setIsAuth(auth);
-  }, [auth]);
+    if (user && token) setIsAuth(() => true);
+    else setIsAuth(() => false);
+  }, [user, token]);
 
   return { isAuth };
 }

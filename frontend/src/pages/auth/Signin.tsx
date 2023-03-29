@@ -1,6 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { useAuth } from "../../hooks/auth";
+import { useAuth } from "../../shared/hooks/auth";
 import { Form } from "./styles";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import {
+  TextField,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Typography,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Signin = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
@@ -14,6 +23,7 @@ const Signin = () => {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    console.log("submit")
     if (emailRef.current && passwordRef.current) {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
@@ -23,21 +33,36 @@ const Signin = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <div className="d">
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" ref={emailRef} />
+      <div className="icon">
+        <AccountCircleIcon color="secondary" />
+        <h2>Sign in</h2>
       </div>
-      <div className="">
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          ref={passwordRef}
-        />
-      </div>
+      <TextField fullWidth variant="filled" label="Email" inputRef={emailRef} />
+      <TextField
+        variant="filled"
+        label="Password"
+        type="password"
+        fullWidth
+        inputRef={passwordRef}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox size="small" sx={{ fontSize: "0.3em" }} color="secondary" />
+        }
+        label="Manter-me logado"
+        sx={{ alignSelf: "flex-start" }}
+      />
       {error && <span>{error}</span>}
-      <input type="submit" />
+      <Button
+        onClick={handleSubmit}
+        fullWidth
+        variant="contained"
+        color="secondary"
+        size="large"
+      >
+        Enviar
+      </Button>
+      <Link to="/signup">Ainda não tem uma conta? Criar conta.</Link>
     </Form>
   );
 };

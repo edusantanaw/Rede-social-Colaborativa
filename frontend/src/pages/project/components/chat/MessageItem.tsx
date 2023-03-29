@@ -1,8 +1,8 @@
 import React from "react";
-import { useFetching } from "../../../../hooks/useFetching";
-import { IMessage } from "../../../../types/message";
-import { IUser } from "../../../../types/user";
-import { formatImage } from "../../../../utils/formatImage";
+import { useFetching } from "../../../../shared/hooks/useFetching";
+import { IMessage } from "../../../../shared/types/message";
+import { IUser } from "../../../../shared/types/user";
+import { formatImage } from "../../../../shared/utils/formatImage";
 import { MessageContainer } from "./style";
 
 interface props {

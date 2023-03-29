@@ -1,5 +1,5 @@
-import { useFetching } from "../../../../hooks/useFetching";
-import { formatImage } from "../../../../utils/formatImage";
+import { useFetching } from "../../../../shared/hooks/useFetching";
+import { formatImage } from "../../../../shared/utils/formatImage";
 import { NavContainer } from "./styles";
 import { IoChatbubblesSharp } from "react-icons/io5";
 import { BsListTask } from "react-icons/bs";

@@ -1,6 +1,6 @@
-import { IUser } from "../types/user";
-import { Api } from "../utils/api";
-import { makeOptions } from "../utils/makeOptions";
+import { IUser } from "../shared/types/user";
+import { Api } from "../shared/utils/api";
+import { makeOptions } from "../shared/utils/makeOptions";
 
 export async function addFollow(followingId: string, userId: string) {
   const url = `follow/add/${userId}?followingId=${followingId}`;

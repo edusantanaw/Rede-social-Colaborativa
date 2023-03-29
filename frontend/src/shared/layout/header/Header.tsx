@@ -4,10 +4,10 @@ import { BiMessageSquare } from "react-icons/bi";
 import { RiHomeLine } from "react-icons/ri";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { BsFillPersonFill } from "react-icons/bs";
-import { useAuth } from "../../hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
 import Messages from "./components/Messages";
+import { useAuth } from "../../hooks/auth";
 
 const Header = () => {
   const [showPerfil, setShowPerfil] = useState<boolean>(false);

@@ -1,7 +1,7 @@
-import { Api } from "../utils/api";
-import { makeOptions } from "../utils/makeOptions";
-import { IMessage } from "../types/message";
-import socket from "../utils/socket";
+import { Api } from "../shared/utils/api";
+import { makeOptions } from "../shared/utils/makeOptions";
+import { IMessage } from "../shared/types/message";
+import socket from "../shared/utils/socket";
 
 
 export async function getRoom(userId: string, followerId: string) {

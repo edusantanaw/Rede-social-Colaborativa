@@ -1,8 +1,8 @@
 import { userKey } from "../constants/keys";
-import { IComment } from "../types/comment";
-import { IPost } from "../types/post";
-import { Api } from "../utils/api";
-import { makeOptions } from "../utils/makeOptions";
+import { IComment } from "../shared/types/comment";
+import { IPost } from "../shared/types/post";
+import { Api } from "../shared/utils/api";
+import { makeOptions } from "../shared/utils/makeOptions";
 
 export async function creaetPost(data: FormData) {
   try {

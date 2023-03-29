@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import { tokenKey, userKey } from "../constants/keys";
-import { signinService } from "../services/auth";
+import { tokenKey, userKey } from "../../constants/keys";
+import { signinService } from "../../services/auth";
 import { IAuthContext, signinData } from "../types/auth";
 import { IUser } from "../types/user";
+
 
 export const AuthContext = createContext({} as IAuthContext);
 
@@ -11,7 +12,6 @@ type props = {
 };
 
 export function AuthProvider({ children }: props) {
-  const [auth, setAuth] = useState<boolean>(false);
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -22,7 +22,6 @@ export function AuthProvider({ children }: props) {
     if (token && user) {
       setToken(token);
       setUser(JSON.parse(user));
-      setAuth(true);
     }
   }, []);
 
@@ -35,7 +34,6 @@ export function AuthProvider({ children }: props) {
     try {
       const response = await signinService(data);
       makeStorage(response.data.user, response.data.token);
-      setAuth(true);
       setToken(response.data.token);
       setUser(response.data.user);
     } catch (err) {
@@ -52,7 +50,7 @@ export function AuthProvider({ children }: props) {
   }
 
   return (
-    <AuthContext.Provider value={{ auth, token, user, error, signin, logout }}>
+    <AuthContext.Provider value={{ token, user, error, signin, logout }}>
       {children}
     </AuthContext.Provider>
   );

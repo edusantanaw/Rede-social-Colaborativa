@@ -4,7 +4,7 @@ export const MessagesContainer = styled.div`
   position: absolute;
   top: 3.3em;
   right: 1.5em;
-  background-color: #fff;
+  background-color: #e8e8e8;
   border-radius: 5px;
   color: #000;
   h3 {
@@ -49,6 +49,8 @@ export const MessagesContainer = styled.div`
     }
     p {
       font-size: 0.9em;
+      max-height: 1em;
+      overflow: hidden;
     }
   }
 `;

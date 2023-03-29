@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { useInfiniteScroll } from "../../../hooks/useInfiniteScroll";
+import { useInfiniteScroll } from "../../../shared/hooks/useInfiniteScroll";
 import { loadPostByUser } from "../../../services/post";
-import { IPost } from "../../../types/post";
+import { IPost } from "../../../shared/types/post";
 import PostItem from '../../../components/post/Post'
 
 type props = {

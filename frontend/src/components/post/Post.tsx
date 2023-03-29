@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
-import defaultImage from "../../assets/default.jpg";
-import { useAuth } from "../../hooks/auth";
-import { useFetching } from "../../hooks/useFetching";
+import defaultImage from "../../shared/assets/default.jpg";
+import { useAuth } from "../../shared/hooks/auth";
+import { useFetching } from "../../shared/hooks/useFetching";
 import { addOrRemoveLike } from "../../services/post";
-import { IPost } from "../../types/post";
+import { IPost } from "../../shared/types/post";
 import PostModal from "./PostModal";
 import { PostItem } from "./style";
 

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../../../../hooks/auth";
+import { useAuth } from "../../../../shared/hooks/auth";
 import { loadMessages, sendMessage } from "../../../../services/chat";
-import { IMessage } from "../../../../types/message";
-import socket from "../../../../utils/socket";
+import { IMessage } from "../../../../shared/types/message";
+import socket from "../../../../shared/utils/socket";
 import MessageItem from "./MessageItem";
 import { ChatContainer } from "./style";
 
@@ -59,6 +59,7 @@ const Chat = () => {
           placeholder="Conversar no chat"
           ref={messageRef}
           onKeyPress={(e) => pressEnter(e)}
+          
         />
       </div>
     </ChatContainer>

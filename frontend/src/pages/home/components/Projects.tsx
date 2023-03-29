@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { ProjectContainer } from "./styles";
 import { MdCreate } from "react-icons/md";
 import { NewProjectModal } from "./NewProjectModal";
-import { useFetching } from "../../../hooks/useFetching";
-import { useAuth } from "../../../hooks/auth";
-import { formatImage } from "../../../utils/formatImage";
+import { useFetching } from "../../../shared/hooks/useFetching";
+import { useAuth } from "../../../shared/hooks/auth";
+import { formatImage } from "../../../shared/utils/formatImage";
 import { Link } from "react-router-dom";
 
 type IProject = {

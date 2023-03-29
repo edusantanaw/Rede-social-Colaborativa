@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useAuth } from "../../hooks/auth";
+import { useAuth } from "../../shared/hooks/auth";
 import { creaetPost } from "../../services/post";
-import { IPost } from "../../types/post";
+import { IPost } from "../../shared/types/post";
 import Feed from "./components/Feed";
 import NewPost from "./components/NewPost";
 import NewPostModal from "./components/NewPostModal";
