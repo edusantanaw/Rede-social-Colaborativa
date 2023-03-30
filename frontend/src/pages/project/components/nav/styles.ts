@@ -25,7 +25,7 @@ export const NavContainer = styled.div`
     padding: 1em;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.7em;
     li {
       display: flex;
       padding: 0.3em;
@@ -37,8 +37,11 @@ export const NavContainer = styled.div`
       cursor: pointer;
       svg {
         padding: 0.2em;
-        font-size: 2.4em;
+        font-size: 2.1em;
         color: #fff;
+      }
+      span {
+        font-size: 0.9em;
       }
     }
   }

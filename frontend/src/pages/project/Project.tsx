@@ -19,20 +19,23 @@ const Project = () => {
     dependeces: [],
   });
 
-  function handleTab(item: JSX.Element){
-    setCurrentItem(()=> item);
+  function handleTab(item: JSX.Element) {
+    setCurrentItem(() => item);
   }
+
+  
 
   return (
     <ProjectContainer>
       <Projects>
-      {data && data.map((project, i)=> (
-        <li key={i}>
-          <img src={formatImage(project.perfilImage)} alt="project_image" />
-        </li>
-      ))}          
+        {data &&
+          data.map((project, i) => (
+            <li key={i}>
+              <img src={formatImage(project.perfilImage)} alt="project_image" />
+            </li>
+          ))}
       </Projects>
-      <Nav id={id!} handleTab = {handleTab} />
+      <Nav id={id!} handleTab={handleTab} />
       <div className="tab">{CurrentItem}</div>
     </ProjectContainer>
   );

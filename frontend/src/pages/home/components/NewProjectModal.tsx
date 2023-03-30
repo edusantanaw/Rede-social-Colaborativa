@@ -3,6 +3,7 @@ import Editor from "../../../components/editor/Editor";
 import { useAuth } from "../../../shared/hooks/auth";
 import { createProject } from "../../../services/project";
 import { NewProject } from "./styles";
+import Modal from "../../../components/modal/Modal";
 
 interface props {
   handleProjectModal: () => void;
@@ -26,9 +27,11 @@ export const NewProjectModal = ({ handleProjectModal }: props) => {
   }
 
   return (
-    <NewProject className="new_project">
-      <div className="close" onClick={handleProjectModal} />
-      <div className="new">
+    <Modal
+    open={true}
+    handleClose={handleProjectModal}
+    >
+      <NewProject className="new">
         <div id="input">
           <label htmlFor="name">Nome do projeto:</label>
           <input
@@ -42,7 +45,7 @@ export const NewProjectModal = ({ handleProjectModal }: props) => {
         <div className="create">
             <button onClick={handleCreate}>Criar</button>
         </div>
-      </div>
-    </NewProject>
+      </NewProject>
+    </Modal>
   );
 };

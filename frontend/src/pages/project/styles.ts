@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProjectContainer = styled.section`
-    height: 90.5vh;
+    height: 89vh;
     width: 100%;
     display: flex;
     .tab {
@@ -17,8 +17,8 @@ export const Projects = styled.ul `
         padding: 0.5em 0.5em;
     }
     img {
-        width: 3.4em;
-        height: 3.4em;
+        width: 3em;
+        height: 3em;
         border-radius: 50%;
     }
 

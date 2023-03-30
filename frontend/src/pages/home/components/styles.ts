@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NewPostContainer = styled.div`
-  width: 40em;
+  width: 35em;
   background-color: rgb(15, 15, 15);
   padding: 1em;
   color: #fff;
@@ -15,8 +15,8 @@ export const NewPostContainer = styled.div`
     color: #000;
     img {
       background-color: #000;
-      width: 3em;
-      height: 3em;
+      width: 2.5em;
+      height: 2.5em;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -24,7 +24,7 @@ export const NewPostContainer = styled.div`
     }
   }
   .new_post {
-    padding: 1em;
+    padding: 0.7em;
     width: 90%;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 40px;
@@ -33,7 +33,6 @@ export const NewPostContainer = styled.div`
       font-weight: 300;
       color: #fff;
     }
-
   }
 `;
 
@@ -51,7 +50,7 @@ export const FeedContainer = styled.div`
 `;
 
 export const ProjectContainer = styled.div`
- background-color:rgb(15, 15, 15);
+  background-color: rgb(15, 15, 15);
   width: 25%;
   height: 30em;
   position: sticky;
@@ -107,49 +106,30 @@ export const ProjectContainer = styled.div`
   }
 `;
 
-export const Modal = styled.div`
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
+export const NewProjectContent = styled.div`
+  width: 30em;
+  padding: 1em;
+  border-radius: 10px;
+  min-height: 25em;
   z-index: 3;
+  color: #fff;
+  background: rgb(15, 15, 15);
+  color: #fff;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  .close {
-    position: fixed;
-    z-index: 3;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background-color: #0005;
-  }
-
-  .new_project {
-    width: 30em;
-    padding: 1em;
-    border-radius: 10px;
-    min-height: 25em;
-    z-index: 3;
-    background-color: #fff;
+  flex-direction: column;
+  gap: 0.8em;
+  position: relative;
+  .user {
     display: flex;
-    flex-direction: column;
-    gap: 0.8em;
-    position: relative;
-    .user {
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      img {
-        width: 3.5em;
-        height: 3.5em;
-        border-radius: 50%;
-      }
-      span {
-        font-size: 1.5em;
-      }
+    align-items: center;
+    gap: 1em;
+    img {
+      width: 3.5em;
+      height: 3.5em;
+      border-radius: 50%;
+    }
+    span {
+      font-size: 1.5em;
     }
   }
   .create {
@@ -217,67 +197,53 @@ export const Modal = styled.div`
 `;
 
 export const NewProject = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .close {
-    background-color: #0005;
+  width: 30em;
+  background-color: rgb(15, 15, 15);
+  color: #fff;
+  z-index: 5;
+  border-radius: 8px;
+
+  #input {
+    padding: 1em;
     width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  }
-
-  .new {
-    width: 30em;
-    background-color: #fff;
-    z-index: 5;
-    border-radius: 8px;
-
-    #input {
-      padding: 1em;
+    label {
+      display: block;
+      font-size: 1.1em;
+      padding-bottom: 0.5em;
+    }
+    
+    input {
+      background-color: transparent;
       width: 100%;
-      label {
-        display: block;
-        font-size: 1.1em;
-        padding-bottom: 0.5em;
-      }
-
-      input {
-        width: 100%;
-        height: 3em;
-        padding: 1em;
-        border-radius: 5px;
+      color: #fff;
+      height: 3em;
+      padding: 1em;
+      border-radius: 5px;
+    }
+  }
+  #editor {
+    height: 20em;
+    padding: 0.5em 1em;
+    color: #fff;
+    #editor_cp {
+      height: 14em;
+      &::placeholder{
+        color: #fff !important;
       }
     }
-    #editor {
-      height: 20em;
-      padding: 0.5em 1em;
-      #editor_cp {
-        height: 14em;
-      }
-    }
-    .create {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 1em;
-      button {
-        width: 15em;
-        height: 3.5em;
-        border: none;
-        border-radius: 5px;
-        background-color: blue;
-        color: #fff;
-        cursor: pointer;
-      }
+  }
+  .create {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1em;
+    button {
+      width: 15em;
+      height: 3.5em;
+      border: none;
+      border-radius: 5px;
+      background-color: blue;
+      color: #fff;
+      cursor: pointer;
     }
   }
 `;

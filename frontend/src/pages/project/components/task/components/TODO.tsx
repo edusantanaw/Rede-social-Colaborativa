@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, TodoContainer } from "./styles";
+import { Card, TodoContainer } from "../styles";
 
 const TODO = () => {
   return (

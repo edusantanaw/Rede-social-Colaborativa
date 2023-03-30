@@ -4,9 +4,10 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import Editor from "../../../components/editor/Editor";
 import { baseUrl } from "../../../constants/baseUrl";
 import { useAuth } from "../../../shared/hooks/auth";
-import { Modal } from "./styles";
 import imageDefault from "../../../assets/default.jpg";
 import { formatImage } from "../../../shared/utils/formatImage";
+import Modal from "../../../components/modal/Modal";
+import { NewProjectContent } from "./styles";
 
 interface props {
   handleCreate: (image: File | null, content: string | null) => Promise<void>;
@@ -55,9 +56,11 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
     setContent(data);
   }
   return (
-    <Modal>
-      <div className="close" onClick={handleModal} />
-      <div className="new_project">
+    <Modal
+      open={true}
+      handleClose={handleModal}
+    >
+      <NewProjectContent>
         <div className="user">
           <img src={formatImage(user?.perfilPhoto)} alt="user_photo" />
           <span>{user!.name}</span>
@@ -78,7 +81,7 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
           <input type="file" id="img_file" onChange={handleImageChange} />
           <button onClick={handleCreatePost}>Criar</button>
         </div>
-      </div>
+      </NewProjectContent>
     </Modal>
   );
 };

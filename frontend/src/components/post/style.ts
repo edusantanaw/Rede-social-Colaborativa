@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PostItem = styled.li`
-  width: 40em;
+  width: 35em;
   padding: 1em;
   background-color: rgb(15, 15, 15);
   border-radius: 8px;

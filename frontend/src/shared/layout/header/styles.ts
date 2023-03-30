@@ -4,7 +4,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   padding: 0.7em 2em;
   display: flex;
-  background-color: rgb(5,5,5);
+  background-color: rgb(9, 9, 9);
   justify-content: space-between;
   position: sticky;
   top: 0;
@@ -28,7 +28,7 @@ export const HeaderContainer = styled.header`
   .list {
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 0.7em;
   }
 
   .active {
@@ -60,28 +60,28 @@ export const HeaderContainer = styled.header`
           text-decoration: none;
         }
       }
-      
     }
   }
 
-  .search_bar{
+  .search_bar {
     display: flex;
     align-items: center;
     gap: 2em;
-    h2{
+    h2 {
       color: #fff;
       font-weight: 500;
       text-transform: uppercase;
+      font-size: 1.4em;
     }
     input {
       padding: 1em 2em;
       width: 26em;
-      height: 3.3em;
+      height: 3em;
       border-radius: 3px;
       background: #353535;
       border: none;
       color: #fff;
-      &::placeholder{
+      &::placeholder {
         color: #c3c3c3;
         font-weight: 300;
       }
@@ -90,6 +90,5 @@ export const HeaderContainer = styled.header`
         outline: none;
       }
     }
-
   }
 `;
