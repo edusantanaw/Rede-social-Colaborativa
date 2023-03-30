@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NewPostContainer = styled.div`
   width: 40em;
-  background-color: rgb(10, 10, 10);
+  background-color: rgb(15, 15, 15);
   padding: 1em;
   color: #fff;
   border-radius: 10px;
@@ -26,11 +26,14 @@ export const NewPostContainer = styled.div`
   .new_post {
     padding: 1em;
     width: 90%;
-    background-color: #f2f2f2;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 40px;
+    color: #000;
     span {
       font-weight: 300;
+      color: #fff;
     }
+
   }
 `;
 
@@ -48,7 +51,7 @@ export const FeedContainer = styled.div`
 `;
 
 export const ProjectContainer = styled.div`
-  background-color: rgb(10, 10, 10);
+ background-color:rgb(15, 15, 15);
   width: 25%;
   height: 30em;
   position: sticky;

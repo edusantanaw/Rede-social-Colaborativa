@@ -126,6 +126,9 @@ export const ChatMessageContainer = styled.div`
       font-family: 300;
       border-radius: 5px;
       max-width: 70%;
+      p {
+        overflow: hidden;
+      }
     }
     .user {
       align-self: flex-end;
@@ -146,9 +149,11 @@ export const ChatMessageContainer = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    input {
+    min-height: 2.5em;
+    #message_input {
       width: 20em;
-      height: 2.5em;
+      min-height: 100%;
+      max-height: 4em;
       padding: 0.5em;
       border: none;
       background-color: rgba(255, 255, 255, 0.1);
@@ -159,7 +164,7 @@ export const ChatMessageContainer = styled.div`
       }
     }
     button {
-      height: 2.7em;
+      height: 100%;
       width: 4em;
       border: none;
       background-color: rgba(255, 255, 255, 0.2);

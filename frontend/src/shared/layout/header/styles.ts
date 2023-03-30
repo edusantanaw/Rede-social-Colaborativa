@@ -6,7 +6,8 @@ export const HeaderContainer = styled.header`
   display: flex;
   background-color: rgb(5,5,5);
   justify-content: space-between;
-  position: fixed;
+  position: sticky;
+  top: 0;
   z-index: 2;
   #home,
   li {
@@ -43,7 +44,7 @@ export const HeaderContainer = styled.header`
       right: -0.5em;
       display: flex;
       flex-direction: column;
-      background-color: rgb(18, 18, 18);
+      background-color: rgb(10, 10, 10);
       padding: 0.6em;
       border-radius: 5px;
       gap: 0.4em;

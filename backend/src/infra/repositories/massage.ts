@@ -14,6 +14,9 @@ export class MessageRepository {
       where: {
         room: room,
       },
+      orderBy: {
+        createdAt: "asc"
+      }
     });
     return messages as IMessage[];
   }

@@ -1,44 +1,57 @@
 import styled from "styled-components";
 
 export const NavContainer = styled.div`
-  padding: 1em;
-  width: 15em;
+  width: 14%;
   height: 100%;
-  background-color: rgb(10, 10, 10);
+  background-color: rgb(15, 15, 15);
 
   .project {
-    display: flex;
-    align-items: center;
+    padding: 0.6em;
+    text-align: center;
     gap: 1em;
-    img {
-      width: 3.5em;
-      height: 3.5em;
-      border-radius: 5px;
-      object-fit: cover;
-    }
+    border-bottom: solid 1px rgb(50, 50, 50);
     span {
       color: #fff;
-      font-size: 2em;
+      font-size: 1.5em;
+      font-weight: 300;
+
+      &:first-letter {
+        text-transform: uppercase;
+      }
     }
   }
+
   .tab_itens {
-    padding-top: 2em;
+    padding: 1em;
     display: flex;
     flex-direction: column;
     gap: 1em;
     li {
       display: flex;
+      padding: 0.3em;
       align-items: center;
-      gap: 0.5em;
+      gap: 0.3em;
       color: #fff;
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
       cursor: pointer;
       svg {
         padding: 0.2em;
         font-size: 2.4em;
-        background-color: #0004;
         color: #fff;
-        border-radius: 5px;
       }
+    }
+  }
+
+  .selected {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    span {
+      color: #9c27b0;
+    }
+
+    svg {
+      color: #9c27b0 !important;
     }
   }
 `;

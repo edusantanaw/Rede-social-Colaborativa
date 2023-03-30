@@ -18,38 +18,40 @@ const Main = () => {
   const { isAuth } = useIsAuth();
 
   return (
-    <Router>
-      <div style={{ display: "flex", position: "relative" }}>
+    <div style={{position: "relative"}}>
+      <Router>
         {isAuth && <Header />}
-        {isAuth && <Contacts />}
-        <Routes>
-          <Route
-            path="/"
-            element={isAuth ? <Home /> : <Navigate to="/signin" />}
-          />
-          <Route
-            path="/perfil/:id"
-            element={isAuth ? <Perfil /> : <Navigate to="/signin" />}
-          />
-          <Route
-            path="/search/:name"
-            element={isAuth ? <Search /> : <Navigate to="/signin" />}
-          />
-          <Route
-            path="project/:id"
-            element={isAuth ? <Project /> : <Navigate to="/signin" />}
-          />
-          <Route
-            path="/signin"
-            element={!isAuth ? <Signin /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/signup"
-            element={!isAuth ? <Signup /> : <Navigate to="/" />}
-          />
-        </Routes>
-      </div>
-    </Router>
+        <div style={{ display: "flex", position: "relative" }}>
+          {isAuth && <Contacts />}
+          <Routes>
+            <Route
+              path="/"
+              element={isAuth ? <Home /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="/perfil/:id"
+              element={isAuth ? <Perfil /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="/search/:name"
+              element={isAuth ? <Search /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="project/:id"
+              element={isAuth ? <Project /> : <Navigate to="/signin" />}
+            />
+            <Route
+              path="/signin"
+              element={!isAuth ? <Signin /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/signup"
+              element={!isAuth ? <Signup /> : <Navigate to="/" />}
+            />
+          </Routes>
+        </div>
+      </Router>
+    </div>
   );
 };
 

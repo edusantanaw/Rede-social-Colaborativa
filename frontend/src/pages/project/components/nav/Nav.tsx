@@ -1,5 +1,5 @@
 import { useFetching } from "../../../../shared/hooks/useFetching";
-import { formatImage } from "../../../../shared/utils/formatImage";
+import { useState } from "react";
 import { NavContainer } from "./styles";
 import { IoChatbubblesSharp } from "react-icons/io5";
 import { BsListTask } from "react-icons/bs";
@@ -22,32 +22,52 @@ type IProject = {
 };
 
 const Nav = ({ id, handleTab }: props) => {
+  const [selected, setSelected] = useState<string>("chat");
   const { data } = useFetching<IProject>({
     url: `/project/${id}`,
     dependeces: [],
   });
+
+  const handleSelect = (data: JSX.Element, type: string) => {
+    handleTab(data);
+    setSelected(() => type);
+  };
 
   return (
     <NavContainer>
       <>
         {data && (
           <div className="project">
-            <img src={formatImage(data.perfilImage)} alt="project_perfilImg" />
             <span>{data.name}</span>
           </div>
         )}
         <ul className="tab_itens">
-          <li onClick={() => handleTab(<Chat />)}>
-            <IoChatbubblesSharp /> Chat
+          <li
+            className={selected === "chat" ? "selected" : ""}
+            onClick={() => handleSelect(<Chat />, "chat")}
+          >
+            <IoChatbubblesSharp />
+            <span>Chat</span>
           </li>
-          <li onClick={() => handleTab(<Task />)}>
-            <BsListTask /> Tarefas
+          <li
+            className={selected === "task" ? "selected" : ""}
+            onClick={() => handleSelect(<Task />, "task")}
+          >
+            <BsListTask />
+            <span>Tarefas</span>
           </li>
-          <li onClick={() => handleTab(<Collabs />)}>
-            <FiUsers /> Colaboradores
+          <li
+            className={selected === "collab" ? "selected" : ""}
+            onClick={() => handleSelect(<Collabs />, "collab")}
+          >
+            <FiUsers />
+            <span>Colaboradores</span>
           </li>
-          <li onClick={() => handleTab(<Infos />)}>
-            <AiFillInfoCircle /> Sobre
+          <li
+            className={selected === "info" ? "selected" : ""}
+            onClick={() => handleSelect(<Infos />, "info")}
+          >
+            <AiFillInfoCircle /> <span>Info</span>
           </li>
         </ul>
       </>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.section`
-  padding: 5.5em 3em;
+  padding: 1em 3em;
   display: flex;
   height: 100%;
   width: 80%;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PerfilContainer = styled.section`
-  padding: 5.5em 0em;
+  padding: 1em 0em;
   width: 100%;
   display: flex;
   align-items: center;

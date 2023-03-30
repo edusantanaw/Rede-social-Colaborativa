@@ -9,6 +9,7 @@ import socket from "../../../utils/socket";
 import { ChatMessageContainer } from "../style";
 import { IoMdClose } from "react-icons/io";
 import SendIcon from "@mui/icons-material/Send";
+import { TextareaAutosize } from "@mui/material";
 
 interface props {
   following: IUser;
@@ -71,13 +72,18 @@ const ChatMessages = ({ following, room }: props) => {
             key={i}
             className={message.senderId === user!.id ? "user" : "contact"}
           >
-            {message.message}
+            <p>{message.message}</p>
           </li>
         ))}
         <li ref={endRef} id="end" />
       </ul>
       <div className="send_message">
-        <input type="text" placeholder="Messagem" ref={messageRef} />
+        <TextareaAutosize
+          id="message_input"
+          aria-label="empty textarea"
+          placeholder="Mensagem"
+          ref={messageRef}
+        />
         <button onClick={handleMessage}>
           <SendIcon fontSize="small" />
         </button>

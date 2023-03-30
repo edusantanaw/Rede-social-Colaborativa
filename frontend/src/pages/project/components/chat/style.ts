@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const ChatContainer = styled.div`
-  width: 60%;
+  width: 100%;
   height: 100%;
   position: relative;
   color: #fff;
   .input {
     position: absolute;
-    bottom: 0;
+    bottom: 0.5em;
     width: 100%;
     padding: 0.5em;
     input {
@@ -33,18 +33,18 @@ export const ChatContainer = styled.div`
     }
 
     p {
+      font-family: 'Poppins', sans-serif;
       font-weight: 300;
       font-size: 1em;
-      color: #c2c2c2;
-      letter-spacing: 1.3px;
+      color: #c2c5c6;
     }
 
     p + p {
-      padding-top: 0.5em;
+      padding-top: 0.3em;
     }
 
     #same_user {
-      margin-left: 3.7em;
+      margin-left: 3.5em;
     }
   }
 `;
@@ -55,13 +55,14 @@ export const MessageContainer = styled.li`
   gap: 1em;
   .user {
     img {
-      width: 2.7em;
-      height: 2.7em;
+      width: 2.5em;
+      height: 2.5em;
       border-radius: 50%;
     }
   }
   span {
     font-size: 1.1em;
+    color: violet;
     letter-spacing: 1.5px;
   }
 `;

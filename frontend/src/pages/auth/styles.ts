@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { FlexSection } from "../../styles/Global";
 
-export const Container = styled(FlexSection)``;
+export const Container = styled(FlexSection)`
+  background-color: #fff;
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -11,7 +13,6 @@ export const Form = styled.form`
   border-radius: 1em;
   width: 25em;
   gap: 1em;
-
   svg {
     font-size: 4.2em;
   }

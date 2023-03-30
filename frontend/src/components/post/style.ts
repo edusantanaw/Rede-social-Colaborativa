@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PostItem = styled.li`
   width: 40em;
   padding: 1em;
-  background-color: rgb(10, 10, 10);
+  background-color: rgb(15, 15, 15);
   border-radius: 8px;
   display: flex;
   flex-direction: column;

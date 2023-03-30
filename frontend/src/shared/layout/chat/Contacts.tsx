@@ -9,9 +9,12 @@ import { formatImage } from "../../utils/formatImage";
 import ChatMessages from "./components/ChatMessages";
 import Following from "./components/Following";
 import { ChatContainer } from "./style";
+import {useLocation} from 'react-router-dom'
 
 const Contacts = () => {
   const { user } = useAuth();
+  const location = useLocation();
+  console.log(location)
   const {
     currentContact,
     currentRoom,
@@ -31,6 +34,7 @@ const Contacts = () => {
     handleShowChat();
   }
 
+  
   useEffect(() => {
     (async () => {
       const response = await loadFollowing(user!.id);
@@ -46,6 +50,7 @@ const Contacts = () => {
   function handleShowContact() {
     setShowContacts((show) => (show ? false : true));
   }
+  if(location.pathname.includes("project")) return <></>
 
   return (
     <ChatContainer>

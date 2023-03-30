@@ -5,7 +5,7 @@ export const MessagesContainer = styled.div`
   top: 3.3em;
   width: 15em;
   right: 1.5em;
-  background-color: rgb(18, 18, 18);
+  background-color: rgb(10, 10, 10);
   border-radius: 5px;
   color: #fff;
   h3 {
@@ -40,6 +40,7 @@ export const MessagesContainer = styled.div`
     gap: 0.5em;
     width: 12em;
     cursor: pointer;
+    overflow: hidden;
     img {
       width: 2.5em;
       height: 2.5em;
@@ -50,6 +51,7 @@ export const MessagesContainer = styled.div`
       font-size: 0.85em;
     }
     p {
+      width: 100%;
       font-size: 0.7em;
       max-height: 1em;
       overflow: hidden;
