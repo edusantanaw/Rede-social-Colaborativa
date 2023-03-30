@@ -28,7 +28,6 @@ export async function loadPostByUser(page: number, userId?: string) {
     `/post/perfil/${userId}?skip=${page}`,
     makeOptions()
   );
-  console.log(response);
   return response.data as IPost[];
 }
 

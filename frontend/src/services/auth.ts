@@ -1,4 +1,3 @@
-import { signinData } from "../shared/types/auth";
 import { IUser } from "../shared/types/user";
 import { Api } from "../shared/utils/api";
 

@@ -7,21 +7,19 @@ const TODO = () => {
       <div className="todo">
         <span>A fazer</span>
         <ul>
-
-        <Card>
-          <h2>Titulo da tarefa</h2>
-          <p>Descriçao da tarefa</p>
-        </Card>
+          <Card>
+            <h2>Titulo da tarefa</h2>
+            <p>Descriçao da tarefa</p>
+          </Card>
         </ul>
       </div>
       <div className="done">
         <span>Feito</span>
         <ul>
-
-      <Card>
-          <h2>Titulo da tarefa</h2>
-          <p>Descriçao da tarefa</p>
-        </Card>
+          <Card>
+            <h2>Titulo da tarefa</h2>
+            <p>Descriçao da tarefa</p>
+          </Card>
         </ul>
       </div>
     </TodoContainer>
