@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useAuth } from "../../shared/hooks/auth";
 import { creaetPost } from "../../services/post";
 import { IPost } from "../../shared/types/post";
-import Feed from "./components/Feed";
-import NewPost from "./components/NewPost";
-import NewPostModal from "./components/NewPostModal";
-import Projects from "./components/Projects";
+import Feed from "./components/feed/Feed";
+import NewPost from "./components/newPost/NewPost";
+import NewPostModal from "./components/newPost/NewPostModal";
+import Projects from "./components/project/Projects";
 import { HomeContainer } from "./styles";
 
 const Home = () => {

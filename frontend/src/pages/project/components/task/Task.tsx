@@ -6,13 +6,13 @@ import AddIcon from "@mui/icons-material/Add";
 import Modal from "../../../../components/modal/Modal";
 import NewTask from "./components/NewTask";
 import { ITask } from "../../../../shared/types/project";
-
-
+import { useFetching } from "../../../../shared/hooks/useFetching";
+import { useParams } from "react-router-dom";
 
 const Task = () => {
   const [value, setValue] = useState<string>("Geral");
   const [newTaskModal, setNewTaskModal] = useState<boolean>(false);
-  const [task, setTask] = useState<ITask[]>([])
+  const [task, setTask] = useState<ITask | null>(null);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -22,15 +22,15 @@ const Task = () => {
     setNewTaskModal((current) => (current ? false : true));
   }
 
-  function handleNewTask(data: ITask){  
-      setTask((current)=> [data, ...current])
-    
+  function handleNewTask(data: ITask) {
+    setTask(() => data);
+    handleNewTaskModal()
   }
 
   return (
     <TaskContainer>
       <Modal open={newTaskModal} handleClose={handleNewTaskModal}>
-        <NewTask handleNewTask = {handleNewTask} />
+        <NewTask handleNewTask={handleNewTask} />
       </Modal>
       <Box sx={{ width: "100%" }}>
         <Tabs
@@ -44,7 +44,7 @@ const Task = () => {
           <Tab value="myTask" sx={{ color: "#d2d2d2" }} label="Suas tarefas" />
         </Tabs>
       </Box>
-      {value === "Geral" ? <TODO /> : <>Nothing</>}
+      {value === "Geral" ? <TODO newTask={task} /> : <>Nothing</>}
       <div className="new" onClick={handleNewTaskModal}>
         <AddIcon />
       </div>

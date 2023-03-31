@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
-import { collaborators } from "../prisma";
+import { collabs } from "../../types/collabs";
+import { collaborators, prisma } from "../prisma";
 
 export class CollaboratorRepository {
   public async create(projectId: string, userId: string) {
@@ -13,11 +14,17 @@ export class CollaboratorRepository {
   }
 
   public async loadAll(projectId: string) {
-    const collabs = await collaborators.findMany({
-      where: {
-        projectId,
-      },
-    });
+    console.log(projectId);
+    const collabs = await prisma.$queryRaw`
+      select users.id, "perfilPhoto", users.name from users left join project
+      on project."ownerId" = users.id
+      where project.id = ${projectId} or users.id in (
+        select "userId" from collaborators 
+        where "projectId" = ${projectId}
+      )
+      ;
+    ` as collabs[];
+
     return collabs;
   }
 }

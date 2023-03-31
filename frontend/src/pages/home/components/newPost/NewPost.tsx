@@ -1,6 +1,6 @@
 import { NewPostContainer } from "./styles";
-import { useAuth } from "../../../shared/hooks/auth";
-import { formatImage } from "../../../shared/utils/formatImage";
+import { useAuth } from "../../../../shared/hooks/auth";
+import { formatImage } from "../../../../shared/utils/formatImage";
 
 interface props {
   handleShowModal: () => void;

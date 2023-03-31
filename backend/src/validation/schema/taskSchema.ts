@@ -1,15 +1,13 @@
-import { z } from "zod";
-
-export const taskSchema = z.object({
+import { z } from "zod";export const taskSchema = z.object({
   title: z
-    .string({ required_error: "title is required!" })
-    .min(3, "Name must have more than 1 characteres!")
-    .max(15, "Name must have less than 20 characteres!"),
+    .string({ required_error: "O titulo é obrigatorio!" })
+    .min(3, "O título deve ter pelo menos 3 caracteres!")
+    .max(20, "O título deve conter no maximo 20 caracteres"),
   description: z
-    .string({ required_error: "Description is required!" })
-    .min(1)
-    .max(250),
-  projectId: z.string({ required_error: "Project id is required!" }),
+    .string({ required_error: "A descrição é obrigatoria!" })
+    .min(5, "A descrição deve conter pelo menos 5 caracteres!")
+    .max(250, "A descrição deve conter no maximo 250 caracteres!"),
+  projectId: z.string({ required_error: "O id do projeto é necessario!" }),
 });
 
 export type ITaskSchema = z.infer<typeof taskSchema>;

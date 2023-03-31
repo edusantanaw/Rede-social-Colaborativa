@@ -22,6 +22,7 @@ export async function joinProjectChat(projectId: string){
 type createTask = {
   title: string;
   description: string;
+  projectId: string;
 }
 
 export async function createTask(data: createTask){

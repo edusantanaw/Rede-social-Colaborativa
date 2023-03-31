@@ -21,6 +21,11 @@ const Header = () => {
     if(showMessages) setShowMessages(()=> false);
   }
 
+  function handleClose(){
+    setShowMessages(()=> false);
+    setShowPerfil(()=> false)
+  }
+
   function handleShowMessages() {
     setShowMessages((show) => (show ? false : true));
     if(showPerfil) setShowPerfil(()=> false)
@@ -51,7 +56,7 @@ const Header = () => {
         </li>
         <li className={`${showMessages && "active"}`}>
           <BiMessageSquare onClick={handleShowMessages} />
-          {showMessages && <Messages handleShowMessages={handleShowMessages} />}
+          {showMessages && <Messages handleClose={handleClose} />}
         </li>
         <li className={`perfil ${showPerfil && "active"}`}>
           <BsFillPersonFill onClick={handleShowPerfil} />

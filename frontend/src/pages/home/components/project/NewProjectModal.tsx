@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
-import Editor from "../../../components/editor/Editor";
-import { useAuth } from "../../../shared/hooks/auth";
-import { createProject } from "../../../services/project";
+import Editor from "../../../../components/editor/Editor";
+import { useAuth } from "../../../../shared/hooks/auth";
+import { createProject } from "../../../../services/project";
 import { NewProject } from "./styles";
-import Modal from "../../../components/modal/Modal";
+import Modal from "../../../../components/modal/Modal";
 
 interface props {
   handleProjectModal: () => void;

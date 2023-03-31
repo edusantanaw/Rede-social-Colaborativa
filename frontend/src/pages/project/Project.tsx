@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../shared/hooks/auth";
 import { useFetching } from "../../shared/hooks/useFetching";
@@ -22,8 +22,6 @@ const Project = () => {
   function handleTab(item: JSX.Element) {
     setCurrentItem(() => item);
   }
-
-  
 
   return (
     <ProjectContainer>

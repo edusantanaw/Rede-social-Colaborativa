@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { BsCardImage } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import Editor from "../../../components/editor/Editor";
-import { baseUrl } from "../../../constants/baseUrl";
-import { useAuth } from "../../../shared/hooks/auth";
+import Editor from "../../../../components/editor/Editor";
+import { baseUrl } from "../../../../constants/baseUrl";
+import { useAuth } from "../../../../shared/hooks/auth";
 import imageDefault from "../../../assets/default.jpg";
-import { formatImage } from "../../../shared/utils/formatImage";
-import Modal from "../../../components/modal/Modal";
+import { formatImage } from "../../../../shared/utils/formatImage";
+import Modal from "../../../../components/modal/Modal";
 import { NewProjectContent } from "./styles";
 
 interface props {

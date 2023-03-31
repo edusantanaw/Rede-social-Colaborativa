@@ -3,6 +3,7 @@ import { useChat } from "../../../hooks/useChat";
 import { useFetching } from "../../../hooks/useFetching";
 import { formatImage } from "../../../utils/formatImage";
 import { MessagesContainer } from "./style";
+import ClickAwayListener from "@mui/base/ClickAwayListener"
 
 type IRecentMessages = {
   userId: string;
@@ -14,10 +15,10 @@ type IRecentMessages = {
 };
 
 interface props {
-  handleShowMessages: () => void;
+  handleClose: () => void;
 }
 
-const Messages = ({ handleShowMessages }: props) => {
+const Messages = ({  handleClose }: props) => {
   const { user } = useAuth();
   const url = `/messages/recent/${user!.id}`;
   const { data, error } = useFetching<IRecentMessages[]>({
@@ -35,27 +36,29 @@ const Messages = ({ handleShowMessages }: props) => {
       perfilPhoto: data.perfilPhoto,
     });
     await handleRoom(data.room);
-    handleShowMessages();
+    handleClose();
     if (showChat) return;
     handleShowChat();
   }
 
   return (
-    <MessagesContainer>
-      <h3>Mensagens</h3>
-      <ul>
-        {data &&
-          data.map((item, i) => (
-            <li key={i} onClick={() => handleChat(item)}>
-              <img src={formatImage(item.perfilPhoto)} alt="user_photo" />
-              <div className="right">
-                <span>{item.name}</span>
-                <p>{item.message}</p>
-              </div>
-            </li>
-          ))}
-      </ul>
-    </MessagesContainer>
+    <ClickAwayListener onClickAway={handleClose}>
+      <MessagesContainer>
+        <h3>Mensagens</h3>
+        <ul>
+          {data &&
+            data.map((item, i) => (
+              <li key={i} onClick={() => handleChat(item)}>
+                <img src={formatImage(item.perfilPhoto)} alt="user_photo" />
+                <div className="right">
+                  <span>{item.name}</span>
+                  <p>{item.message}</p>
+                </div>
+              </li>
+            ))}
+        </ul>
+      </MessagesContainer>
+    </ClickAwayListener>
   );
 };
 

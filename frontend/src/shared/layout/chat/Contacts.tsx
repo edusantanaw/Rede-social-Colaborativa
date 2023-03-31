@@ -9,12 +9,13 @@ import { formatImage } from "../../utils/formatImage";
 import ChatMessages from "./components/ChatMessages";
 import Following from "./components/Following";
 import { ChatContainer } from "./style";
-import {useLocation} from 'react-router-dom'
+import { useLocation } from "react-router-dom";
+import ClickAwayListener from "@mui/base/ClickAwayListener";
 
 const Contacts = () => {
   const { user } = useAuth();
   const location = useLocation();
-  console.log(location)
+  console.log(location);
   const {
     currentContact,
     currentRoom,
@@ -34,7 +35,6 @@ const Contacts = () => {
     handleShowChat();
   }
 
-  
   useEffect(() => {
     (async () => {
       const response = await loadFollowing(user!.id);
@@ -47,36 +47,42 @@ const Contacts = () => {
     await handleRoom(room);
   }
 
+  function handleClose(){
+    setShowContacts(()=> false);
+  }
+
   function handleShowContact() {
     setShowContacts((show) => (show ? false : true));
   }
-  if(location.pathname.includes("project")) return <></>
+  if (location.pathname.includes("project")) return <></>;
 
   return (
-    <ChatContainer>
-      <div className="contacts">
-        <div className="header">
-          <div>
-            <img src={formatImage(user?.perfilPhoto)} alt="user_photo" />
-            <span>Contatos</span>
+    <ClickAwayListener onClickAway={handleClose}>
+      <ChatContainer>
+        <div className="contacts">
+          <div className="header">
+            <div>
+              <img src={formatImage(user?.perfilPhoto)} alt="user_photo" />
+              <span>Contatos</span>
+            </div>
+            {!showContacts ? (
+              <FaAngleUp onClick={handleShowContact} />
+            ) : (
+              <FaAngleDown onClick={handleShowContact} />
+            )}
           </div>
-          {!showContacts ? (
-            <FaAngleUp onClick={handleShowContact} />
-          ) : (
-            <FaAngleDown onClick={handleShowContact} />
+          {showContacts && (
+            <Following
+              following={following}
+              handleShowMessage={handleShowMessage}
+            />
           )}
         </div>
-        {showContacts && (
-          <Following
-            following={following}
-            handleShowMessage={handleShowMessage}
-          />
+        {showChat && currentContact && currentRoom && (
+          <ChatMessages following={currentContact} room={currentRoom} />
         )}
-      </div>
-      {showChat && currentContact && currentRoom && (
-        <ChatMessages following={currentContact} room={currentRoom} />
-      )}
-    </ChatContainer>
+      </ChatContainer>
+    </ClickAwayListener>
   );
 };
 

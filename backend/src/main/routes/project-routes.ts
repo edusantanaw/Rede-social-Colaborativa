@@ -38,10 +38,10 @@ export default function (router: Router) {
     userAdapter.make(makeAcceptOrDeclieInviteController())
   );
   router.get(
-    "/project/collabs/:projectId",
+    "/project/collabs/:id",
     userAdapter.make(makeLoadCollabsController())
   );
-  router.get("/project/tasks", userAdapter.make(makeLoadTaskControlle()));
+  router.get("/project/tasks/:projectId", userAdapter.make(makeLoadTaskControlle()));
   router.get(
     "/project/messages",
     userAdapter.make(makeLoadAllMessagesController())

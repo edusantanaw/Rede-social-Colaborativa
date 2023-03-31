@@ -16,6 +16,7 @@ export class TaskRepository {
   }
 
   public async load(data: taskLoad) {
+    console.log(data);
     const tasks = await task.findMany({
       where: {
         AND: [

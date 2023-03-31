@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TaskContainer = styled.div`
   width: 100%;
-  padding: 0.5em 1em;
+  padding: 0.2em 1em;
   color: #fff;
   position: relative;
   .new {
@@ -15,15 +15,14 @@ export const TaskContainer = styled.div`
     height: 3em;
     cursor: pointer;
     transition: 0.1s;
-    filter:  contrast(1.1);;
-    svg{
-        font-size: 3em;
+    filter: contrast(1.1);
+    svg {
+      font-size: 3em;
     }
     &:hover {
-        filter: brightness(0.9);
+      filter: brightness(0.9);
     }
-
-}
+  }
 `;
 
 export const TodoContainer = styled.div`
@@ -39,6 +38,9 @@ export const TodoContainer = styled.div`
 
   ul {
     margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
   }
 `;
 
@@ -56,10 +58,11 @@ export const Card = styled.li`
     font-size: 1.4em;
   }
 
-  p {
+  .description {
     max-width: 100%;
     overflow: hidden;
     font-weight: 300;
+    font-size: 0.9em;
     color: #dddd;
   }
 `;
