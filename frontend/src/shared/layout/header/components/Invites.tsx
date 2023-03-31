@@ -3,7 +3,7 @@ import { useAuth } from "../../../hooks/auth";
 import { useFetching } from "../../../hooks/useFetching";
 import { formatImage } from "../../../utils/formatImage";
 import { InviteContainer } from "../styles";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { acceptOrDeclineInvite } from "../../../../services/project";
 
 type invite = {
@@ -33,8 +33,9 @@ const Invites = () => {
 
   return (
     <InviteContainer>
+      <h3>Convites</h3>
       <ul>
-        {data &&
+        {data ?
           data.map((item) => (
             <li>
               <div className="project">
@@ -60,7 +61,10 @@ const Invites = () => {
                 </Button>
               </div>
             </li>
-          ))}
+          ))
+            :
+            <Typography fontSize="0.7em">Nenhum convite encontrado</Typography>
+          }
       </ul>
     </InviteContainer>
   );

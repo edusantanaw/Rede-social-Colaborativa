@@ -14,7 +14,6 @@ export const MessagesContainer = styled.div`
     border-bottom: 1px solid #a1a1a1;
     padding: 0.6em;
     font-weight: 500;
-    cursor: auto;
   }
 
   ul {

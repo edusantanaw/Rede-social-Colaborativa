@@ -56,7 +56,7 @@ export function ChatProvider({ children }: props) {
         handleShowChat,
         handleContact,
         handleRoom,
-        reset
+        reset,
       }}
     >
       {children}

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FlexSection } from "../../styles/Global";
 
 export const Container = styled(FlexSection)`
-  background-color: #fff;
+  background-color: rgb(25, 25, 25);
 `;
 
 export const Form = styled.form`
@@ -13,6 +13,7 @@ export const Form = styled.form`
   border-radius: 1em;
   width: 25em;
   gap: 1em;
+  color: #fff;
   svg {
     font-size: 4.2em;
   }

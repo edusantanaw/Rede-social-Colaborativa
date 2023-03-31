@@ -13,8 +13,10 @@ export class AcceptOrDeclineInviteController implements Controller {
   ) {}
   public async handle({ inviteId, accepted }: data) {
     try {
+      console.log(inviteId, accepted);
       if (!inviteId) return badRequest("Invite id is required!");
-      if (!accepted) return badRequest("Accepted is required!");
+      if (typeof accepted !== "boolean")
+        return badRequest("Accepted is required!");
       await this.acceptOrDeclineInviteUsecase.update(inviteId, accepted);
       return ok(true);
     } catch (err) {

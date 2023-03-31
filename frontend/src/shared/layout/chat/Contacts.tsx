@@ -11,6 +11,7 @@ import Following from "./components/Following";
 import { ChatContainer } from "./style";
 import { useLocation } from "react-router-dom";
 import ClickAwayListener from "@mui/base/ClickAwayListener";
+import ContactsIcon from "@mui/icons-material/Contacts";
 
 const Contacts = () => {
   const { user } = useAuth();
@@ -48,40 +49,32 @@ const Contacts = () => {
   }
 
   function handleClose(){
-    setShowContacts(()=> false);
+    setShowContacts(false);
   }
 
   function handleShowContact() {
     setShowContacts((show) => (show ? false : true));
   }
+
   if (location.pathname.includes("project")) return <></>;
 
   return (
     <ClickAwayListener onClickAway={handleClose}>
-      <ChatContainer>
-        <div className="contacts">
-          <div className="header">
-            <div>
-              <img src={formatImage(user?.perfilPhoto)} alt="user_photo" />
-              <span>Contatos</span>
-            </div>
-            {!showContacts ? (
-              <FaAngleUp onClick={handleShowContact} />
-            ) : (
-              <FaAngleDown onClick={handleShowContact} />
-            )}
-          </div>
-          {showContacts && (
-            <Following
-              following={following}
-              handleShowMessage={handleShowMessage}
-            />
-          )}
-        </div>
+      <div>
+        {showContacts && (
+          <Following
+            handleClose={handleClose}
+            following={following}
+            handleShowMessage={handleShowMessage}
+          />
+        )}
         {showChat && currentContact && currentRoom && (
           <ChatMessages following={currentContact} room={currentRoom} />
         )}
-      </ChatContainer>
+        <ChatContainer onClick={handleShowContact}>
+          <ContactsIcon />
+        </ChatContainer>
+      </div>
     </ClickAwayListener>
   );
 };

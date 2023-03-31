@@ -1,83 +1,24 @@
 import styled from "styled-components";
 
 export const ChatContainer = styled.div`
+  background-color: rgb(15, 15, 15);
   position: fixed;
-  bottom: 0;
-  right: 3em;
   display: flex;
-  gap: 1em;
-  z-index: 10;
-  align-items: flex-end;
-  .contacts {
-    width: 16em;
-    z-index: 3;
-    background-color: rgb(10, 10, 10);
+  align-items: center;
+  justify-content: center;
+  bottom: 2em;
+  right: 2em;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+  transition: 0.2s;
+  svg {
+    font-size: 1.5em;
     color: #fff;
-    box-shadow: 0 0 2px #a2a2a2;
-    border-radius: 5px 5px 0 0;
-    bottom: 0;
-    .header {
-      padding: 0.5em;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      border-bottom: 1px solid #a2a2a2;
-
-      div {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-      }
-
-      svg {
-        font-size: 1.3em;
-      }
-    }
-    img {
-      width: 2em;
-      height: 2em;
-      border-radius: 50%;
-    }
-
-    span {
-      font-weight: 300;
-    }
-
-    .following {
-      display: flex;
-      li {
-        cursor: pointer;
-        padding: 0.5em;
-        display: flex;
-        align-items: center;
-        gap: 1em;
-      }
-    }
-
-    span {
-      font-weight: 300;
-      text-align: center;
-      width: 100%;
-      font-size: 0.9em;
-    }
   }
-  .search {
-    padding: 0.5em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    label {
-      font-size: 1em;
-      font-weight: 300;
-    }
-
-    input {
-      width: 100%;
-      height: 2.5em;
-      border-radius: 5px;
-      padding: 0.5em;
-    }
+  &:hover {
+    filter: contrast(1.1);
   }
 `;
 
@@ -85,11 +26,14 @@ export const ChatMessageContainer = styled.div`
   height: 26em;
   width: 20em;
   background-color: rgb(10, 10, 10);
+  position: fixed;
   color: #fff;
   z-index: 4;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  right: 7em;
+  bottom: 0;
   .head {
     display: flex;
     align-items: center;
