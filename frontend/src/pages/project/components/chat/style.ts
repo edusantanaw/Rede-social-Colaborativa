@@ -33,18 +33,17 @@ export const ChatContainer = styled.div`
     }
 
     p {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 1em;
-      color: #c2c5c6;
+      font-size: 0.95em;
+      color: #e5e5e5;
+      font-weight: 300 ; 
     }
 
     p + p {
-      padding-top: 0.3em;
+      padding-top: 0.1em;
     }
 
     #same_user {
-      margin-left: 3.5em;
+      margin-left: 3.7em;
     }
   }
 `;

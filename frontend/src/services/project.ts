@@ -14,18 +14,26 @@ export async function createProject(data: project) {
   return response.data;
 }
 
-
-export async function joinProjectChat(projectId: string){
-    socket.emit('join_room', projectId)
+export async function joinProjectChat(projectId: string) {
+  socket.emit("join_room", projectId);
 }
 
 type createTask = {
   title: string;
   description: string;
   projectId: string;
+};
+
+export async function createTask(data: createTask) {
+  const response = await Api.post<ITask>("/project/task", data, makeOptions());
+  return response.data;
 }
 
-export async function createTask(data: createTask){
-  const response = await Api.post<ITask>("/project/task", data, makeOptions())
+export async function inviteCollab(projectId: string, invitedId: string) {
+  const response = await Api.post(
+    "/project/invite/" + projectId,
+    { invitedId },
+    makeOptions()
+  );
   return response.data;
 }

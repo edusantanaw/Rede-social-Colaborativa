@@ -17,7 +17,7 @@ const userAdapter = new UserAdapter();
 export default function (router: Router) {
   router.post("/project", userAdapter.make(makeNewProjectController()));
   router.post(
-    "/project/invite",
+    "/project/invite/:projectId",
     userAdapter.make(makeInviteCollaboratorController())
   );
   router.post("/project/task", userAdapter.make(makeCreateTaskController()));
