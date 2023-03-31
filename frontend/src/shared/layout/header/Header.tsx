@@ -5,14 +5,16 @@ import { RiHomeLine } from "react-icons/ri";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { BsFillPersonFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { BiSearchAlt2 } from "react-icons/bi";
 import Messages from "./components/Messages";
 import { useAuth } from "../../hooks/auth";
+import Invites from "./components/Invites";
 
 const Header = () => {
   const [showPerfil, setShowPerfil] = useState<boolean>(false);
   const [showMessages, setShowMessages] = useState<boolean>(false);
+  const [showInvite, setShowInvite] =useState<boolean>(false)
   const searchRef = useRef<HTMLInputElement | null>(null);
+
   const { logout, user } = useAuth();
   const navigate = useNavigate();
 
@@ -39,6 +41,11 @@ const Header = () => {
     }
   }
 
+  function handleShowInvites(){
+    handleClose()
+    setShowInvite((show)=> show ? false : true);
+  }
+
   return (
     <HeaderContainer>
       <div className="search_bar">
@@ -51,8 +58,9 @@ const Header = () => {
             <RiHomeLine />
           </Link>
         </li>
-        <li>
-          <IoNotificationsOutline />
+        <li >
+          <IoNotificationsOutline onClick={handleShowInvites} />
+          {showInvite && <Invites />}
         </li>
         <li className={`${showMessages && "active"}`}>
           <BiMessageSquare onClick={handleShowMessages} />

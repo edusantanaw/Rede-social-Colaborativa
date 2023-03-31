@@ -30,7 +30,7 @@ export default function (router: Router) {
     userAdapter.make(makeLoadUserProjectController())
   );
   router.get(
-    "/projects/invites/:userId",
+    "/projects/invites/:id",
     userAdapter.make(makeLoadAllInvitesController())
   );
   router.patch(

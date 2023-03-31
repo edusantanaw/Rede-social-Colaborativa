@@ -26,7 +26,7 @@ export class AcceptOrDeclineInviteUsecase
     );
     if (!project) throw new Error("Project not exists!");
     await this.persiste(invite);
-    await this.collaboratorRepository.create(project.id, invite.getId());
+    await this.collaboratorRepository.create(project.id, invite.getInvitedId());
   }
 
   private async persiste(invite: Invite) {

@@ -5,6 +5,7 @@ import { formatImage } from "../../../utils/formatImage";
 import { MessagesContainer } from "./style";
 import ClickAwayListener from "@mui/base/ClickAwayListener"
 
+
 type IRecentMessages = {
   userId: string;
   perfilPhoto?: string;

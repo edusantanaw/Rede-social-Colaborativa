@@ -37,3 +37,17 @@ export async function inviteCollab(projectId: string, invitedId: string) {
   );
   return response.data;
 }
+
+type invite = {
+  inviteId: string;
+  accepted: boolean;
+};
+
+export async function acceptOrDeclineInvite(data: invite) {
+  const response = await Api.patch(
+    `/project/invite/${data.inviteId}`,
+    data,
+    makeOptions()
+  );
+  return response.data;
+}

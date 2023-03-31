@@ -92,3 +92,49 @@ export const HeaderContainer = styled.header`
     }
   }
 `;
+
+export const InviteContainer = styled.div`
+  position: absolute;
+  top: 3.3em;
+  right: 2em;
+  padding: 1em;
+  background-color: rgb(10, 10, 10);
+  border-radius: 8px;
+  ul {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 9em;
+
+    max-height: 14em;
+    overflow: auto;
+  }
+  li {
+    all: unset;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    img {
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+    }
+
+    span {
+      font-size: 0.8em;
+    }
+  }
+  .actions {
+    width: 100%;
+    display: flex;
+    gap: 0.5em;
+  }
+
+  .project {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+`;

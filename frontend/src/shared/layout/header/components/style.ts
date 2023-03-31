@@ -57,4 +57,6 @@ export const MessagesContainer = styled.div`
       overflow: hidden;
     }
   }
+
+  
 `;

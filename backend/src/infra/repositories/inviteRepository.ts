@@ -1,5 +1,6 @@
 import { Invite } from "../../domain/entities/invite";
-import { invites } from "../prisma";
+import { invites as IInvites } from "../../types/invites";
+import { invites, prisma } from "../prisma";
 
 export class InviteRepository {
   public async invite(data: Invite) {
@@ -11,15 +12,13 @@ export class InviteRepository {
   }
 
   public async loadAll(userId: string) {
-    const allInvites = await invites.findMany({
-      where: {
-        invitedId: userId,
-        accepted: undefined
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+    const allInvites = await prisma.$queryRaw`
+      select invites.id, project.name, "perfilImage" from invites inner join project 
+      on project.id = invites."projectId" 
+      where "invitedId" = ${userId} and accepted is null
+      order by invites."createdAt" asc;
+      ;
+    ` as IInvites[] 
     return allInvites;
   }
 
