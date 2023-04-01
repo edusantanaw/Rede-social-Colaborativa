@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { TaskContainer } from "./styles";
-import { Box, Tabs, Tab } from "@mui/material";
-import TODO from "./components/TODO";
 import AddIcon from "@mui/icons-material/Add";
+import { Box, Tab, Tabs } from "@mui/material";
+import React, { useState } from "react";
 import Modal from "../../../../components/modal/Modal";
-import NewTask from "./components/NewTask";
 import { ITask } from "../../../../shared/types/project";
-import { useFetching } from "../../../../shared/hooks/useFetching";
-import { useParams } from "react-router-dom";
+import NewTask from "./components/NewTask";
+import Geral from "./components/Geral";
+import { TaskContainer } from "./styles";
+import MyTask from "./components/MyTask";
 
 const Task = () => {
   const [value, setValue] = useState<string>("Geral");
@@ -24,7 +23,7 @@ const Task = () => {
 
   function handleNewTask(data: ITask) {
     setTask(() => data);
-    handleNewTaskModal()
+    handleNewTaskModal();
   }
 
   return (
@@ -44,7 +43,7 @@ const Task = () => {
           <Tab value="myTask" sx={{ color: "#d2d2d2" }} label="Suas tarefas" />
         </Tabs>
       </Box>
-      {value === "Geral" ? <TODO newTask={task} /> : <>Nothing</>}
+      {value === "Geral" ? <Geral newTask={task} /> : <MyTask newTask={task} />}
       <div className="new" onClick={handleNewTaskModal}>
         <AddIcon />
       </div>

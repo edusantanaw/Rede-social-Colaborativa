@@ -1,28 +1,14 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { useFetching } from "../../../../../shared/hooks/useFetching";
 import { ITask } from "../../../../../shared/types/project";
 import { Card, TodoContainer } from "../styles";
-import { Skeleton } from "@mui/material";
 import ItemSkeleton from "./itemSkeleton";
 
 interface props {
-  newTask: ITask | null;
+  todo: ITask[] | null;
+  done: ITask[] | null;
+  isLoading: boolean;
 }
 
-const TODO = ({ newTask }: props) => {
-  const { id } = useParams<{ id: string }>();
-
-  const {
-    data: todo,
-    error,
-    isLoading,
-  } = useFetching<ITask[]>({
-    url: `/project/tasks/${id}?done=false`,
-    dependeces: [newTask],
-  });
-
-  const { data: done } = useFetching({ url: `/project/tasks/${id}?done=true` });
+const DefaulTask = ({ todo = [], done = [], isLoading }: props) => {
   const tasksSkelleton = [1, 2];
   return (
     <TodoContainer>
@@ -66,4 +52,4 @@ const TODO = ({ newTask }: props) => {
   );
 };
 
-export default TODO;
+export default DefaulTask;

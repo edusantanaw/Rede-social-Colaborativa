@@ -62,8 +62,8 @@ export const NewProject = styled.div`
   color: #fff;
   z-index: 5;
   border-radius: 8px;
+  box-shadow: 0 0 1px 1px rgb(30, 30, 30);
 
-  
   #editor {
     .ql-editor::before {
       color: white;
@@ -100,7 +100,7 @@ export const NewProject = styled.div`
       color: #fff;
       height: 3em;
       padding: 1em;
-      border:none;
+      border: none;
       border-bottom: 1px solid #fff;
 
       &:focus {

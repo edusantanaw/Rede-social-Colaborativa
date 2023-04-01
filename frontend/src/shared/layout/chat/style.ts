@@ -34,6 +34,7 @@ export const ChatMessageContainer = styled.div`
   flex-direction: column;
   right: 7em;
   bottom: 0;
+  box-shadow: 0 0 1px 1px rgb(30,30,30);
   .head {
     display: flex;
     align-items: center;

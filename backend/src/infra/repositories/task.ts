@@ -22,6 +22,7 @@ export class TaskRepository {
         AND: [
           { projectId: data.projectId },
           { done: data.done },
+          {assignedTo: data.assignedTo},
           {
             createdAt: {
               gt: data.afterDate,

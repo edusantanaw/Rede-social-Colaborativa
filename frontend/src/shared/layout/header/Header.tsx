@@ -1,13 +1,13 @@
-import React, { useState, useRef } from "react";
-import { HeaderContainer } from "./styles";
+import { useRef, useState } from "react";
 import { BiMessageSquare } from "react-icons/bi";
-import { RiHomeLine } from "react-icons/ri";
-import { IoNotificationsOutline } from "react-icons/io5";
 import { BsFillPersonFill } from "react-icons/bs";
+import { IoNotificationsOutline } from "react-icons/io5";
+import { RiHomeLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import Messages from "./components/Messages";
 import { useAuth } from "../../hooks/auth";
 import Invites from "./components/Invites";
+import Messages from "./components/Messages";
+import { HeaderContainer } from "./styles";
 
 const Header = () => {
   const [showPerfil, setShowPerfil] = useState<boolean>(false);
@@ -19,18 +19,20 @@ const Header = () => {
   const navigate = useNavigate();
 
   function handleShowPerfil() {
-    handleClose();
+    setShowMessages(() => false);
+    setShowInvite(() => false);
     setShowPerfil((show) => (show ? false : true));
   }
 
   function handleClose() {
     setShowMessages(() => false);
-    setShowPerfil(() => false);
     setShowInvite(() => false);
+    setShowPerfil(() => false);
   }
 
   function handleShowMessages() {
-    handleClose();
+    setShowInvite(() => false);
+    setShowPerfil(() => false);
     setShowMessages((show) => (show ? false : true));
   }
 
@@ -43,7 +45,8 @@ const Header = () => {
   }
 
   function handleShowInvites() {
-    handleClose();
+    setShowPerfil(() => false);
+    setShowMessages((show) => (show ? false : true));
     setShowInvite((show) => (show ? false : true));
   }
 
@@ -67,20 +70,33 @@ const Header = () => {
               <RiHomeLine />
             </Link>
           </li>
-          <li className={`${showInvite && "active"}`}>
-            <IoNotificationsOutline onClick={handleShowInvites} />
+          <li
+            className={`${showInvite && "active"}`}
+            onClick={handleShowInvites}
+          >
+            <IoNotificationsOutline />
             {showInvite && <Invites handleClose={handleClose} />}
           </li>
-          <li className={`${showMessages && "active"}`}>
-            <BiMessageSquare onClick={handleShowMessages} />
+          <li
+            className={`${showMessages && "active"}`}
+            onClick={handleShowMessages}
+          >
+            <BiMessageSquare />
             {showMessages && <Messages handleClose={handleClose} />}
           </li>
-          <li className={`perfil ${showPerfil && "active"}`}>
-            <BsFillPersonFill onClick={handleShowPerfil} />
+          <li
+            className={`perfil ${showPerfil && "active"}`}
+            onClick={handleShowPerfil}
+          >
+            <BsFillPersonFill />
             {showPerfil && (
               <ul id="perfil_actions" onClick={handleShowPerfil}>
-                <li>{user && <Link to={`/perfil/${user.id}`}>Perfil</Link>}</li>
-                <li onClick={logout}>Sair</li>
+                <>
+                  <li>
+                    {user && <Link to={`/perfil/${user.id}`}>Perfil</Link>}
+                  </li>
+                  <li onClick={logout}>Sair</li>
+                </>
               </ul>
             )}
           </li>

@@ -68,7 +68,6 @@ export const PostItem = styled.li`
 `;
 
 export const PostModalContainer = styled.div`
- 
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -89,6 +88,7 @@ export const PostModalContainer = styled.div`
   }
   .content {
     all: unset;
+    box-shadow: 0 0 1px 1px rgb(30, 30, 30);
     padding: 1em;
     border-radius: 10px;
     background-color: #fff;
@@ -122,7 +122,7 @@ export const PostModalContainer = styled.div`
     .comments {
       width: 20em;
       position: relative;
-      padding: 0.5em;
+      padding: 1em;
       .new_comment {
         width: 100%;
         position: absolute;
@@ -163,12 +163,18 @@ export const PostModalContainer = styled.div`
     .new_comment {
       display: flex;
       align-items: center;
-
       input {
-        width: 80%;
+        width: 75%;
         height: 3em;
         padding: 0.5em;
         border-radius: 5px 0 0 5px;
+        border: none;
+        background: rgba(150, 150, 150, 0.1);
+        color: #fff;
+
+        &:focus {
+          outline: none;
+        }
       }
 
       button {
@@ -189,7 +195,7 @@ export const PostModalContainer = styled.div`
       align-items: flex-start;
       gap: 0.9em;
       li {
-        all:unset;
+        all: unset;
         padding: 0.8em 0.5em;
         width: 100%;
         border-radius: 6px;

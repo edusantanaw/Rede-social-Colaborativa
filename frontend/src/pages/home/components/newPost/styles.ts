@@ -46,6 +46,7 @@ export const NewProjectContent = styled.div`
   background: rgb(15, 15, 15);
   color: #fff;
   display: flex;
+  box-shadow: 0 0 1px 1px rgb(30,30,30);
   flex-direction: column;
   gap: 0.8em;
   position: relative;

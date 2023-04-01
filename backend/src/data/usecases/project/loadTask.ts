@@ -1,4 +1,5 @@
-import { ILoadUsecase } from "../../../domain/usecases/load";import { IProject } from "../../../types/project";
+import { ILoadUsecase } from "../../../domain/usecases/load";
+import { IProject } from "../../../types/project";
 import { ITask, taskLoad } from "../../../types/task";
 import { ILoadRepository } from "../../protocols/repositories/load";
 import { ILoadByIdRepository } from "../../protocols/repositories/loadProjectById";
@@ -28,6 +29,7 @@ export class LoadTaskUsecase implements ILoadUsecase<taskLoad, ITask[]> {
       done = false,
       skip = 0,
       take = 50,
+      assignedTo,
     } = data;
     if (typeof done === "string") {
       done = String(done).toLocaleLowerCase() === "true";
@@ -37,6 +39,7 @@ export class LoadTaskUsecase implements ILoadUsecase<taskLoad, ITask[]> {
       afterDate,
       beforeDate,
       done,
+      assignedTo,
       skip: Number(skip),
       take: Number(take),
     };
