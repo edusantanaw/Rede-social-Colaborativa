@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const InfosContainer = styled.div`
   color: #fff;
-  padding: 1em;
+  padding: 3em 1em;
   width: 100%;
   display: flex;
   justify-content: center;

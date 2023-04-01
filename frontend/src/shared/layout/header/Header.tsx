@@ -19,18 +19,19 @@ const Header = () => {
   const navigate = useNavigate();
 
   function handleShowPerfil() {
+    handleClose();
     setShowPerfil((show) => (show ? false : true));
-    if (showMessages) setShowMessages(() => false);
   }
 
   function handleClose() {
     setShowMessages(() => false);
     setShowPerfil(() => false);
+    setShowInvite(() => false);
   }
 
   function handleShowMessages() {
+    handleClose();
     setShowMessages((show) => (show ? false : true));
-    if (showPerfil) setShowPerfil(() => false);
   }
 
   function handleSearch() {
@@ -52,7 +53,12 @@ const Header = () => {
         <h2>Social</h2>
       </div>
       <div className="part">
-        <input type="search" placeholder="Pesquisar..." ref={searchRef} onChange={handleSearch} />
+        <input
+          type="search"
+          placeholder="Pesquisar..."
+          ref={searchRef}
+          onChange={handleSearch}
+        />
       </div>
       <div className="part">
         <ul className="list">
@@ -61,9 +67,9 @@ const Header = () => {
               <RiHomeLine />
             </Link>
           </li>
-          <li>
+          <li className={`${showInvite && "active"}`}>
             <IoNotificationsOutline onClick={handleShowInvites} />
-            {showInvite && <Invites />}
+            {showInvite && <Invites handleClose={handleClose} />}
           </li>
           <li className={`${showMessages && "active"}`}>
             <BiMessageSquare onClick={handleShowMessages} />
