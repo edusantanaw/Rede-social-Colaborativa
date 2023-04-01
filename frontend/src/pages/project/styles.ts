@@ -17,7 +17,7 @@ export const Projects = styled.ul`
   position: sticky;
   top: 4.33em;
   li {
-    padding: 0.5em 0.5em;
+    padding: 0.5em;
   }
   img {
     width: 3em;

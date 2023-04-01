@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PostItem = styled.li`
+  all: unset;
   width: 35em;
   padding: 1em;
   background-color: rgb(15, 15, 15);
@@ -67,6 +68,7 @@ export const PostItem = styled.li`
 `;
 
 export const PostModalContainer = styled.div`
+ 
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -86,6 +88,7 @@ export const PostModalContainer = styled.div`
     background-color: #0005;
   }
   .content {
+    all: unset;
     padding: 1em;
     border-radius: 10px;
     background-color: #fff;
@@ -179,17 +182,18 @@ export const PostModalContainer = styled.div`
         cursor: pointer;
       }
     }
-    ul{
+    ul {
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.9em;
       li {
+        all:unset;
         padding: 0.8em 0.5em;
         width: 100%;
-        background-color: #e5e5e5;
         border-radius: 6px;
+        background-color: rgba(150, 150, 150, 0.1);
         #autor {
           display: flex;
           align-items: center;
@@ -202,8 +206,8 @@ export const PostModalContainer = styled.div`
             border: 1px solid #fff;
           }
         }
-        p{
-            padding-left: 0.5em;
+        p {
+          padding-left: 0.5em;
           font-weight: 300;
         }
       }

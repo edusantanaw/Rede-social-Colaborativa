@@ -10,6 +10,7 @@ import { ChatMessageContainer } from "../style";
 import { IoMdClose } from "react-icons/io";
 import SendIcon from "@mui/icons-material/Send";
 import { TextareaAutosize } from "@mui/material";
+import ClickAwayListener from "@mui/base/ClickAwayListener";
 
 interface props {
   following: IUser;
@@ -58,37 +59,39 @@ const ChatMessages = ({ following, room }: props) => {
   }
 
   return (
-    <ChatMessageContainer>
-      <div className="head">
-        <div className="head_user">
-          <img src={formatImage(user?.perfilPhoto)} alt="perfil_photo" />
-          <span>{following.name}</span>
+    <ClickAwayListener onClickAway={reset}>
+      <ChatMessageContainer>
+        <div className="head">
+          <div className="head_user">
+            <img src={formatImage(user?.perfilPhoto)} alt="perfil_photo" />
+            <span>{following.name}</span>
+          </div>
+          <IoMdClose onClick={reset} />
         </div>
-        <IoMdClose onClick={reset} />
-      </div>
-      <ul className="messages">
-        {messages.map((message, i) => (
-          <li
-            key={i}
-            className={message.senderId === user!.id ? "user" : "contact"}
-          >
-            <p>{message.message}</p>
-          </li>
-        ))}
-        <li ref={endRef} id="end" />
-      </ul>
-      <div className="send_message">
-        <TextareaAutosize
-          id="message_input"
-          aria-label="empty textarea"
-          placeholder="Mensagem"
-          ref={messageRef}
-        />
-        <button onClick={handleMessage}>
-          <SendIcon fontSize="small" />
-        </button>
-      </div>
-    </ChatMessageContainer>
+        <ul className="messages">
+          {messages.map((message, i) => (
+            <li
+              key={i}
+              className={message.senderId === user!.id ? "user" : "contact"}
+            >
+              <p>{message.message}</p>
+            </li>
+          ))}
+          <li ref={endRef} id="end" />
+        </ul>
+        <div className="send_message">
+          <TextareaAutosize
+            id="message_input"
+            aria-label="empty textarea"
+            placeholder="Mensagem"
+            ref={messageRef}
+          />
+          <button onClick={handleMessage}>
+            <SendIcon fontSize="small" />
+          </button>
+        </div>
+      </ChatMessageContainer>
+    </ClickAwayListener>
   );
 };
 

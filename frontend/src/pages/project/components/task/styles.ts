@@ -47,8 +47,8 @@ export const TodoContainer = styled.div`
 export const Card = styled.li`
   background-color: rgb(15, 15, 15);
   width: 17em;
-  padding: 0.6em;
   height: 8em;
+  padding: 0.6em;
   border-radius: 5px;
 
   h2 {

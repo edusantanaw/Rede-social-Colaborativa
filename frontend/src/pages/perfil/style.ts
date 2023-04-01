@@ -8,9 +8,10 @@ export const PerfilContainer = styled.section`
   flex-direction: column;
   gap: 2em;
   .content {
-    width: 60%;
-    background-color: #fff;
+    width: 80%;
     border-radius: 10px;
+    background-color: rgb(15, 15, 15);
+    color: #fff;
   }
 
   .photos {

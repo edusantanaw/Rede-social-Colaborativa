@@ -3,5 +3,6 @@ export type IUser = {
     name: string,
     email: string,
     password: string,
+    perfilPhoto?: string;
     roles: string[]
 }

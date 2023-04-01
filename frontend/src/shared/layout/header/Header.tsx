@@ -12,7 +12,7 @@ import Invites from "./components/Invites";
 const Header = () => {
   const [showPerfil, setShowPerfil] = useState<boolean>(false);
   const [showMessages, setShowMessages] = useState<boolean>(false);
-  const [showInvite, setShowInvite] =useState<boolean>(false)
+  const [showInvite, setShowInvite] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const { logout, user } = useAuth();
@@ -20,17 +20,17 @@ const Header = () => {
 
   function handleShowPerfil() {
     setShowPerfil((show) => (show ? false : true));
-    if(showMessages) setShowMessages(()=> false);
+    if (showMessages) setShowMessages(() => false);
   }
 
-  function handleClose(){
-    setShowMessages(()=> false);
-    setShowPerfil(()=> false)
+  function handleClose() {
+    setShowMessages(() => false);
+    setShowPerfil(() => false);
   }
 
   function handleShowMessages() {
     setShowMessages((show) => (show ? false : true));
-    if(showPerfil) setShowPerfil(()=> false)
+    if (showPerfil) setShowPerfil(() => false);
   }
 
   function handleSearch() {
@@ -41,41 +41,45 @@ const Header = () => {
     }
   }
 
-  function handleShowInvites(){
-    handleClose()
-    setShowInvite((show)=> show ? false : true);
+  function handleShowInvites() {
+    handleClose();
+    setShowInvite((show) => (show ? false : true));
   }
 
   return (
     <HeaderContainer>
-      <div className="search_bar">
+      <div className="part">
         <h2>Social</h2>
-        <input type="search" placeholder="Pesquisar..." ref={searchRef} />
       </div>
-      <ul className="list">
-        <li id="home">
-          <Link to="/">
-            <RiHomeLine />
-          </Link>
-        </li>
-        <li >
-          <IoNotificationsOutline onClick={handleShowInvites} />
-          {showInvite && <Invites />}
-        </li>
-        <li className={`${showMessages && "active"}`}>
-          <BiMessageSquare onClick={handleShowMessages} />
-          {showMessages && <Messages handleClose={handleClose} />}
-        </li>
-        <li className={`perfil ${showPerfil && "active"}`}>
-          <BsFillPersonFill onClick={handleShowPerfil} />
-          {showPerfil && (
-            <ul id="perfil_actions" onClick={handleShowPerfil}>
-              <li>{user && <Link to={`/perfil/${user.id}`}>Perfil</Link>}</li>
-              <li onClick={logout}>Sair</li>
-            </ul>
-          )}
-        </li>
-      </ul>
+      <div className="part">
+        <input type="search" placeholder="Pesquisar..." ref={searchRef} onChange={handleSearch} />
+      </div>
+      <div className="part">
+        <ul className="list">
+          <li id="home">
+            <Link to="/">
+              <RiHomeLine />
+            </Link>
+          </li>
+          <li>
+            <IoNotificationsOutline onClick={handleShowInvites} />
+            {showInvite && <Invites />}
+          </li>
+          <li className={`${showMessages && "active"}`}>
+            <BiMessageSquare onClick={handleShowMessages} />
+            {showMessages && <Messages handleClose={handleClose} />}
+          </li>
+          <li className={`perfil ${showPerfil && "active"}`}>
+            <BsFillPersonFill onClick={handleShowPerfil} />
+            {showPerfil && (
+              <ul id="perfil_actions" onClick={handleShowPerfil}>
+                <li>{user && <Link to={`/perfil/${user.id}`}>Perfil</Link>}</li>
+                <li onClick={logout}>Sair</li>
+              </ul>
+            )}
+          </li>
+        </ul>
+      </div>
     </HeaderContainer>
   );
 };

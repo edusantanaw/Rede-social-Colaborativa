@@ -17,7 +17,7 @@ model User {
   password      String
   roles         String[]
   perfilPhoto   String?
-  coverImage    String?
+  bio           String?
   Project       Project[]
   Collaborators Collaborators[]
   createdAt     DateTime        @default(now())
@@ -158,7 +158,7 @@ model Message {
 }
 
 model Room {
-  id          String    @id
+  id          String @id
   followingId String
   userId      String
 

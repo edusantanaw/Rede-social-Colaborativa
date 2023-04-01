@@ -1,18 +1,28 @@
 import { randomUUID } from "crypto";
+type data = {
+  name: string;
+  password: string;
+  email: string;
+  file?: string;
+  id?: string;
+};
 
 export class User {
   private name: string;
   private email: string;
   private password: string;
   private id: string;
+  perfilPhoto?: string;
+  bio?: string;
   private roles: string[] = [];
 
-  constructor(name: string, email: string, password: string) {
+  constructor({ email, name, password, file, id }: data) {
     this.name = name;
     this.email = email;
     this.password = password;
-    this.id = randomUUID();
+    this.id = id ?? randomUUID();
     this.roles = ["USER"];
+    this.perfilPhoto = file;
   }
 
   public getUser() {

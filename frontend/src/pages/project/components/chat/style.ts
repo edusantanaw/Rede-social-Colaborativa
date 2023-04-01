@@ -28,8 +28,12 @@ export const ChatContainer = styled.div`
     flex-direction: column;
     padding: 1em;
 
-    li + li {
-      margin-top: 1em;
+    li {
+      margin-top: 0.8em;
+    }
+
+    li:first-child {
+      margin-top: 0;
     }
 
     p {

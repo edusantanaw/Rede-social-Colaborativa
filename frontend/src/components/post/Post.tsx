@@ -57,6 +57,7 @@ const Post = (post: IPost) => {
             id="perfil_image"
             src={perfilPhoto ?? defaultImage}
             alt="user_photo"
+            loading="lazy"
           />
           <div className="content">
             <span>{name}</span>

@@ -63,6 +63,7 @@ const PostModal = ({ handleModal, post }: props) => {
               src={`http://localhost:3000/${post.image}`}
               id="post_image"
               alt="image"
+              loading="lazy"
             />
           )}
         </div>

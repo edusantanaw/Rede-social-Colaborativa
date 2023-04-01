@@ -3,8 +3,6 @@ import { ICreateUsecase } from "../../../domain/usecases/create";
 import { IRoom } from "../../../types/room";
 import { ICreateRepository } from "../../protocols/repositories/createRepository";
 
-
-
 type params = {
   userId: string;
   followingId: string;

@@ -27,7 +27,6 @@ export const ProjectContainer = styled.div`
       display: flex;
       align-items: center;
       gap: 0.8em;
-      cursor: pointer;
       span {
         font-size: 1em;
         font-weight: 300;
@@ -64,6 +63,28 @@ export const NewProject = styled.div`
   z-index: 5;
   border-radius: 8px;
 
+  
+  #editor {
+    .ql-editor::before {
+      color: white;
+      height: 10em;
+    }
+    #editor_cp {
+      border: 1px solid #fff;
+      height: 13em;
+      svg {
+        display: none;
+      }
+      .ql-toolbar {
+        display: none;
+      }
+    }
+
+    input {
+      display: none;
+    }
+  }
+
   #input {
     padding: 1em;
     width: 100%;
@@ -79,17 +100,11 @@ export const NewProject = styled.div`
       color: #fff;
       height: 3em;
       padding: 1em;
-      border-radius: 5px;
-    }
-  }
-  #editor {
-    height: 20em;
-    padding: 0.5em 1em;
-    color: #fff;
-    #editor_cp {
-      height: 14em;
-      &::placeholder {
-        color: #fff !important;
+      border:none;
+      border-bottom: 1px solid #fff;
+
+      &:focus {
+        outline: none;
       }
     }
   }
@@ -102,9 +117,19 @@ export const NewProject = styled.div`
       height: 3.5em;
       border: none;
       border-radius: 5px;
-      background-color: blue;
+      background-color: #000;
       color: #fff;
       cursor: pointer;
+    }
+  }
+  #editor {
+    padding: 0.5em 1em;
+    color: #fff;
+    #editor_cp {
+      height: 14em;
+      &::placeholder {
+        color: #fff !important;
+      }
     }
   }
 `;

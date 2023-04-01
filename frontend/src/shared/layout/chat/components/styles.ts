@@ -3,13 +3,15 @@ import styled from "styled-components";
 export const ContactsContainer = styled.div`
   position: fixed;
   right: 0;
-  top: 5em;
+  top: 13%;
   background-color: rgb(15, 15, 15);
   color: #fff;
   display: flex;
   flex-direction: column;
   height: 30em;
+  width: 17em;
   border-radius: 20px 0 0 20px;
+  z-index: 5;
   img {
     width: 2.6em;
     height: 2.6em;

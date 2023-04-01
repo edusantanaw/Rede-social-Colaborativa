@@ -76,7 +76,7 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
         )}
         <div className="create">
           <label htmlFor="img_file">
-            <BsCardImage />
+            <BsCardImage color="#fff" />
           </label>
           <input type="file" id="img_file" onChange={handleImageChange} />
           <button onClick={handleCreatePost}>Criar</button>

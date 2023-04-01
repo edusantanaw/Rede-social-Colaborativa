@@ -27,9 +27,10 @@ export function useFetching<T>({ url, dependeces = [] }: props) {
       const err = error as { response: { data: string } };
       setError(err.response.data);
     }
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
   }
-
 
   return {
     data,

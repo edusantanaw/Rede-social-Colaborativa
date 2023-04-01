@@ -2,7 +2,8 @@ import React, { useRef } from "react";
 import { useInfiniteScroll } from "../../../shared/hooks/useInfiniteScroll";
 import { loadPostByUser } from "../../../services/post";
 import { IPost } from "../../../shared/types/post";
-import PostItem from '../../../components/post/Post'
+import PostItem from "../../../components/post/Post";
+import {Skeleton} from "@mui/material"
 
 type props = {
   id: string;
@@ -10,17 +11,32 @@ type props = {
 
 const Post = ({ id }: props) => {
   const postEndRef = useRef<HTMLDivElement | null>(null);
-  const { list } = useInfiniteScroll<string, IPost, string>({
+  const { list, loading } = useInfiniteScroll<string, IPost, string>({
     service: loadPostByUser,
     ref: postEndRef,
     options: id,
     dependeces: undefined,
   });
-  console.log(list)
+  console.log(list);
+
+  const item = [1, 2, 3, 4];
+
   return (
     <div className="posts">
+      <ul id="preload">
+        {loading && item.map((i, k) => (
+          <Skeleton
+            key={k}
+            variant="rectangular"
+            width="37em"
+            height="10em"
+            sx={{ borderRadius: "8px", background: "rgb(10, 10, 10)" }}
+          />
+        ))}
+      </ul>
       <ul>
-        {list.length > 0 && list.map((item, i) => <PostItem key={i} {...item} />)}
+        {list.length > 0 &&
+          list.map((item, i) => <PostItem key={i} {...item} />)}
       </ul>
       <div ref={postEndRef} />
     </div>

@@ -32,6 +32,7 @@ export class ProjectRepository {
       select p.id, p.name, p."perfilImage" from project as p
       left join collaborators as c on c."projectId" = p.id
       where p."ownerId" = ${userId} or c."userId" = ${userId}
+      group by p.id, p.name,p."perfilImage";
      ` as IProject[]
      return projects;
   }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NewPostContainer = styled.div`
-  width: 35em;
+  width: 37em;
   background-color: rgb(15, 15, 15);
   padding: 1em;
   color: #fff;
@@ -35,7 +35,6 @@ export const NewPostContainer = styled.div`
     }
   }
 `;
-
 
 export const NewProjectContent = styled.div`
   width: 30em;
@@ -80,6 +79,9 @@ export const NewProjectContent = styled.div`
     }
     #img_file {
       display: none;
+      svg {
+        color: #fff;
+      }
     }
 
     button {
@@ -94,9 +96,23 @@ export const NewProjectContent = styled.div`
   }
 
   #editor {
-    height: 13em;
-    #editor_cp {
+    .ql-editor::before {
+      color: white;
       height: 10em;
+    }
+    #editor_cp {
+      border: 1px solid #fff;
+      height: 13em;
+      svg {
+        display: none;
+      }
+      .ql-toolbar {
+        display: none;
+      }
+    }
+
+    input {
+      display: none;
     }
   }
 

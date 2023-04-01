@@ -40,6 +40,7 @@ const Following = ({ following, handleShowMessage, handleClose }: props) => {
             variant="standard"
             sx={{ color: "#fff", outlineColor: "#fff " }}
             label="Pesquisar"
+            fullWidth
             onChange={searchContacts}
           />
         </ThemeProvider>

@@ -7,6 +7,7 @@ import { formatImage } from "../../shared/utils/formatImage";
 import Chat from "./components/chat/Chat";
 import Nav from "./components/nav/Nav";
 import { ProjectContainer, Projects } from "./styles";
+import { Skeleton } from "@mui/material";
 
 const Project = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +15,7 @@ const Project = () => {
 
   const { user } = useAuth();
 
-  const { data, error } = useFetching<IProject[]>({
+  const { data, error, isLoading } = useFetching<IProject[]>({
     url: `/project/user/${user?.id}`,
     dependeces: [],
   });
@@ -26,12 +27,23 @@ const Project = () => {
   return (
     <ProjectContainer>
       <Projects>
-        {data &&
+        {isLoading ? (
+          <li>
+            <Skeleton
+              variant="circular"
+              width="3em"
+              height="3em"
+              sx={{ background: "rgba(255, 255, 255, 0.2)" }}
+            />
+          </li>
+        ) : (
+          data &&
           data.map((project, i) => (
             <li key={i}>
               <img src={formatImage(project.perfilImage)} alt="project_image" />
             </li>
-          ))}
+          ))
+        )}
       </Projects>
       <Nav id={id!} handleTab={handleTab} />
       <div className="tab">{CurrentItem}</div>

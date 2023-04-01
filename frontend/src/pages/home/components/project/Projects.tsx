@@ -22,6 +22,7 @@ const Projects = () => {
     dependeces: [],
   });
 
+  console.log(data)
   function handleProjectModal() {
     setNewProjectModal((show) => (show ? false : true));
   } 

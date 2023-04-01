@@ -22,6 +22,7 @@ export class CollaboratorRepository {
         select "userId" from collaborators 
         where "projectId" = ${projectId}
       )
+      group by users.id, "perfilPhoto", users.name
       ;
     ` as collabs[];
 

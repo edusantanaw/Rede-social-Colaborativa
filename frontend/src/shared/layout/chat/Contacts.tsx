@@ -1,17 +1,15 @@
+import ClickAwayListener from "@mui/base/ClickAwayListener";
+import ContactsIcon from "@mui/icons-material/Contacts";
 import { useEffect, useState } from "react";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 import { getRoom } from "../../../services/chat";
 import { loadFollowing } from "../../../services/follow";
 import { useAuth } from "../../hooks/auth";
 import { useChat } from "../../hooks/useChat";
 import { IUser } from "../../types/user";
-import { formatImage } from "../../utils/formatImage";
 import ChatMessages from "./components/ChatMessages";
 import Following from "./components/Following";
 import { ChatContainer } from "./style";
-import { useLocation } from "react-router-dom";
-import ClickAwayListener from "@mui/base/ClickAwayListener";
-import ContactsIcon from "@mui/icons-material/Contacts";
 
 const Contacts = () => {
   const { user } = useAuth();
@@ -48,7 +46,7 @@ const Contacts = () => {
     await handleRoom(room);
   }
 
-  function handleClose(){
+  function handleClose() {
     setShowContacts(false);
   }
 
@@ -59,23 +57,25 @@ const Contacts = () => {
   if (location.pathname.includes("project")) return <></>;
 
   return (
-    <ClickAwayListener onClickAway={handleClose}>
-      <div>
-        {showContacts && (
-          <Following
-            handleClose={handleClose}
-            following={following}
-            handleShowMessage={handleShowMessage}
-          />
-        )}
-        {showChat && currentContact && currentRoom && (
-          <ChatMessages following={currentContact} room={currentRoom} />
-        )}
-        <ChatContainer onClick={handleShowContact}>
-          <ContactsIcon />
-        </ChatContainer>
-      </div>
-    </ClickAwayListener>
+    <>
+      <ClickAwayListener onClickAway={handleClose}>
+        <div>
+          {showContacts && (
+            <Following
+              handleClose={handleClose}
+              following={following}
+              handleShowMessage={handleShowMessage}
+            />
+          )}
+          <ChatContainer onClick={handleShowContact}>
+            <ContactsIcon />
+          </ChatContainer>
+        </div>
+      </ClickAwayListener>
+      {showChat && currentContact && currentRoom && (
+        <ChatMessages following={currentContact} room={currentRoom} />
+      )}
+    </>
   );
 };
 

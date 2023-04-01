@@ -21,29 +21,30 @@ const formats = [
   "link",
 ];
 
-const modules = {
-  toolbar: [
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ color: [] }, { background: [] }],
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ script: "sub" }, { script: "super" }],
-    [{ indent: "-1" }, { indent: "+1" }],
-    ["link"],
-    ["clean"],
-  ],
+const options = {
+  theme: "bubble",
+  modules: {
+    toolbar: {
+      container: [
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        ["bold", "italic", "underline", "strike", "blockquote"],
+        [
+          { list: "ordered" },
+          { list: "bullet" },
+          { indent: "-1" },
+          { indent: "+1" },
+        ],
+        ["link", "image"],
+        ["clean"],
+      ],
+    },
+  },
 };
 
 function Editor({ getContent, placeholder }: props) {
   return (
     <div id="editor">
-      <ReactQuill
-        id="editor_cp"
-        onChange={getContent}
-        modules={modules}
-        formats={formats}
-        placeholder= {placeholder}
-      />
+      <ReactQuill id="editor_cp" placeholder={placeholder} onChange={getContent} {...options} />
     </div>
   );
 }

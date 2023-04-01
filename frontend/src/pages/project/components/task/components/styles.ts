@@ -61,4 +61,25 @@ export const NewTaskModal = styled.form`
       background-color: #9c27a0;
     }
   }
+  
+  #editor {
+    .ql-editor::before {
+      color: white;
+      height: 10em;
+    }
+    #editor_cp {
+      border: 1px solid #fff;
+      height: 13em;
+      svg {
+        display: none;
+      }
+      .ql-toolbar {
+        display: none;
+      }
+    }
+
+    input {
+      display: none;
+    }
+  }
 `;
