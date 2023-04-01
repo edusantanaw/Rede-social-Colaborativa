@@ -1,4 +1,6 @@
 import { useFetching } from "../../../shared/hooks/useFetching";
+import { formatImage } from "../../../shared/utils/formatImage";
+import { UserContainer } from "./style";
 
 interface props {
   name: string;
@@ -7,6 +9,7 @@ interface props {
 type IProject = {
   id: string;
   name: string;
+  perfilImage?: string;
 };
 
 const Projects = ({ name }: props) => {
@@ -14,10 +17,22 @@ const Projects = ({ name }: props) => {
     url: `/project/search/${name}`,
     dependeces: [name],
   });
-  console.log(error)
+  console.log(error);
 
   console.log(data);
-  return <div>{data && data.map((item) => <li>{item.name}</li>)}</div>;
+  return (
+    <ul>
+      {data &&
+        data.map((item) => (
+          <UserContainer>
+            <div className="item">
+              <img src={formatImage(item.perfilImage)} alt="" />
+              <span>{item.name}</span>
+            </div>
+          </UserContainer>
+        ))}
+    </ul>
+  );
 };
 
 export default Projects;

@@ -21,10 +21,14 @@ export const SearchContainer = styled.section`
     }
   }
 
-  ul{
+  ul {
     width: 40%;
     display: flex;
     flex-direction: column;
     gap: 1em;
-}
+  }
+  .item {
+    display: flex;
+    gap: 1em;
+  }
 `;
