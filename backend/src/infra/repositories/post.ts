@@ -23,7 +23,7 @@ export class PostRepository {
 
   public async loadFeed(data: dataFeed) {
     const posts = (await prisma.$queryRaw`
-      select post.content, post.image, post.id, users.name, users.id as "userId"
+      select post.content, post.image, post.id, users."perfilPhoto", users.name, users.id as "userId"
       from post inner join users on users.id = post."userId"
       left join follows on follows."followingId" = post."userId"
       where users.id = ${data.userId} or follows."followerId" = ${data.userId}
@@ -35,7 +35,7 @@ export class PostRepository {
 
   public async loadPostByUserId({ id, take, skip }: loadPostByUserId) {
     const posts = (await prisma.$queryRaw`
-    select post.content, post.image, post.id, users.name, users.id as "userId"
+    select post.content, post.image, post.id, users.name, users."perfilPhoto",users.id as "userId"
     from post inner join users on users.id = post."userId"
     where users.id = ${id}
     order by post."createdAt" desc

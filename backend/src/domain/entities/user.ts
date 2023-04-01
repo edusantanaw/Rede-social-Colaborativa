@@ -12,7 +12,7 @@ export class User {
   private email: string;
   private password: string;
   private id: string;
-  perfilPhoto?: string;
+  private perfilPhoto?: string;
   bio?: string;
   private roles: string[] = [];
 
@@ -32,6 +32,7 @@ export class User {
       email: this.email,
       password: this.password,
       roles: this.roles,
+      perfilPhoto: this.perfilPhoto
     };
   }
 

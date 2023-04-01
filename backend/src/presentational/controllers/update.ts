@@ -10,6 +10,7 @@ export class UpdateController<T, S> {
 
   public async handle(data: S) {
     try {
+      console.log(data);
       const { error } = this.schemaValidator.valid(data);
       if (error) return badRequest(error.message);
       const response = await this.updateUsecase.execute(data);

@@ -3,4 +3,5 @@ export type IUser = {
     name: string;
     email: string;
     perfilPhoto?: string;
+    bio?: string;
 }

@@ -49,8 +49,8 @@ const Signup = () => {
             variant="filled"
             label="Name"
             fullWidth
-            id="name"
             color="warning"
+            id="name"
             value={formik.values.name}
             error={formik.touched.name && Boolean(formik.errors.name)}
             onChange={formik.handleChange}

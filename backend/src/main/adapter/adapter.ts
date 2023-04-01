@@ -1,5 +1,4 @@
-import { Request, Response } from "express";
-import { Multer } from "multer";
+import { Request, Response } from "express";import { Multer } from "multer";
 import { httpResponse } from "../../presentational/protocols/httpResponse";
 
 export interface Controller {

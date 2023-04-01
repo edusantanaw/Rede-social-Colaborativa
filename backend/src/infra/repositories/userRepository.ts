@@ -1,4 +1,5 @@
-import { User } from "../../domain/entities/user";import { IUser } from "../../types/user";
+import { User } from "../../domain/entities/user";
+import { IUser } from "../../types/user";
 import { prisma, user } from "../prisma";
 
 export class UserRepository {
@@ -8,7 +9,7 @@ export class UserRepository {
         ...data.getUser(),
       },
     });
-    return newUser;
+    return newUser as IUser;
   }
 
   public async loadByEmail(email: string): Promise<IUser | null> {
@@ -17,12 +18,22 @@ export class UserRepository {
         email: email,
       },
     });
-    return users;
+    return users as IUser;
   }
 
   public async loadById(id: string) {
     const findUser = await user.findFirst({ where: { id } });
-    return findUser;
+    return findUser as IUser;
+  }
+
+  public async update(data: IUser) {
+    const updatedUser = await user.update({
+      where: {
+        id: data.id,
+      },
+      data: data,
+    });
+    return updatedUser as IUser;
   }
 
   public async updatePassword(id: string, pass: string) {

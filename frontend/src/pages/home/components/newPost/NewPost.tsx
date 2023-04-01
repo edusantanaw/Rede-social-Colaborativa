@@ -8,6 +8,7 @@ interface props {
 
 const NewPost = ({ handleShowModal }: props) => {
   const { user } = useAuth();
+ 
   return (
     <NewPostContainer onClick={handleShowModal}>
       <div className="new">

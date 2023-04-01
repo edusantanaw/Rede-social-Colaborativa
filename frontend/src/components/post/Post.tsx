@@ -8,6 +8,7 @@ import { addOrRemoveLike } from "../../services/post";
 import { IPost } from "../../shared/types/post";
 import PostModal from "./PostModal";
 import { PostItem } from "./style";
+import { formatImage } from "../../shared/utils/formatImage";
 
 const Post = (post: IPost) => {
   const { id, userId, name, content, image, perfilPhoto } = post;
@@ -48,6 +49,7 @@ const Post = (post: IPost) => {
     setShowPostModal((show) => (show ? false : true));
   }
 
+  console.log(post)
   return (
     <>
       {showPostModal && <PostModal post={post} handleModal={handlePostModal} />}
@@ -55,7 +57,7 @@ const Post = (post: IPost) => {
         <div className="top">
           <img
             id="perfil_image"
-            src={perfilPhoto ?? defaultImage}
+            src={formatImage(post.perfilPhoto)}
             alt="user_photo"
             loading="lazy"
           />
