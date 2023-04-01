@@ -4,7 +4,7 @@
 Uma rede social para trabalhos colaborativos, consiste em uma plataforma online que permite que o usuário possa encontrar projetos para contribuir, se conectar com outras pessoas que tem o mesmo propósito, consiga compartilhar as suas ideias, comunicar-se com outros usuários e gerenciar os seus projetos.
 
 ## Telas
-![alt text](./imgs/P_chat.png)
+![alt text](./imgs/p_chat.png)
 
 ![alt text](./imgs/tasks.png)
 
