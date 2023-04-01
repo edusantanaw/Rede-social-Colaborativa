@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const UserContainer = styled.li`
     width: 100%;
-    background-color: #fff;
+    background-color: rgb(15, 15, 15);
     padding: 1em;
     border-radius: 10px ;
     display: flex;
     align-items: center;
     justify-content: space-between;
     a{
-        color: #000;
+        color: #fff;
         display: flex;
         gap: 1em;
         span {

@@ -22,14 +22,14 @@ export function useFetching<T>({ url, dependeces = [] }: props) {
     setIsLoading(true);
     try {
       const response = await Api.get(url, makeOptions());
-      setData(response.data);
+      setTimeout(() => {
+        setData(response.data);
+        setIsLoading(false);
+      }, 1000);
     } catch (error) {
       const err = error as { response: { data: string } };
       setError(err.response.data);
     }
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
   }
 
   return {

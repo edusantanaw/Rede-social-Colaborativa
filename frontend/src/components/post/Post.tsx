@@ -9,6 +9,7 @@ import { IPost } from "../../shared/types/post";
 import PostModal from "./PostModal";
 import { PostItem } from "./style";
 import { formatImage } from "../../shared/utils/formatImage";
+import { Link } from "react-router-dom";
 
 const Post = (post: IPost) => {
   const { id, userId, name, content, image, perfilPhoto } = post;
@@ -62,7 +63,8 @@ const Post = (post: IPost) => {
             loading="lazy"
           />
           <div className="content">
-            <span>{name}</span>
+            <span>
+              <Link to={`/perfil/${post.userId}`}>{post.name}</Link></span>
           </div>
         </div>
         {content && <div dangerouslySetInnerHTML={{ __html: content }} />}

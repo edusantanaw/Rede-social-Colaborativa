@@ -14,7 +14,7 @@ import { ChatContainer } from "./style";
 const Contacts = () => {
   const { user } = useAuth();
   const location = useLocation();
-  console.log(location);
+
   const {
     currentContact,
     currentRoom,

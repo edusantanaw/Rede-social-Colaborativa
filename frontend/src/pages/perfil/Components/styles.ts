@@ -33,4 +33,25 @@ export const InfosPerfil = styled.div`
     border-radius: 3px;
     cursor: pointer;
   }
+
+  .infos {
+    display: flex;
+    flex-direction:column;
+    gap: 0.5em;
+  }
+
+  #bio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    span {
+      font-size:1em;
+      font-weight: 500;
+    }
+    p {
+      font-weight: 300;
+      font-size: 0.9em;
+      max-width: 17em;
+    }
+  }
 `;

@@ -18,6 +18,7 @@ export class Adapter {
         });
         return res.status(statusCode).json(body);
       } catch (error) {
+        console.log(error)
         return res.status(500).json("Internal server error!");
       }
     };

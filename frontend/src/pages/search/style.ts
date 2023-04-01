@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SearchContainer = styled.section`
   width: 100%;
-  padding-top: 5.5em;
+  padding: 1em 0;
   display: flex;
   flex-direction: column;
   align-items: center;

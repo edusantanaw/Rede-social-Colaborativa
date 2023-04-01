@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { IUser } from "../../../shared/types/user";
-import defaultImage from "../../../shared/assets/default.jpg";
-import defaultBg from "../../../shared/assets/defaultBg.jpg";
-import { baseUrl } from "../../../constants/baseUrl";
-import { InfosPerfil } from "./styles";
+import { useState } from "react";
 import Modal from "../../../components/modal/Modal";
-import { Box } from "@mui/system";
+import { IUser } from "../../../shared/types/user";
+import { formatImage } from "../../../shared/utils/formatImage";
 import EditPerfil from "./editar/EditPerfil";
+import { InfosPerfil } from "./styles";
+import { useAuth } from "../../../shared/hooks/auth";
 
 interface props {
   data: IUser;
@@ -16,27 +14,42 @@ const PerfilInfos = ({ data }: props) => {
   const [updatedUser, setUpdatedUser] = useState<IUser | null>(null);
   const [update, setUpdate] = useState<boolean>(false);
 
+  const { user } = useAuth();
+
   function handleModal() {
     setUpdate((show) => (show ? false : true));
   }
 
+  function handleCrete(data: IUser) {
+    setUpdatedUser(() => data);
+    handleModal();
+  }
+
+  const current = updatedUser ?? data;
+
   return (
     <InfosPerfil className="content">
       <Modal handleClose={handleModal} open={update}>
-        <EditPerfil handleCreate={handleModal} currentInfos={data} />
+        <EditPerfil handleCreate={handleCrete} currentInfos={current} />
       </Modal>
       <img
-        src={data.perfilPhoto ? `${baseUrl}/${data.perfilPhoto}` : defaultImage}
+        src={formatImage(current.perfilPhoto)}
         alt="user_image"
         id="user_photo"
       />
       <div className="infos">
-        <h3>{data.name}</h3>
-        <span>{data.email}</span>
-        {data.bio && <p>{data.bio}</p>}
+        <h3>{current.name}</h3>
+        <span>{current.email}</span>
+        {current.bio && (
+          <div id="bio">
+            <span>Bio:</span>
+            <p>{current.bio}</p>
+          </div>
+        )}
       </div>
-
-      <button onClick={handleModal}>Atualizar</button>
+      {current.id === user?.id && (
+        <button onClick={handleModal}>Atualizar</button>
+      )}
     </InfosPerfil>
   );
 };

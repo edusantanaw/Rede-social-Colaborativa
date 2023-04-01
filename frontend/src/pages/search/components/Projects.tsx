@@ -14,7 +14,10 @@ const Projects = ({ name }: props) => {
     url: `/project/search/${name}`,
     dependeces: [name],
   });
-  return <div>User</div>;
+  console.log(error)
+
+  console.log(data);
+  return <div>{data && data.map((item) => <li>{item.name}</li>)}</div>;
 };
 
 export default Projects;

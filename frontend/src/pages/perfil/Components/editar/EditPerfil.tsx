@@ -13,7 +13,7 @@ import { userKey } from "../../../../constants/keys";
 
 interface props {
   currentInfos: IUser;
-  handleCreate: (data: any) => void;
+  handleCreate: (data: IUser) => void;
 }
 
 const darkTheme = createTheme({
@@ -57,9 +57,8 @@ const EditPerfil = ({ currentInfos, handleCreate }: props) => {
       formData,
       makeOptions()
     );
-    handleCreate(response.data);
-
     localStorage.setItem(userKey, JSON.stringify(response.data));
+    handleCreate(response.data);
   };
 
   const formik = useFormik({
@@ -117,7 +116,8 @@ const EditPerfil = ({ currentInfos, handleCreate }: props) => {
           color="secondary"
           label="Bio"
           id="bio"
-          ref={bioRef}
+          defaultValue={currentInfos.bio}
+          inputRef={bioRef}
         />
       </ThemeProvider>
       <input type="submit" />

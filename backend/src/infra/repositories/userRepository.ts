@@ -1,5 +1,4 @@
-import { User } from "../../domain/entities/user";
-import { IUser } from "../../types/user";
+import { User } from "../../domain/entities/user";import { IUser } from "../../types/user";
 import { prisma, user } from "../prisma";
 
 export class UserRepository {
