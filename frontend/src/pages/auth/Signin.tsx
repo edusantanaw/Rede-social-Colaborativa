@@ -14,6 +14,7 @@ const darkTheme = createTheme({
 const Signin = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const rememberRef = useRef<HTMLInputElement | null>(null);
 
   const { handleAuth, error } = useAuth();
 
@@ -23,11 +24,11 @@ const Signin = () => {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log("submit");
+    const remember = rememberRef.current!.checked;
     if (emailRef.current && passwordRef.current) {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
-      await handleAuth({ email, password }, "/signin");
+      await handleAuth({ email, password, remember }, "/signin");
     }
   }
 
@@ -60,6 +61,7 @@ const Signin = () => {
                 size="small"
                 sx={{ fontSize: "0.3em" }}
                 color="secondary"
+                inputRef={rememberRef}
               />
             }
             label="Manter-me logado"

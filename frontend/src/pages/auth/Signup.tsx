@@ -1,12 +1,18 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {
-  Checkbox, createTheme, FormControlLabel, TextField, ThemeProvider, Typography
+  Checkbox,
+  createTheme,
+  FormControlLabel,
+  TextField,
+  ThemeProvider,
+  Typography,
 } from "@mui/material";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../shared/hooks/auth";
 import { userSchema } from "../../shared/validation/user";
 import { Container, Form } from "./styles";
+import { useRef } from "react";
 
 const darkTheme = createTheme({
   palette: {
@@ -14,21 +20,24 @@ const darkTheme = createTheme({
   },
 });
 
+const initialValues = {
+  email: "",
+  name: "",
+  password: "",
+};
+
 const Signup = () => {
   const { handleAuth, error } = useAuth();
 
-  const initialValues = {
-    email: "",
-    name: "",
-    password: "",
-  };
+  const rememberRef = useRef<HTMLInputElement | null>(null);
 
   async function handleSubmit(values: {
     email: string;
     password: string;
     name: string;
   }) {
-    await handleAuth(values, "/signup");
+    const remember = rememberRef.current!.checked;
+    await handleAuth({ ...values, remember }, "/signup");
   }
 
   const formik = useFormik({
@@ -85,6 +94,7 @@ const Signup = () => {
                 size="small"
                 sx={{ fontSize: "0.3em" }}
                 color="secondary"
+                inputRef={rememberRef}
               />
             }
             label="Manter-me logado"

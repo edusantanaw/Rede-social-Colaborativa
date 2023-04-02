@@ -8,5 +8,5 @@ type apiResponse = {
 
 export async function authService<T>(data: T, url: string) {
     const response = await Api.post<apiResponse>(url, data);
-    return response;
+    return response.data;
 }

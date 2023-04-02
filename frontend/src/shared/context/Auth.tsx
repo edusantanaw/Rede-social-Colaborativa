@@ -4,11 +4,20 @@ import { authService } from "../../services/auth";
 import { IAuthContext } from "../types/auth";
 import { IUser } from "../types/user";
 
-
 export const AuthContext = createContext({} as IAuthContext);
 
 type props = {
   children: React.ReactNode;
+};
+
+type storage = {
+  user: IUser;
+  token: string;
+  remember: boolean;
+};
+
+type IRemember = {
+  remember: boolean;
 };
 
 export function AuthProvider({ children }: props) {
@@ -25,17 +34,12 @@ export function AuthProvider({ children }: props) {
     }
   }, []);
 
-  function makeStorage(user: any, token: string) {
-    localStorage.setItem(tokenKey, token);
-    localStorage.setItem(userKey, JSON.stringify(user));
-  }
-
-  async function handleAuth<T>(data: T, url: string) {
+  async function handleAuth<T extends IRemember>(data: T, url: string) {
     try {
       const response = await authService(data, url);
-      makeStorage(response.data.user, response.data.token);
-      setToken(response.data.token);
-      setUser(response.data.user);
+      makeStorage({ ...response, remember: data.remember });
+      setToken(response.token);
+      setUser(response.user);
     } catch (err) {
       const reponseError = err as { response: { data: string } };
       setError(reponseError.response.data);
@@ -43,10 +47,9 @@ export function AuthProvider({ children }: props) {
   }
 
   function logout() {
-    setToken(()=> null);
-    setUser(()=> null);
-    localStorage.removeItem(tokenKey);
-    localStorage.removeItem(userKey);
+    setToken(() => null);
+    setUser(() => null);
+    removeStorage();
   }
 
   return (
@@ -54,4 +57,21 @@ export function AuthProvider({ children }: props) {
       {children}
     </AuthContext.Provider>
   );
+}
+
+function makeStorage(data: storage) {
+  if (data.remember) {
+    localStorage.setItem(userKey, JSON.stringify(data.user));
+    localStorage.setItem(tokenKey, data.token);
+    return;
+  }
+  sessionStorage.setItem(userKey, JSON.stringify(data.user));
+  sessionStorage.setItem(userKey, data.token);
+}
+
+function removeStorage() {
+  localStorage.removeItem(tokenKey);
+  localStorage.removeItem(userKey);
+  sessionStorage.removeItem(tokenKey);
+  sessionStorage.removeItem(userKey);
 }

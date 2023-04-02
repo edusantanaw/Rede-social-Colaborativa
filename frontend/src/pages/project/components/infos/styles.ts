@@ -4,10 +4,9 @@ export const InfosContainer = styled.div`
   color: #fff;
   padding: 3em 1em;
   width: 100%;
-  display: flex;
-  justify-content: center;
   .project {
     display: flex;
+    margin-inline: auto;
     padding: 2em;
     color: #fff;
     gap: 2em;

@@ -18,6 +18,10 @@ export const GlobalStyle = createGlobalStyle`
     body {
         background-color: rgb(25, 25, 25);
     }
+
+    html, body {
+        min-height: 100vh;
+    }
 `;
 
 

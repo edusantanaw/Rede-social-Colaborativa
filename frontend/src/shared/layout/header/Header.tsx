@@ -46,7 +46,7 @@ const Header = () => {
 
   function handleShowInvites() {
     setShowPerfil(() => false);
-    setShowMessages((show) => (show ? false : true));
+    setShowMessages(() =>  false);
     setShowInvite((show) => (show ? false : true));
   }
 

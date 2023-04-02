@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const InfosPerfil = styled.div`
-  width: 44%;
+  width: 37em;
   border-radius: 10px;
   background-color: rgb(15, 15, 15);
   color: #fff;
