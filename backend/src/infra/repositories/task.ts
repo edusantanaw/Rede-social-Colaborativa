@@ -1,5 +1,4 @@
-import { Task } from "../../domain/entities/task";
-import { ITask, taskLoad } from "../../types/task";
+import { Task } from "../../domain/entities/task";import { ITask, taskLoad } from "../../types/task";
 import { task } from "../prisma";
 
 export class TaskRepository {
@@ -10,6 +9,7 @@ export class TaskRepository {
         title: data.title,
         description: data.description,
         projectId: data.projectId,
+        assignedTo: data.assignedTo,
       },
     });
     return newTask as ITask;
@@ -22,7 +22,7 @@ export class TaskRepository {
         AND: [
           { projectId: data.projectId },
           { done: data.done },
-          {assignedTo: data.assignedTo},
+          { assignedTo: data.assignedTo },
           {
             createdAt: {
               gt: data.afterDate,

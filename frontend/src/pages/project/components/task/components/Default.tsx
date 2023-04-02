@@ -10,17 +10,24 @@ interface props {
 
 const DefaulTask = ({ todo = [], done = [], isLoading }: props) => {
   const tasksSkelleton = [1, 2];
+
+  function Loading() {
+    return tasksSkelleton.map((item, i) => (
+      <li key={i}>
+        <ItemSkeleton />
+      </li>
+    ));
+  }
+
+  
+
+
   return (
     <TodoContainer>
       <div className="todo">
         <span>A fazer</span>
         <ul>
-          {isLoading &&
-            tasksSkelleton.map((item, i) => (
-              <li key={i}>
-                <ItemSkeleton />
-              </li>
-            ))}
+          {isLoading && Loading()}
           {todo &&
             todo.map((item, i) => (
               <Card key={i}>
@@ -36,12 +43,7 @@ const DefaulTask = ({ todo = [], done = [], isLoading }: props) => {
       <div className="done">
         <span>Feito</span>
         <ul>
-          {isLoading &&
-            tasksSkelleton.map((item, i) => (
-              <li key={i}>
-                <ItemSkeleton />
-              </li>
-            ))}
+          {isLoading && Loading()}
           <Card>
             <h2>Titulo da tarefa</h2>
             <p>Descriçao da tarefa</p>

@@ -22,6 +22,7 @@ type createTask = {
   title: string;
   description: string;
   projectId: string;
+  assignedTo?: string;
 };
 
 export async function createTask(data: createTask) {

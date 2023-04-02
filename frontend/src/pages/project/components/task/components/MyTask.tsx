@@ -22,6 +22,8 @@ const MyTask = ({ newTask }: props) => {
     dependeces: [newTask],
   });
 
+  console.log(todo)
+
   const { data: done } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=true&assignedTo=${user?.id}`,
   });

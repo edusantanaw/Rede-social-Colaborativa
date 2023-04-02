@@ -8,6 +8,7 @@ export const NewTaskModal = styled.form`
   box-shadow: 0 0 3px 1px #555;
   display: flex;
   flex-direction: column;
+  gap: 0.8em;
   .title {
     padding-bottom: 1em;
     label {
@@ -37,7 +38,7 @@ export const NewTaskModal = styled.form`
   }
 
   #editor {
-    height: 20em;
+    height: 14em;
     padding: 0.5em 0em;
     color: #fff;
     #editor_cp {

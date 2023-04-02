@@ -14,6 +14,7 @@ export class CreateTaskUsecase implements ICreateUsecase<ITaskSchema, ITask> {
   ) {}
 
   public async execute(data: ITaskSchema): Promise<ITask> {
+    console.log(data);
     const projectExists = !!(await this.projectRepository.loadById(
       data.projectId
     ));
