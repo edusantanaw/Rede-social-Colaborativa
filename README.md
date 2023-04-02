@@ -9,13 +9,18 @@ Uma rede social para trabalhos colaborativos, consiste em uma plataforma online 
 
 ![alt text](./imgs/tasks.png)
 
-![alt text](./imgs/auth.png)
+![alt text](./imgs/signin.png)
 
-![alt text](./imgs/home.png)
+![alt text](./imgs/home_c.png)
 
 ![alt text](./imgs/conversa.png)
 
 ![alt text](./imgs/perfil.png)
+
+![alt text](./imgs/search.png)
+
+![alt text](./imgs/messages.png)
+
 
 ## Funcionalidades
 * Autenticação: O usuario pode se autenticar atravez do login ou criação de conta.

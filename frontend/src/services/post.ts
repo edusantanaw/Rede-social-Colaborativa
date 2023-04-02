@@ -14,7 +14,9 @@ export async function creaetPost(data: FormData) {
 }
 
 export async function loadFeed(page: number) {
-  const user = JSON.parse(localStorage.getItem(userKey) || "{}");
+  const user = JSON.parse(
+    localStorage.getItem(userKey) || sessionStorage.getItem(userKey) || "{}"
+  );
   const response = await Api.get(
     `/feed/${user.id}?skip=${page}`,
     makeOptions()
@@ -41,9 +43,12 @@ export async function addOrRemoveLike(postId: string, userId: string) {
   return response.data;
 }
 
-
 export async function createComment(data: IComment) {
-  const response =await Api.post<IComment>("/post/comment", data, makeOptions())
+  const response = await Api.post<IComment>(
+    "/post/comment",
+    data,
+    makeOptions()
+  );
   return response.data;
 }
 
@@ -51,11 +56,14 @@ type comment = {
   content: string;
   userId: string;
   perfilPhoto?: string;
-  name: string
-}
+  name: string;
+};
 
 export async function loadComments(id: string) {
-    const response = await Api.get<comment[]>("/post/comment/"+id, makeOptions())
-    console.log(response)
-    return response.data;
+  const response = await Api.get<comment[]>(
+    "/post/comment/" + id,
+    makeOptions()
+  );
+  console.log(response);
+  return response.data;
 }

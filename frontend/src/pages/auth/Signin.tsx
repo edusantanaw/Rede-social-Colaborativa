@@ -4,13 +4,16 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../shared/hooks/auth";
 import { Container, Form } from "./styles";
+import Austronaut from "../../components/animations/Austronaut";
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    secondary: {
+      main: "#d84f53",
+    },
   },
 });
-
 const Signin = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -34,6 +37,7 @@ const Signin = () => {
 
   return (
     <Container>
+       <Austronaut w="40%"  />
       <Form onSubmit={handleSubmit}>
         <ThemeProvider theme={darkTheme}>
           <div className="icon">

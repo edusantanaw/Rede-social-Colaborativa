@@ -3,6 +3,7 @@ import { FlexSection } from "../../styles/Global";
 
 export const Container = styled(FlexSection)`
   background-color: rgb(25, 25, 25);
+  justify-content: space-evenly;
 `;
 
 export const Form = styled.form`
@@ -30,16 +31,16 @@ export const Form = styled.form`
   }
 
   a {
-    color: #7b1fa2;
+    color: #d84f53;
     transition: 0.2s;
     &:hover {
-      color: #7b1fb2;
+      color: #d84f5c;
       text-decoration: underline;
     }
   }
 
   input[type="submit"] {
-    background-color: #7b1fa2;
+    background-color: #d84f53;
     height: 2.8em;
     width: 100%;
     color: #fff;

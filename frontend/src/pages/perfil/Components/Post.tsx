@@ -3,7 +3,8 @@ import { useInfiniteScroll } from "../../../shared/hooks/useInfiniteScroll";
 import { loadPostByUser } from "../../../services/post";
 import { IPost } from "../../../shared/types/post";
 import PostItem from "../../../components/post/Post";
-import {Skeleton} from "@mui/material"
+import { Skeleton } from "@mui/material";
+import NoContent from "../../../components/animations/NoContent";
 
 type props = {
   id: string;
@@ -24,19 +25,23 @@ const Post = ({ id }: props) => {
   return (
     <div className="posts">
       <ul id="preload">
-        {loading && item.map((i, k) => (
-          <Skeleton
-            key={k}
-            variant="rectangular"
-            width="37em"
-            height="10em"
-            sx={{ borderRadius: "8px", background: "rgb(10, 10, 10)" }}
-          />
-        ))}
+        {loading &&
+          item.map((i, k) => (
+            <Skeleton
+              key={k}
+              variant="rectangular"
+              width="37em"
+              height="10em"
+              sx={{ borderRadius: "8px", background: "rgb(10, 10, 10)" }}
+            />
+          ))}
       </ul>
       <ul>
-        {list.length > 0 &&
-          list.map((item, i) => <PostItem key={i} {...item} />)}
+        {list.length > 0 ? (
+          list.map((item, i) => <PostItem key={i} {...item} />)
+        ) : (
+          <NoContent />
+        )}
       </ul>
       <div ref={postEndRef} />
     </div>

@@ -50,6 +50,10 @@ export const ChatContainer = styled.div`
       margin-left: 3.7em;
     }
   }
+
+  #robot {
+    align-self: center;
+  }
 `;
 
 export const MessageContainer = styled.li`
@@ -65,7 +69,7 @@ export const MessageContainer = styled.li`
   }
   span {
     font-size: 1.1em;
-    color: violet;
+    color: rgb(156, 39, 176);
     letter-spacing: 1.5px;
   }
 `;

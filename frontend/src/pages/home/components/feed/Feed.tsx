@@ -4,6 +4,8 @@ import { useInfiniteScroll } from "../../../../shared/hooks/useInfiniteScroll";
 import { loadFeed } from "../../../../services/post";
 import { Skeleton } from "@mui/material";
 import { FeedContainer } from "./styles";
+import Austronaut from "../../../../components/animations/Austronaut";
+import NoContent from "../../../../components/animations/NoContent";
 
 interface props {
   newPost: any;
@@ -34,14 +36,16 @@ const Feed = ({ newPost }: props) => {
               variant="rectangular"
               width="37em"
               height="10em"
-              sx={{borderRadius: "8px", background: "rgb(10, 10, 10)"}}
+              sx={{ borderRadius: "8px", background: "rgb(10, 10, 10)" }}
             />
           ))}
         </ul>
-      ) : (
+      ) : list && list.length !== 0 ? (
         <ul>
           {list.length > 0 && list.map((item, i) => <Post key={i} {...item} />)}
         </ul>
+      ) : (
+        <NoContent />
       )}
       <div className="intersect" ref={intersectRef} />
     </FeedContainer>

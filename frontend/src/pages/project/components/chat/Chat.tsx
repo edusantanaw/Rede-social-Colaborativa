@@ -6,6 +6,7 @@ import { IMessage } from "../../../../shared/types/message";
 import socket from "../../../../shared/utils/socket";
 import MessageItem from "./MessageItem";
 import { ChatContainer } from "./style";
+import Message from "../../../../components/animations/Message";
 
 const Chat = () => {
   const { id } = useParams<{ id: string }>();
@@ -45,13 +46,16 @@ const Chat = () => {
   return (
     <ChatContainer>
       <ul className="messages">
-        {messages.length > 0 &&
+        {messages.length > 0 ? (
           messages.map((message, i, arr) => {
-           if(i > 0 && arr[i].senderId === arr[i - 1].senderId) {
-              return <p id="same_user">{message.message}</p>
-           }
+            if (i > 0 && arr[i].senderId === arr[i - 1].senderId) {
+              return <p id="same_user">{message.message}</p>;
+            }
             return <MessageItem message={message} key={i} />;
-          })}
+          })
+        ) : (
+          <Message w="65%" />
+        )}
       </ul>
       <div className="input">
         <input

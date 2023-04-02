@@ -26,8 +26,7 @@ export function AuthProvider({ children }: props) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem(tokenKey);
-    const user = localStorage.getItem(userKey);
+    const { token, user } = getStorage();
     if (token && user) {
       setToken(token);
       setUser(JSON.parse(user));
@@ -37,9 +36,9 @@ export function AuthProvider({ children }: props) {
   async function handleAuth<T extends IRemember>(data: T, url: string) {
     try {
       const response = await authService(data, url);
-      makeStorage({ ...response, remember: data.remember });
       setToken(response.token);
       setUser(response.user);
+      makeStorage({ ...response, remember: data.remember });
     } catch (err) {
       const reponseError = err as { response: { data: string } };
       setError(reponseError.response.data);
@@ -60,13 +59,14 @@ export function AuthProvider({ children }: props) {
 }
 
 function makeStorage(data: storage) {
+  console.log(data);
   if (data.remember) {
     localStorage.setItem(userKey, JSON.stringify(data.user));
     localStorage.setItem(tokenKey, data.token);
     return;
   }
   sessionStorage.setItem(userKey, JSON.stringify(data.user));
-  sessionStorage.setItem(userKey, data.token);
+  sessionStorage.setItem(tokenKey, data.token);
 }
 
 function removeStorage() {
@@ -74,4 +74,11 @@ function removeStorage() {
   localStorage.removeItem(userKey);
   sessionStorage.removeItem(tokenKey);
   sessionStorage.removeItem(userKey);
+}
+
+function getStorage() {
+  const token =
+    localStorage.getItem(tokenKey) ?? sessionStorage.getItem(tokenKey);
+  const user = localStorage.getItem(userKey) ?? sessionStorage.getItem(userKey);
+  return { token, user };
 }

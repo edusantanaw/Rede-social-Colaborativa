@@ -13,10 +13,14 @@ import { useAuth } from "../../shared/hooks/auth";
 import { userSchema } from "../../shared/validation/user";
 import { Container, Form } from "./styles";
 import { useRef } from "react";
+import Austronaut from "../../components/animations/Austronaut";
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    secondary: {
+      main: "#d84f53",
+    },
   },
 });
 
@@ -48,6 +52,7 @@ const Signup = () => {
 
   return (
     <Container>
+      <Austronaut w="40%" />
       <Form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={darkTheme}>
           <div className="icon">
@@ -58,7 +63,7 @@ const Signup = () => {
             variant="filled"
             label="Name"
             fullWidth
-            color="warning"
+            color="secondary"
             id="name"
             value={formik.values.name}
             error={formik.touched.name && Boolean(formik.errors.name)}
