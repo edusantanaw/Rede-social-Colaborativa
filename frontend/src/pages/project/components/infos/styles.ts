@@ -2,16 +2,14 @@ import styled from "styled-components";
 
 export const InfosContainer = styled.div`
   color: #fff;
-  padding: 3em 1em;
+  padding: 1em;
   width: 100%;
   .project {
     display: flex;
-    margin-inline: auto;
     padding: 2em;
     color: #fff;
     gap: 2em;
     width: 60%;
-    background: rgb(15, 15, 15);
     border-radius: 20px;
     img {
       width: 15em;

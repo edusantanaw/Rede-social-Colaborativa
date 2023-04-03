@@ -24,7 +24,8 @@ const Chat = () => {
       const response = await loadMessages(id!);
       setMessages(() => response);
     })();
-  }, []);
+    
+  }, [id]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {

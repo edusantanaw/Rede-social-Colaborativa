@@ -18,11 +18,12 @@ const Geral = ({ newTask }: props) => {
     isLoading,
   } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=false`,
-    dependeces: [newTask],
+    dependeces: [newTask, id],
   });
 
   const { data: done } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=true`,
+    dependeces: [id]
   });
 
   return <DefaulTask done={done} todo={todo} isLoading={isLoading} />;

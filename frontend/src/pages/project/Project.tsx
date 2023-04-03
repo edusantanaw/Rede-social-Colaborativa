@@ -8,10 +8,12 @@ import Chat from "./components/chat/Chat";
 import Nav from "./components/nav/Nav";
 import { ProjectContainer, Projects } from "./styles";
 import { Skeleton } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Project = () => {
   const { id } = useParams<{ id: string }>();
   const [CurrentItem, setCurrentItem] = useState<JSX.Element>(<Chat />);
+  const [currentProject, setCurrentProject] = useState<number>(0);
 
   const { user } = useAuth();
 
@@ -39,8 +41,13 @@ const Project = () => {
         ) : (
           data &&
           data.map((project, i) => (
-            <li key={i}>
-              <img src={formatImage(project.perfilImage)} alt="project_image" />
+            <li key={i} className={project.id === id ?  "current" : ""}>
+              <Link to={`/project/${project.id}`}>
+                <img
+                  src={formatImage(project.perfilImage)}
+                  alt="project_image"
+                />
+              </Link>
             </li>
           ))
         )}

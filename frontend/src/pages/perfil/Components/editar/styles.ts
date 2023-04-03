@@ -8,7 +8,9 @@ export const UppdateContainer = styled.form`
   padding: 1em;
   display: flex;
   flex-direction: column;
-    gap: 1em;
+  box-shadow: 0 0 1px 1px rgb(30, 30, 30);
+  border-radius: 5px;
+  gap: 1em;
   .img {
     display: flex;
     align-items: center;

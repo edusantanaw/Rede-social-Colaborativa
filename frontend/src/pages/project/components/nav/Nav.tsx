@@ -23,12 +23,10 @@ type IProject = {
 
 const Nav = ({ id, handleTab }: props) => {
   const [selected, setSelected] = useState<string>("chat");
-  const { data } = useFetching<IProject>({
+  const { data, error } = useFetching<IProject>({
     url: `/project/${id}`,
-    dependeces: [],
-  });
-
-  const handleSelect = (data: JSX.Element, type: string) => {
+    dependeces: [id],
+  });  const handleSelect = (data: JSX.Element, type: string) => {
     handleTab(data);
     setSelected(() => type);
   };

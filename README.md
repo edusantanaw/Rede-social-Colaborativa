@@ -6,11 +6,12 @@ Uma rede social para trabalhos colaborativos, consiste em uma plataforma online 
 ## Telas
 
 ![alt text](./imgs/p_chat.png)
-![alt text](./imgs/p_chat.png)
 
 ![alt text](./imgs/tasks.png)
 
 ![alt text](./imgs/signin.png)
+
+![alt text](./imgs/post.png)
 
 ![alt text](./imgs/home_c.png)
 

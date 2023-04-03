@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
-import defaultImage from "../../shared/assets/default.jpg";
+import { Link } from "react-router-dom";
+import { addOrRemoveLike } from "../../services/post";
 import { useAuth } from "../../shared/hooks/auth";
 import { useFetching } from "../../shared/hooks/useFetching";
-import { addOrRemoveLike } from "../../services/post";
 import { IPost } from "../../shared/types/post";
+import { formatImage } from "../../shared/utils/formatImage";
 import PostModal from "./PostModal";
 import { PostItem } from "./style";
-import { formatImage } from "../../shared/utils/formatImage";
-import { Link } from "react-router-dom";
 
 const Post = (post: IPost) => {
-  const { id, userId, name, content, image, perfilPhoto } = post;
+  const { id, content, image } = post;
   const [liked, setLiked] = useState<boolean>(false);
   const [totLikes, setTotLikes] = useState<number>(0);
   const [showPostModal, setShowPostModal] = useState<boolean>(false);
@@ -26,7 +25,6 @@ const Post = (post: IPost) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       if (data.includes(user!.id)) {
         setLiked(() => true);
         setTotLikes(data.length);
@@ -46,11 +44,9 @@ const Post = (post: IPost) => {
   }
 
   function handlePostModal() {
-    console.log(showPostModal);
     setShowPostModal((show) => (show ? false : true));
   }
 
-  console.log(post)
   return (
     <>
       {showPostModal && <PostModal post={post} handleModal={handlePostModal} />}

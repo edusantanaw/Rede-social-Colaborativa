@@ -1,4 +1,3 @@
-import React from "react";
 import Lottie from "lottie-react";
 import message from "../../shared/assets/message.json";
 

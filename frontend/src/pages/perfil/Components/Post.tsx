@@ -18,7 +18,6 @@ const Post = ({ id }: props) => {
     options: id,
     dependeces: undefined,
   });
-  console.log(list);
 
   const item = [1, 2, 3, 4];
 

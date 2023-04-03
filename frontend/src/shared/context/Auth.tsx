@@ -59,7 +59,6 @@ export function AuthProvider({ children }: props) {
 }
 
 function makeStorage(data: storage) {
-  console.log(data);
   if (data.remember) {
     localStorage.setItem(userKey, JSON.stringify(data.user));
     localStorage.setItem(tokenKey, data.token);

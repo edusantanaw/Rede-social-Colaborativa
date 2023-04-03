@@ -1,7 +1,6 @@
-import React from "react";
 import Lottie from "lottie-react";
-import Fighting from "../../shared/assets/astronaut.json";
 import styled from "styled-components";
+import Fighting from "../../shared/assets/astronaut.json";
 
 const Container = styled.div`
   width: 37em;

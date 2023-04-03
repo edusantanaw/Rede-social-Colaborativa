@@ -17,7 +17,10 @@ type Project = {
 
 const Infos = () => {
   const { id } = useParams<{ id: string }>();
-  const { data, error } = useFetching<Project>({ url: `/project/${id}` });
+  const { data, error } = useFetching<Project>({
+    url: `/project/${id}`,
+    dependeces: [id],
+  });
 
   function formatData(data: string) {
     const yymmdd = data.split("T")[0];

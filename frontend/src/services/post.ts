@@ -18,10 +18,9 @@ export async function loadFeed(page: number) {
     localStorage.getItem(userKey) || sessionStorage.getItem(userKey) || "{}"
   );
   const response = await Api.get(
-    `/feed/${user.id}?skip=${page}`,
+    `/feed/${user.id}?skip=${page}&take=4`,
     makeOptions()
   );
-  console.log("feed:", response.data);
   return response.data as IPost[];
 }
 
@@ -39,7 +38,6 @@ export async function addOrRemoveLike(postId: string, userId: string) {
     { postId },
     makeOptions()
   );
-  console.log(response);
   return response.data;
 }
 
@@ -64,6 +62,5 @@ export async function loadComments(id: string) {
     "/post/comment/" + id,
     makeOptions()
   );
-  console.log(response);
   return response.data;
 }

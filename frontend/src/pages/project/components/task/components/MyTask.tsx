@@ -19,13 +19,14 @@ const MyTask = ({ newTask }: props) => {
     isLoading,
   } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=false&assignedTo=${user?.id}`,
-    dependeces: [newTask],
+    dependeces: [newTask, id],
   });
 
-  console.log(todo)
+  console.log(todo);
 
   const { data: done } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=true&assignedTo=${user?.id}`,
+    dependeces: [id],
   });
 
   return <DefaulTask done={done} todo={todo} isLoading={isLoading} />;

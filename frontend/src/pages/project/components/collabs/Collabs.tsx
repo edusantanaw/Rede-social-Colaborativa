@@ -15,6 +15,7 @@ const Collabs = () => {
   const { id } = useParams<{ id: string }>();
   const { data, error } = useFetching<IUser[]>({
     url: `/project/collabs/${id}`,
+    dependeces: [id]
   });
 
   function handleShowInvite() {

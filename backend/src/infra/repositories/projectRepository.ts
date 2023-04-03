@@ -1,5 +1,4 @@
-import { prisma, project } from "../prisma";
-import { Project } from "../../domain/entities/project";
+import { prisma, project } from "../prisma";import { Project } from "../../domain/entities/project";
 import { IProject } from "../../types/project";
 
 export class ProjectRepository {
@@ -16,14 +15,13 @@ export class ProjectRepository {
   }
 
   public async loadById(id: string) {
-    const maybeProject = await prisma.$queryRaw`
+    const maybeProject = (await prisma.$queryRaw`
       select project.id, users.id as "userId", project.name, users.name as "ownerName", "perfilImage", "perfilPhoto", 
-      count(collaborators."userId")::numeric::integer as "qtdCollabs",project."createdAt", project.description from project inner join users
-      on users.id = project."ownerId" inner join collaborators 
-      on collaborators."projectId" = project.id 
-      where project.id = ${id}
+      count(collaborators."userId")::numeric::integer as "qtdCollabs",project."createdAt", project.description 
+      from project inner join users on users.id = project."ownerId" left join collaborators 
+      on collaborators."projectId" = project.id where project.id = ${id}
       group by project.id, users.id,"perfilImage", "perfilPhoto", project.name, users.name,project.description;
-      ` as IProject[];
+      `) as IProject[];
     return maybeProject[0];
   }
 
@@ -43,5 +41,4 @@ export class ProjectRepository {
      `) as IProject[];
     return projects;
   }
-
 }

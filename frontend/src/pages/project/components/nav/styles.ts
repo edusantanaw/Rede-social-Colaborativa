@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const NavContainer = styled.div`
   width: 14%;
-  max-height: 89.5vh;
+  max-height:90vh;
   background-color: rgb(15, 15, 15);
   position: sticky;
-  top: 4.33em;
+  top: 4.1em;
   .project {
     padding: 0.6em;
     text-align: center;

@@ -123,6 +123,7 @@ export const PostModalContainer = styled.div`
       width: 20em;
       position: relative;
       padding: 1em;
+      gap: 0.2em;
       .new_comment {
         width: 100%;
         position: absolute;

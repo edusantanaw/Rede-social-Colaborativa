@@ -31,7 +31,6 @@ const EditPerfil = ({ currentInfos, handleCreate }: props) => {
 
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
     const files = e.target.files;
-    console.log(files);
     const reader = new FileReader();
     if (files) {
       for (let item of files) {
@@ -102,7 +101,7 @@ const EditPerfil = ({ currentInfos, handleCreate }: props) => {
         <TextField
           variant="filled"
           color="secondary"
-          label="Nome"
+          label="Email"
           id="email"
           fullWidth
           value={formik.values.email}
