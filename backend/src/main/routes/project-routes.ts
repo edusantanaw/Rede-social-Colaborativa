@@ -7,7 +7,6 @@ import { makeLoadProjectByIdController } from "../factories/controllers/project/
 import { makeNewProjectController } from "../factories/controllers/project/createProject";
 import { makeCreateTaskController } from "../factories/controllers/project/createTask";
 import { makeLoadTaskControlle } from "../factories/controllers/project/loadTask";
-import { makeAcceptTaskController } from "../factories/controllers/project/acceptTask";
 import { makeLoadAllMessagesController } from "../factories/controllers/project/loadAllMessages";
 import { makeLoadProjectByName } from "../factories/controllers/project/loadByName";
 import { makeLoadUserProjectController } from "../factories/controllers/project/loadUserProject";
@@ -21,10 +20,6 @@ export default function (router: Router) {
     userAdapter.make(makeInviteCollaboratorController())
   );
   router.post("/project/task", userAdapter.make(makeCreateTaskController()));
-  router.patch(
-    "/project/task/:taskId",
-    userAdapter.make(makeAcceptTaskController())
-  );
   router.get(
     "/project/user/:id",
     userAdapter.make(makeLoadUserProjectController())

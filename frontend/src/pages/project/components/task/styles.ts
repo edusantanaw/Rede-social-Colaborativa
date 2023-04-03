@@ -50,6 +50,7 @@ export const Card = styled.li`
   height: 8em;
   padding: 0.6em;
   border-radius: 5px;
+  cursor:pointer;
 
   h2 {
     font-weight: 500;
