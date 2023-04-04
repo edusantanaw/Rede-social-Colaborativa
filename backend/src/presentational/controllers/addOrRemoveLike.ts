@@ -15,8 +15,8 @@ export class AddOrRemovePostLikeController implements Controller {
 
   public async handle({ postId, userId }: data): Promise<httpResponse> {
     try {
-      if (!postId) return badRequest("Post id is required!");
-      if (!userId) return badRequest("User id is required!");
+      if (!postId) return badRequest("O id do post é necessario!");
+      if (!userId) return badRequest("O id do usuario é necessario!");
       await this.addOrRemovePostLikeUsecase.execute({ postId, userId });
       return ok(true);
     } catch (err) {

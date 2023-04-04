@@ -12,7 +12,7 @@ export class ForgetPasswordController implements Controller {
 
   public async handle({ email }: data): Promise<httpResponse> {
     try {
-      if (!email) return badRequest("Email is required!");
+      if (!email) return badRequest("O email é necessario!");
       const cod = await this.forgetPasswordUsecase.execute(email);
       return ok(cod);
     } catch (err) {

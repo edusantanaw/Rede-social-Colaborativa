@@ -1,5 +1,4 @@
-import { IAcceptOrDeclineInviteUsecase } from "../../domain/usecases/acceptOrDeclineInvite";
-import { Controller } from "../../main/adapter/adapter";
+import { IAcceptOrDeclineInviteUsecase } from "../../domain/usecases/acceptOrDeclineInvite";import { Controller } from "../../main/adapter/adapter";
 import { badRequest, error, ok } from "../helpers/http-response";
 
 type data = {
@@ -13,10 +12,9 @@ export class AcceptOrDeclineInviteController implements Controller {
   ) {}
   public async handle({ inviteId, accepted }: data) {
     try {
-      console.log(inviteId, accepted);
-      if (!inviteId) return badRequest("Invite id is required!");
+      if (!inviteId) return badRequest("O id do convite é necessario!");
       if (typeof accepted !== "boolean")
-        return badRequest("Accepted is required!");
+        return badRequest("O status é necessario!");
       await this.acceptOrDeclineInviteUsecase.update(inviteId, accepted);
       return ok(true);
     } catch (err) {

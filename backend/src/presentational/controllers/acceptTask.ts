@@ -12,8 +12,8 @@ export class AcceptTaskController implements Controller {
   }): Promise<httpResponse> {
     const { taskId, userId } = data;
     try {
-      if (!taskId) return badRequest("Task id is required!");
-      if (!userId) return badRequest("User id is required!");
+      if (!taskId) return badRequest("O id da task é necessario!");
+      if (!userId) return badRequest("O id do usuario é necessario!");
       await this.acceptTaskUsecase.execute(userId, taskId);
       return ok(true);
     } catch (err) {

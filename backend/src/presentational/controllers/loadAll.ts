@@ -11,7 +11,7 @@ export class LoadAll<T> implements Controller {
 
   public async handle({ id }: data) {
     try {
-      if (!id) return badRequest("id is required!");
+      if (!id) return badRequest("id é necessario!");
       const invites = await this.loadAllUsecase.load(id);
       if (!invites) return noContent();
       return ok(invites);

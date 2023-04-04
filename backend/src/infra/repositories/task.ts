@@ -50,4 +50,14 @@ export class TaskRepository {
       },
     });
   }
+
+  public async finish(dtask: ITask) {
+    const updatedTask = await task.update({
+      where: {
+        id: dtask.id,
+      },
+      data: dtask,
+    });
+    return updatedTask as ITask;
+  }
 }

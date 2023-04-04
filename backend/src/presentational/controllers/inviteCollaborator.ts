@@ -15,8 +15,8 @@ export class InviteCollaboratorController implements Controller {
   public async handle(data: data) {
     try {
       const { invitedId, projectId } = data;
-      if (!invitedId) return badRequest("Invited id is required!");
-      if (!projectId) return badRequest("Project id is required!");
+      if (!invitedId) return badRequest("O id do convite é necessario!");
+      if (!projectId) return badRequest("O id do projeto é necessario!");
       await this.inviteCollaboratorUsecase.invite(data);
       return ok(true);
     } catch (e) {

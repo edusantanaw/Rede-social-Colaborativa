@@ -1,5 +1,4 @@
-import { IAddFollow } from "../../domain/usecases/addFollow";
-import { Controller } from "../../main/adapter/adapter";
+import { IAddFollow } from "../../domain/usecases/addFollow";import { Controller } from "../../main/adapter/adapter";
 import { badRequest, error, ok } from "../helpers/http-response";
 import { httpResponse } from "../protocols/httpResponse";
 
@@ -13,8 +12,8 @@ export class AddFollowController implements Controller {
   public async handle(data: data): Promise<httpResponse> {
     try {
       const { followingId, userId } = data;
-      if (!userId) return badRequest("User id is required!");
-      if (!followingId) return badRequest("Following id is required!");
+      if (!userId) return badRequest("O id do usuario é necessario!");
+      if (!followingId) return badRequest("O id de quem está seguindo é necessario!");
       await this.addFollowUsecase.add(data.userId, data.followingId);
       return ok(true);
     } catch (err) {

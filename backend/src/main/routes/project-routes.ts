@@ -1,4 +1,5 @@
-import { Router } from "express";import { UserAdapter } from "../adapter/auth-adapter";
+import { Router } from "express";
+import { UserAdapter } from "../adapter/auth-adapter";
 import { makeAcceptOrDeclieInviteController } from "../factories/controllers/project/acceptOrDeclineInvite";
 import { makeInviteCollaboratorController } from "../factories/controllers/project/inviteController";
 import { makeLoadCollabsController } from "../factories/controllers/project/loadCollabs";
@@ -10,40 +11,48 @@ import { makeLoadTaskControlle } from "../factories/controllers/project/loadTask
 import { makeLoadAllMessagesController } from "../factories/controllers/project/loadAllMessages";
 import { makeLoadProjectByName } from "../factories/controllers/project/loadByName";
 import { makeLoadUserProjectController } from "../factories/controllers/project/loadUserProject";
+import { makeFinishTaskController } from "../factories/controllers/project/finishTask";
 
-const userAdapter = new UserAdapter();
+const authAdapter = new UserAdapter();
 
 export default function (router: Router) {
-  router.post("/project", userAdapter.make(makeNewProjectController()));
+  router.post("/project", authAdapter.make(makeNewProjectController()));
   router.post(
     "/project/invite/:projectId",
-    userAdapter.make(makeInviteCollaboratorController())
+    authAdapter.make(makeInviteCollaboratorController())
   );
-  router.post("/project/task", userAdapter.make(makeCreateTaskController()));
+  router.post("/project/task", authAdapter.make(makeCreateTaskController()));
   router.get(
     "/project/user/:id",
-    userAdapter.make(makeLoadUserProjectController())
+    authAdapter.make(makeLoadUserProjectController())
   );
   router.get(
     "/projects/invites/:id",
-    userAdapter.make(makeLoadAllInvitesController())
+    authAdapter.make(makeLoadAllInvitesController())
   );
   router.patch(
     "/project/invite/:inviteId",
-    userAdapter.make(makeAcceptOrDeclieInviteController())
+    authAdapter.make(makeAcceptOrDeclieInviteController())
   );
   router.get(
     "/project/collabs/:id",
-    userAdapter.make(makeLoadCollabsController())
+    authAdapter.make(makeLoadCollabsController())
   );
-  router.get("/project/tasks/:projectId", userAdapter.make(makeLoadTaskControlle()));
+  router.get(
+    "/project/tasks/:projectId",
+    authAdapter.make(makeLoadTaskControlle())
+  );
   router.get(
     "/project/messages",
-    userAdapter.make(makeLoadAllMessagesController())
+    authAdapter.make(makeLoadAllMessagesController())
   );
   router.get(
     "/project/search/:name",
-    userAdapter.make(makeLoadProjectByName())
+    authAdapter.make(makeLoadProjectByName())
   );
-  router.get("/project/:id", userAdapter.make(makeLoadProjectByIdController()));
+  router.get("/project/:id", authAdapter.make(makeLoadProjectByIdController()));
+  router.patch(
+    "/project/task/finish/:id",
+    authAdapter.make(makeFinishTaskController())
+  );
 }

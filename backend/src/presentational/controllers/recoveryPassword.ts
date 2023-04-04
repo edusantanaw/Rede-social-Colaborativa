@@ -15,7 +15,7 @@ export class RecoveryPasswordController implements Controller {
     try {
       const { error } = this.validSchema.valid(data);
       if (error) return badRequest(error.message);
-      if(data.password !== data.confirmPassword) return badRequest("Passwords must match!")
+      if(data.password !== data.confirmPassword) return badRequest("As senha deve ser iguais!")
       const token = await this.recoveryPasswordUsecase.execute(data);
       return ok(token);
     } catch (err) {
