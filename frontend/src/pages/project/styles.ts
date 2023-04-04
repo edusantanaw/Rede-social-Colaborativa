@@ -6,7 +6,6 @@ export const ProjectContainer = styled.section`
   display: flex;
   position: relative;
   .tab {
-    top: 5em;
     width: 100%;
   }
 `;

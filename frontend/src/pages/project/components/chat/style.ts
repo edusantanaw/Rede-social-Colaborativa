@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const ChatContainer = styled.div`
   width: 100%;
-  height: 100%;
   position: relative;
   color: #fff;
   .input {
@@ -25,12 +24,12 @@ export const ChatContainer = styled.div`
     }
   }
   ul {
+    overflow: auto;
     display: flex;
+    position: relative;
     flex-direction: column;
     padding: 1em;
-    max-height: 80vh;
-    overflow: auto;
-
+    height: 80vh;
     li {
       margin-top: 0.8em;
     }
@@ -64,6 +63,7 @@ export const ChatContainer = styled.div`
 
     &::-webkit-scrollbar-button {
       background: rgba(150, 150, 150, 0.1);
+      height: 100%;
     }
 
     &::-webkit-scrollbar-thumb {

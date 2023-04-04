@@ -100,6 +100,7 @@ export const HeaderContainer = styled.header`
 export const InviteContainer = styled.div`
   position: absolute;
   top: 3.3em;
+  width: 11em;
   right: 2em;
   background-color: rgb(10, 10, 10);
   border-radius: 8px;
@@ -119,6 +120,7 @@ export const InviteContainer = styled.div`
     flex-direction: column;
     gap: 0.5em;
     width: 9em;
+    width: 100%;
     max-height: 14em;
     overflow: auto;
   }
@@ -142,7 +144,9 @@ export const InviteContainer = styled.div`
     width: 100%;
     display: flex;
     gap: 0.5em;
-    justify-content: center;
+    button {
+      width: 42%;
+    }
   }
 
   .project {

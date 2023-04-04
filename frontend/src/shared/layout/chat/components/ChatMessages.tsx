@@ -20,15 +20,15 @@ interface props {
 const ChatMessages = ({ following, room }: props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const messageRef = useRef<HTMLInputElement | null>(null);
-  const endRef = useRef<HTMLLIElement | null>(null);
+  const chatRef = useRef<HTMLUListElement | null>(null);
 
   const { reset } = useChat();
 
   const { user } = useAuth();
 
   useEffect(() => {
-    if (messageRef.current && endRef.current) {
-      endRef.current.scrollIntoView({ behavior: "smooth" });
+    if (messageRef.current && chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
       messageRef.current.focus();
     }
   }, [messages]);
@@ -54,7 +54,7 @@ const ChatMessages = ({ following, room }: props) => {
       await sendMessage(newMessage);
       messageRef.current.value = "";
       setMessages((current) => [...current, newMessage]);
-      endRef.current!.scrollIntoView({ behavior: "smooth" });
+      chatRef.current!.scrollIntoView({ behavior: "smooth" });
     }
   }
 
@@ -68,7 +68,7 @@ const ChatMessages = ({ following, room }: props) => {
           </div>
           <IoMdClose onClick={reset} />
         </div>
-        <ul className="messages">
+        <ul className="messages" ref={chatRef}>
           {messages.map((message, i) => (
             <li
               key={i}
@@ -77,7 +77,6 @@ const ChatMessages = ({ following, room }: props) => {
               <p>{message.message}</p>
             </li>
           ))}
-          <li ref={endRef} id="end" />
         </ul>
         <div className="send_message">
           <TextareaAutosize

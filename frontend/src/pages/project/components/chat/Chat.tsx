@@ -14,6 +14,13 @@ const Chat = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const { user } = useAuth();
   const messageRef = useRef<HTMLInputElement | null>(null);
+  const endRef = useRef<HTMLUListElement | null>(null);
+
+  useEffect(() => {
+    if (endRef.current) {
+      endRef.current.scrollTop = endRef.current.scrollHeight
+    }
+  }, [messages]);
 
   useEffect(() => {
     if (messageRef.current) {
@@ -24,7 +31,6 @@ const Chat = () => {
       const response = await loadMessages(id!);
       setMessages(() => response);
     })();
-    
   }, [id]);
 
   useEffect(() => {
@@ -46,7 +52,7 @@ const Chat = () => {
 
   return (
     <ChatContainer>
-      <ul className="messages">
+      <ul className="messages" ref={endRef}>
         {messages.length > 0 ? (
           messages.map((message, i, arr) => {
             if (i > 0 && arr[i].senderId === arr[i - 1].senderId) {
@@ -57,6 +63,7 @@ const Chat = () => {
         ) : (
           <Message w="65%" />
         )}
+        <li />
       </ul>
       <div className="input">
         <input

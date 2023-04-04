@@ -25,7 +25,7 @@ export const ChatContainer = styled.div`
 export const ChatMessageContainer = styled.div`
   height: 26em;
   width: 20em;
-  background-color: rgb(10, 10, 10);
+  background-color: rgb(15, 15, 15);
   position: fixed;
   color: #fff;
   z-index: 4;
@@ -93,11 +93,13 @@ export const ChatMessageContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      background: rgb(0, 0, 0, 0);
+      background: rgb(0, 0, 0);
+      height: 100%;
     }
 
     &::-webkit-scrollbar-button {
       background: rgba(0, 0, 0);
+      height: 100%;
     }
 
     &::-webkit-scrollbar-thumb {
