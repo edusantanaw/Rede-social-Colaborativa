@@ -6,10 +6,11 @@ export const ChatContainer = styled.div`
   position: relative;
   color: #fff;
   .input {
-    position: absolute;
+    position: fixed;
     bottom: 0.5em;
     width: 100%;
     padding: 0.5em;
+    z-index: 2;
     input {
       background-color: rgba(255, 255, 255, 0.1);
       width: 100%;
@@ -27,6 +28,8 @@ export const ChatContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 1em;
+    max-height: 80vh;
+    overflow: auto;
 
     li {
       margin-top: 0.8em;
@@ -39,7 +42,7 @@ export const ChatContainer = styled.div`
     p {
       font-size: 0.95em;
       color: #e5e5e5;
-      font-weight: 300 ; 
+      font-weight: 300;
     }
 
     p + p {
@@ -48,6 +51,24 @@ export const ChatContainer = styled.div`
 
     #same_user {
       margin-left: 3.7em;
+    }
+
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    /* estilo da área onde a barra de rolagem desliza */
+    &::-webkit-scrollbar-track {
+      background: rgba(150, 150, 150, 0.1);
+    }
+
+    &::-webkit-scrollbar-button {
+      background: rgba(150, 150, 150, 0.1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(15, 15, 15);
+      border-radius: 10px;
     }
   }
 

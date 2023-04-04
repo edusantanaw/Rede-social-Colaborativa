@@ -52,3 +52,12 @@ export async function acceptOrDeclineInvite(data: invite) {
   );
   return response.data;
 }
+
+export async function finishTask(id: string) {
+  const response = await Api.patch(
+    `/project/task/finish/${id}`,
+    {},
+    makeOptions()
+  );
+  return response.data;
+}

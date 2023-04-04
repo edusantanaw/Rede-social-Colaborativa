@@ -34,7 +34,7 @@ export const ChatMessageContainer = styled.div`
   flex-direction: column;
   right: 7em;
   bottom: 0;
-  box-shadow: 0 0 1px 1px rgb(30,30,30);
+  box-shadow: 0 0 1px 1px rgb(30, 30, 30);
   .head {
     display: flex;
     align-items: center;
@@ -87,6 +87,22 @@ export const ChatMessageContainer = styled.div`
 
     #end {
       padding-top: 1em;
+    }
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgb(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-button {
+      background: rgba(0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(25, 25, 25);
+      border-radius: 10px;
     }
   }
 

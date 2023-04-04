@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFetching } from "../../../../../shared/hooks/useFetching";
 import { ITask } from "../../../../../shared/types/project";
-import { Card, TodoContainer } from "../styles";
-import ItemSkeleton from "./itemSkeleton";
 import DefaulTask from "./Default";
 
 interface props {

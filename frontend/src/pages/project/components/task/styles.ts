@@ -23,6 +23,7 @@ export const TaskContainer = styled.div`
       filter: brightness(0.9);
     }
   }
+
 `;
 
 export const TodoContainer = styled.div`
@@ -50,7 +51,7 @@ export const Card = styled.li`
   height: 8em;
   padding: 0.6em;
   border-radius: 5px;
-  cursor:pointer;
+  cursor: pointer;
 
   h2 {
     font-weight: 500;

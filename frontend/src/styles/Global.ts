@@ -21,14 +21,29 @@ export const GlobalStyle = createGlobalStyle`
 
     html, body {
         min-height: 100vh;
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgba(150, 150, 150, 0.1);
+        }
+
+        &::-webkit-scrollbar-button {
+            background: rgba(150, 150, 150, 0.1);
+        }
+
+         &::-webkit-scrollbar-thumb {
+             background: rgb(15, 15, 15);
+            border-radius: 10px;
+        }
     }
 `;
 
-
 export const FlexSection = styled.section`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;;
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh; ;
+`;

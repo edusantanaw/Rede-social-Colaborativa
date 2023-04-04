@@ -61,10 +61,16 @@ const DefaulTask = ({ todo = [], done = [], isLoading }: props) => {
         <span>Feito</span>
         <ul>
           {isLoading && Loading()}
-          <Card>
-            <h2>Titulo da tarefa</h2>
-            <p>Descriçao da tarefa</p>
-          </Card>
+          {done &&
+            done.map((item, i) => (
+              <Card key={i} onClick={() => handleTask(item)}>
+                <h2>{item.title}</h2>
+                <div
+                  className="description"
+                  dangerouslySetInnerHTML={{ __html: item.description }}
+                />
+              </Card>
+            ))}
         </ul>
       </div>
     </TodoContainer>
