@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useFetching } from "../../../../../shared/hooks/useFetching";
 import { ITask } from "../../../../../shared/types/project";
 import DefaulTask from "./Default";
+import { useEffect } from "react";
 
 interface props {
   newTask: ITask | null;
@@ -16,7 +17,7 @@ const Geral = ({ newTask }: props) => {
     update: Utodo,
   } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=false`,
-    dependeces: [newTask, id],
+    dependeces: [id],
   });
 
   const { data: done, update } = useFetching<ITask[]>({
@@ -28,6 +29,10 @@ const Geral = ({ newTask }: props) => {
     Utodo(todo);
     update(done);
   }
+  useEffect(() => {
+    const todoData = todo ?? [];
+    if (newTask) Utodo([...todoData, newTask]);
+  }, [newTask]);
 
   return (
     <DefaulTask

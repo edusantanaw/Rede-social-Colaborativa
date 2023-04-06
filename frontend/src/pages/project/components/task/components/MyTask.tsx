@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../../../../shared/hooks/auth";
 import { useFetching } from "../../../../../shared/hooks/useFetching";
 import { ITask } from "../../../../../shared/types/project";
-import { Card, TodoContainer } from "../styles";
-import ItemSkeleton from "./itemSkeleton";
 import DefaulTask from "./Default";
-import { useAuth } from "../../../../../shared/hooks/auth";
+import NewTask from "./NewTask";
+import { useEffect } from "react";
 
 interface props {
   newTask: ITask | null;
@@ -13,23 +13,40 @@ interface props {
 const MyTask = ({ newTask }: props) => {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
+
   const {
     data: todo,
     error,
     isLoading,
+    update: Utodo,
   } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=false&assignedTo=${user?.id}`,
-    dependeces: [newTask, id],
+    dependeces: [id],
   });
 
-  console.log(todo);
-
-  const { data: done } = useFetching<ITask[]>({
+  const { data: done, update } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=true&assignedTo=${user?.id}`,
     dependeces: [id],
   });
 
-  return <DefaulTask done={done} todo={todo} isLoading={isLoading} />;
+  useEffect(() => {
+    const todoData = todo ?? [];
+    if (newTask) Utodo([...todoData, newTask]);
+  }, [newTask]);
+
+  function updatedList(todo: ITask[], done: ITask[]) {
+    Utodo(todo);
+    update(done);
+  }
+
+  return (
+    <DefaulTask
+      handleUpdate={updatedList}
+      done={done}
+      todo={todo}
+      isLoading={isLoading}
+    />
+  );
 };
 
 export default MyTask;

@@ -36,6 +36,7 @@ export function useFetching<T>({ url, dependeces = [] }: props) {
     setData(()=> data);
   }
 
+
   return {
     data,
     error,
