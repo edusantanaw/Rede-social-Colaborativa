@@ -7,15 +7,17 @@ import { finishTask } from "../../../../../../services/project";
 
 interface props {
   task: ITask;
+  handleFinished: (task: ITask) => void;
   handleClose: () => void;
 }
 
-const Task = ({ task, handleClose }: props) => {
+const Task = ({ task, handleClose, handleFinished }: props) => {
   const [error, setError] = useState<string | null>(null);
 
   async function handlefinishTask() {
     try {
       await finishTask(task.id);
+      handleFinished(task)
       handleClose();
     } catch (error) {
       const message = error as AxiosError<string>;

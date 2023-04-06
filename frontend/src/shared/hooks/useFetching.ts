@@ -32,9 +32,14 @@ export function useFetching<T>({ url, dependeces = [] }: props) {
     }
   }
 
+  function update(data: T){
+    setData(()=> data);
+  }
+
   return {
     data,
     error,
     isLoading,
+    update
   };
 }

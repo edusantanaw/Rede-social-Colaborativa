@@ -9,22 +9,34 @@ interface props {
 
 const Geral = ({ newTask }: props) => {
   const { id } = useParams<{ id: string }>();
-
   const {
     data: todo,
     error,
     isLoading,
+    update: Utodo,
   } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=false`,
     dependeces: [newTask, id],
   });
 
-  const { data: done } = useFetching<ITask[]>({
+  const { data: done, update } = useFetching<ITask[]>({
     url: `/project/tasks/${id}?done=true`,
-    dependeces: [id]
+    dependeces: [id],
   });
 
-  return <DefaulTask done={done} todo={todo} isLoading={isLoading} />;
+  function updatedList(todo: ITask[], done: ITask[]) {
+    Utodo(todo);
+    update(done);
+  }
+
+  return (
+    <DefaulTask
+      done={done}
+      todo={todo}
+      handleUpdate={updatedList}
+      isLoading={isLoading}
+    />
+  );
 };
 
 export default Geral;

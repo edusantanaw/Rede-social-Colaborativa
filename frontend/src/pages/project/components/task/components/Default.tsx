@@ -9,9 +9,15 @@ interface props {
   todo: ITask[] | null;
   done: ITask[] | null;
   isLoading: boolean;
+  handleUpdate: (todo: ITask[], done: ITask[]) => void;
 }
 
-const DefaulTask = ({ todo = [], done = [], isLoading }: props) => {
+const DefaulTask = ({
+  todo = [],
+  done = [],
+  isLoading,
+  handleUpdate,
+}: props) => {
   const tasksSkelleton = [1, 2];
   const [currentTask, setCurrentTask] = useState<ITask | null>(null);
   const [showTask, setShowTask] = useState<boolean>(false);
@@ -19,6 +25,13 @@ const DefaulTask = ({ todo = [], done = [], isLoading }: props) => {
   function handleShowTask() {
     setShowTask(() => false);
     setCurrentTask(() => null);
+  }
+
+  function taskFinished(task: ITask) {
+    if (todo === null) return;
+    todo = todo.filter((item) => item.id != task.id);
+    !done ? (done = [task]) : (done = [...done, task]);
+    handleUpdate(todo, done)
   }
 
   function Loading() {
@@ -38,7 +51,11 @@ const DefaulTask = ({ todo = [], done = [], isLoading }: props) => {
     <TodoContainer>
       {currentTask && (
         <Modal handleClose={handleShowTask} open={showTask}>
-          <Task task={currentTask} handleClose={handleShowTask} />
+          <Task
+            task={currentTask}
+            handleClose={handleShowTask}
+            handleFinished={taskFinished}
+          />
         </Modal>
       )}
       <div className="todo">
