@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Skeleton } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../shared/hooks/auth";
 import { useFetching } from "../../shared/hooks/useFetching";
 import { IProject } from "../../shared/types/project";
@@ -7,15 +8,31 @@ import { formatImage } from "../../shared/utils/formatImage";
 import Chat from "./components/chat/Chat";
 import Nav from "./components/nav/Nav";
 import { ProjectContainer, Projects } from "./styles";
-import { Skeleton } from "@mui/material";
-import { Link } from "react-router-dom";
+import Infos from "./components/infos/Infos";
+import { IUser } from "../../shared/types/user";
 
 const Project = () => {
   const { id } = useParams<{ id: string }>();
   const [CurrentItem, setCurrentItem] = useState<JSX.Element>(<Chat />);
-  const [currentProject, setCurrentProject] = useState<number>(0);
 
   const { user } = useAuth();
+
+  const { data: collabs } = useFetching<IUser[]>({
+    url: `/project/collabs/${id}`,
+    dependeces: [id],
+  });
+
+  function verifyUserIsCollab() {
+    const isACollab = collabs?.filter((collab) => collab.id === user?.id);
+    if (isACollab && isACollab.length > 0) return true;
+    return false;
+  }
+
+  useEffect(() => {
+    if (!verifyUserIsCollab()) {
+      setCurrentItem(() => <Infos />);
+    }
+  }, []);
 
   const { data, error, isLoading } = useFetching<IProject[]>({
     url: `/project/user/${user?.id}`,
@@ -41,7 +58,7 @@ const Project = () => {
         ) : (
           data &&
           data.map((project, i) => (
-            <li key={i} className={project.id === id ?  "current" : ""}>
+            <li key={i} className={project.id === id ? "current" : ""}>
               <Link to={`/project/${project.id}`}>
                 <img
                   src={formatImage(project.perfilImage)}

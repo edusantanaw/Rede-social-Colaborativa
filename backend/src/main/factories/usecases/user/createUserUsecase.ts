@@ -1,4 +1,4 @@
-import { CreateUserUsecase } from "../../../../data/usecases/project/createUser";
+import { CreateUserUsecase } from "../../../../data/usecases/user/createUser";
 import { UserRepository } from "../../../../infra/repositories/userRepository";
 import { Encrypter } from "../../../../utils/encrypter";
 import { JwtToken } from "../../../../utils/generateToken";

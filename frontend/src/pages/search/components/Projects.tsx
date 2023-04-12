@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useFetching } from "../../../shared/hooks/useFetching";
 import { formatImage } from "../../../shared/utils/formatImage";
 import { UserContainer } from "./style";
@@ -17,19 +18,19 @@ const Projects = ({ name }: props) => {
     url: `/project/search/${name}`,
     dependeces: [name],
   });
-  console.log(error);
 
-  console.log(data);
   return (
     <ul>
       {data &&
         data.map((item) => (
-          <UserContainer>
-            <div className="item">
-              <img src={formatImage(item.perfilImage)} alt="" />
-              <span>{item.name}</span>
-            </div>
-          </UserContainer>
+          <Link to={`/project/${item.id}`}>
+            <UserContainer>
+              <div className="item">
+                <img src={formatImage(item.perfilImage)} alt="" />
+                <span>{item.name}</span>
+              </div>
+            </UserContainer>
+          </Link>
         ))}
     </ul>
   );

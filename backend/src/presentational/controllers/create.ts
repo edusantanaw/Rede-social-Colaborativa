@@ -15,6 +15,7 @@ export class CreateController<T, R> implements Controller {
       const data = await this.createUsecase.execute(schema);
       return created(data);
     } catch (err) {
+      console.log(err);
       return error(err as Error);
     }
   }

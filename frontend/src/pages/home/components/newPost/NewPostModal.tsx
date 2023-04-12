@@ -25,9 +25,14 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
   }
 
   async function handleCreatePost() {
-    if (!content) return;
-    await handleCreate(image, content);
-    resetComponent();
+    try {
+      if (!content) return;
+      await handleCreate(image, content);
+      handleModal();
+      resetComponent();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function getContent(data: string) {

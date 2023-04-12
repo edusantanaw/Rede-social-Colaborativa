@@ -21,7 +21,9 @@ export class CreateUserUsecase implements ICreateUsecase<IUserSchema, executeRes
     ));
     if (emailAlreadyUsed) throw new Error("Email is already being used!");
     const hashedPassord = await this.encrypter.genHash(data.password);
-    const user = new User(data.name, data.email, hashedPassord);
+    console.log(data);
+    const user = new User(data);
+    user.setPassword(hashedPassord);
     await this.userRepository.save(user);
     const token = await this.generateToken.generate(user.getUser());
     return { token, user: user.getUser() };

@@ -2,7 +2,6 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Modal from "../../../../components/modal/Modal";
-import { ModalContainer } from "../../../../components/modal/style";
 import { useFetching } from "../../../../shared/hooks/useFetching";
 import { IUser } from "../../../../shared/types/user";
 import { formatImage } from "../../../../shared/utils/formatImage";
@@ -21,6 +20,7 @@ const Collabs = () => {
   function handleShowInvite() {
     setShowInvite((show) => (show ? false : true));
   }
+  
 
   return (
     <CollabContainer>
