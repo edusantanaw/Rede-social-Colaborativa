@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BsCardImage } from "react-icons/bs";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Editor from "../../../../components/editor/Editor";
-import { baseUrl } from "../../../../constants/baseUrl";
-import { useAuth } from "../../../../shared/hooks/auth";
-import imageDefault from "../../../assets/default.jpg";
-import { formatImage } from "../../../../shared/utils/formatImage";
 import Modal from "../../../../components/modal/Modal";
+import { useAuth } from "../../../../shared/hooks/auth";
+import { usePrevImage } from "../../../../shared/hooks/usePrevImage";
+import { formatImage } from "../../../../shared/utils/formatImage";
 import { NewProjectContent } from "./styles";
 
 interface props {
@@ -15,24 +14,14 @@ interface props {
 }
 
 const NewPostModal = ({ handleCreate, handleModal }: props) => {
-  const [image, setImage] = useState<File | null>(null);
-  const [prevImage, setPrevImage] = useState<string | undefined>();
   const [content, setContent] = useState<string | null>(null);
 
   const { user } = useAuth();
+  const { handleImageChange, image, prevImage, clearImage } = usePrevImage();
 
-  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const files = e.target.files;
-    const reader = new FileReader();
-    if (files) {
-      for (let item of files) {
-        setImage(item);
-        reader.readAsDataURL(item);
-        reader.onloadend = () => {
-          setPrevImage(reader.result?.toString());
-        };
-      }
-    }
+  function resetComponent() {
+    clearImage();
+    setContent(null);
   }
 
   async function handleCreatePost() {
@@ -41,25 +30,11 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
     resetComponent();
   }
 
-  function resetComponent() {
-    setImage(null);
-    setPrevImage(undefined);
-    setContent(null);
-  }
-
-  function clearImage() {
-    setImage(null);
-    setPrevImage(undefined);
-  }
-
   function getContent(data: string) {
     setContent(data);
   }
   return (
-    <Modal
-      open={true}
-      handleClose={handleModal}
-    >
+    <Modal open={true} handleClose={handleModal}>
       <NewProjectContent>
         <div className="user">
           <img src={formatImage(user?.perfilPhoto)} alt="user_photo" />

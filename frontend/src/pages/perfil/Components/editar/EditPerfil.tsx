@@ -10,6 +10,7 @@ import { Api } from "../../../../shared/utils/api";
 import { useAuth } from "../../../../shared/hooks/auth";
 import { makeOptions } from "../../../../shared/utils/makeOptions";
 import { userKey } from "../../../../constants/keys";
+import { usePrevImage } from "../../../../shared/hooks/usePrevImage";
 
 interface props {
   currentInfos: IUser;
@@ -23,25 +24,11 @@ const darkTheme = createTheme({
 });
 
 const EditPerfil = ({ currentInfos, handleCreate }: props) => {
-  const [image, setImage] = useState<File | null>(null);
-  const [prevImage, setPrevImage] = useState<string | undefined>();
   const { user } = useAuth();
 
   const bioRef = useRef<HTMLInputElement | null>(null);
 
-  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const files = e.target.files;
-    const reader = new FileReader();
-    if (files) {
-      for (let item of files) {
-        setImage(item);
-        reader.readAsDataURL(item);
-        reader.onloadend = () => {
-          setPrevImage(reader.result?.toString());
-        };
-      }
-    }
-  }
+  const { handleImageChange, image, prevImage } = usePrevImage();
 
   const handleSubmit = async (values: { email: string; name: string }) => {
     console.log("ola");

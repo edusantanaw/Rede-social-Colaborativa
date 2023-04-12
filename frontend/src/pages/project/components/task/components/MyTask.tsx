@@ -1,10 +1,9 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../../../../shared/hooks/auth";
 import { useFetching } from "../../../../../shared/hooks/useFetching";
 import { ITask } from "../../../../../shared/types/project";
 import DefaulTask from "./Default";
-import NewTask from "./NewTask";
-import { useEffect } from "react";
 
 interface props {
   newTask: ITask | null;
