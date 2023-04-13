@@ -22,13 +22,17 @@ const Home = () => {
     content && formData.append("content", content);
     user && formData.append("userId", user.id);
     const newPost = await creaetPost(formData);
-    if (newPost && user) {
-      newPost.name = user.name;
-      newPost.userId = user.id;
-      newPost.perfilPhoto = user.perfilPhoto;
-    }
-    setNewPost(newPost);
+    newPost && addNewPost(newPost);
   };
+
+  function addNewPost(newPost: IPost) {
+    if (!user) return;
+    newPost.name = user.name;
+    newPost.userId = user.id;
+    newPost.perfilPhoto = user.perfilPhoto;
+
+    setNewPost(newPost);
+  }
 
   function handleShowModal() {
     setShowModal((show) => (show ? false : true));
@@ -36,7 +40,12 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      { showModal && <NewPostModal handleCreate={handleCreatePost} handleModal = {handleShowModal} />}
+      {showModal && (
+        <NewPostModal
+          handleCreate={handleCreatePost}
+          handleModal={handleShowModal}
+        />
+      )}
       <Projects />
       <div className="main">
         <NewPost handleShowModal={handleShowModal} />

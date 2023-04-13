@@ -1,11 +1,10 @@
-import React, { useRef, useEffect } from "react";
-import Post from "../../../../components/post/Post";
-import { useInfiniteScroll } from "../../../../shared/hooks/useInfiniteScroll";
-import { loadFeed } from "../../../../services/post";
 import { Skeleton } from "@mui/material";
-import { FeedContainer } from "./styles";
-import Austronaut from "../../../../components/animations/Austronaut";
+import { useEffect, useRef } from "react";
 import NoContent from "../../../../components/animations/NoContent";
+import Post from "../../../../components/post/Post";
+import { loadFeed } from "../../../../services/post";
+import { useInfiniteScroll } from "../../../../shared/hooks/useInfiniteScroll";
+import { FeedContainer } from "./styles";
 
 interface props {
   newPost: any;

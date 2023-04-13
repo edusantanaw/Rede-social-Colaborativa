@@ -26,7 +26,7 @@ const Projects = ({ name }: props) => {
           <Link to={`/project/${item.id}`}>
             <UserContainer>
               <div className="item">
-                <img src={formatImage(item.perfilImage)} alt="" />
+                <img src={formatImage(item.perfilImage)} alt="project_img" />
                 <span>{item.name}</span>
               </div>
             </UserContainer>
