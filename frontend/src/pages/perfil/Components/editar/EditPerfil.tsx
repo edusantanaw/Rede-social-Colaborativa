@@ -31,7 +31,6 @@ const EditPerfil = ({ currentInfos, handleCreate }: props) => {
   const { handleImageChange, image, prevImage } = usePrevImage();
 
   const handleSubmit = async (values: { email: string; name: string }) => {
-    console.log("ola");
     const bio = bioRef.current!.value;
     const formData = new FormData();
     image && formData.append("image", image);

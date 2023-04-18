@@ -24,7 +24,7 @@ const Projects = () => {
 
   function handleProjectModal() {
     setNewProjectModal((show) => (show ? false : true));
-  } 
+  }
   return (
     <>
       {newProjectModal && (
@@ -35,7 +35,7 @@ const Projects = () => {
           <span>Projetos</span>
         </div>
         <ul>
-          <li onClick={handleProjectModal}>
+          <li onClick={handleProjectModal} id="create">
             <div className="icon">
               <MdCreate color="#fff" />
             </div>

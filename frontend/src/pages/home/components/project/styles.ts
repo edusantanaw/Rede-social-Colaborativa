@@ -9,9 +9,13 @@ export const ProjectContainer = styled.div`
   border-radius: 10px;
   text-align: center;
   top: 5.5em;
+  #create {
+    cursor: pointer;
+  }
   .top {
     padding: 0.5em;
     span {
+      cursor: pointer;
       font-size: 1.3em;
     }
   }
@@ -61,16 +65,21 @@ export const NewProject = styled.div`
   background-color: rgb(15, 15, 15);
   color: #fff;
   z-index: 5;
+  padding: 0.5em;
   border-radius: 8px;
   box-shadow: 0 0 1px 1px rgb(30, 30, 30);
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
   #editor {
+    width: 100%;
     .ql-editor::before {
-      color: white;
+      color: #c2c2c2;
       height: 10em;
     }
     #editor_cp {
-      border: 1px solid #fff;
+      border: 1px solid #626262;
       height: 13em;
       svg {
         display: none;
@@ -82,30 +91,6 @@ export const NewProject = styled.div`
 
     input {
       display: none;
-    }
-  }
-
-  #input {
-    padding: 1em;
-    width: 100%;
-    label {
-      display: block;
-      font-size: 1.1em;
-      padding-bottom: 0.5em;
-    }
-
-    input {
-      background-color: transparent;
-      width: 100%;
-      color: #fff;
-      height: 3em;
-      padding: 1em;
-      border: none;
-      border-bottom: 1px solid #fff;
-
-      &:focus {
-        outline: none;
-      }
     }
   }
   .create {

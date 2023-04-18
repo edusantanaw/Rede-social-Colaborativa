@@ -13,7 +13,7 @@ interface props {
 
 const Austronaut = ({ w }: props) => {
   return (
-    <Lottie id="robot" {...defaultConfig} style={{ width: w ?? "15em" }}  />
+    <Lottie id="robot" {...defaultConfig}  style={{ width: w ?? "15em" }}  />
   );
 };
 
