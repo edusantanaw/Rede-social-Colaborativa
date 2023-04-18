@@ -3,17 +3,7 @@ import { useFetching } from "../../../../shared/hooks/useFetching";
 import { useParams } from "react-router-dom";
 import { InfosContainer } from "./styles";
 import { formatImage } from "../../../../shared/utils/formatImage";
-
-type Project = {
-  perfilPhoto: string;
-  perfilImage: string;
-  qtdCollabs: number;
-  projectId: string;
-  name: string;
-  ownerName: string;
-  createdAt: string;
-  description: string;
-};
+import { Project } from "../../../../shared/types/project";
 
 const Infos = () => {
   const { id } = useParams<{ id: string }>();

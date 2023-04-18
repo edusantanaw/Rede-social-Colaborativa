@@ -2,16 +2,29 @@ import AddIcon from "@mui/icons-material/Add";
 import { Box, Tab, Tabs } from "@mui/material";
 import React, { useState } from "react";
 import Modal from "../../../../components/modal/Modal";
-import { ITask } from "../../../../shared/types/project";
+import { ITask, Project } from "../../../../shared/types/project";
 import NewTask from "./components/NewTask";
 import Geral from "./components/Geral";
 import { TaskContainer } from "./styles";
 import MyTask from "./components/MyTask";
+import { useAuth } from "../../../../shared/hooks/auth";
+import { useParams } from "react-router-dom";
+import { useFetching } from "../../../../shared/hooks/useFetching";
 
 const Task = () => {
   const [value, setValue] = useState<string>("Geral");
   const [newTaskModal, setNewTaskModal] = useState<boolean>(false);
   const [task, setTask] = useState<ITask | null>(null);
+  const { user } = useAuth();
+
+  const { id } = useParams<{ id: string }>();
+
+  const { data, error } = useFetching<Project>({
+    url: `/project/${id}`,
+    dependeces: [id],
+  });
+
+  console.log(data);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -44,9 +57,11 @@ const Task = () => {
         </Tabs>
       </Box>
       {value === "Geral" ? <Geral newTask={task} /> : <MyTask newTask={task} />}
-      <div className="new" onClick={handleNewTaskModal}>
-        <AddIcon />
-      </div>
+      {user?.id === data?.userId && (
+        <div className="new" onClick={handleNewTaskModal}>
+          <AddIcon />
+        </div>
+      )}
     </TaskContainer>
   );
 };
