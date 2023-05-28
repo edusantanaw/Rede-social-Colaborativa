@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ChatContainer = styled.div`
-  background-color: rgb(15, 15, 15);
+   background-color: rgb(20, 20, 20);
   position: fixed;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@ export const ChatContainer = styled.div`
 export const ChatMessageContainer = styled.div`
   height: 26em;
   width: 20em;
-  background-color: rgb(15, 15, 15);
+  background-color: rgb(20, 20, 20);
   position: fixed;
   color: #fff;
   z-index: 4;

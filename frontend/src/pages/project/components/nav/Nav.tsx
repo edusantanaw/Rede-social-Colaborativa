@@ -25,7 +25,7 @@ type IProject = {
 
 const Nav = ({ id, handleTab }: props) => {
   const { user } = useAuth();
-  const [selected, setSelected] = useState<string>("chat");
+  const [selected, setSelected] = useState<string>("info");
   const { data, error } = useFetching<IProject>({
     url: `/project/${id}`,
     dependeces: [id],

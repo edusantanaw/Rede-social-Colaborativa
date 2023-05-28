@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
     }
     body {
-        background-color: rgb(25, 25, 25);
+        background-color: rgb(26, 26, 26);
     }
 
     html, body {

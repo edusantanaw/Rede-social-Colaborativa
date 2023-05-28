@@ -1,9 +1,8 @@
+import { TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { IUser } from "../../../types/user";
 import { formatImage } from "../../../utils/formatImage";
 import { ContactsContainer } from "./styles";
-import { TextField } from "@mui/material";
-import { createTheme, ThemeProvider, Typography } from "@mui/material";
 
 interface props {
   following: IUser[];
@@ -25,25 +24,18 @@ const Following = ({ following, handleShowMessage, handleClose }: props) => {
     setTarget(target);
   }
 
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
 
   return (
     <ContactsContainer>
       <div className="search">
-        <ThemeProvider theme={darkTheme}>
-          <TextField
-            color="secondary"
-            variant="standard"
-            sx={{ color: "#fff", outlineColor: "#fff " }}
-            label="Pesquisar"
-            fullWidth
-            onChange={searchContacts}
-          />
-        </ThemeProvider>
+        <TextField
+          color="secondary"
+          variant="standard"
+          sx={{ color: "#fff", outlineColor: "#fff " }}
+          label="Pesquisar"
+          fullWidth
+          onChange={searchContacts}
+        />
       </div>
       <ul className="following">
         {!target ? (

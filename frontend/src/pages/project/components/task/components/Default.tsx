@@ -62,7 +62,7 @@ const DefaulTask = ({
         <span>A fazer</span>
         <ul>
           {isLoading && Loading()}
-          {todo &&
+          {todo ?
             todo.map((item, i) => (
               <Card key={i} onClick={() => handleTask(item)}>
                 <h2>{item.title}</h2>
@@ -71,14 +71,14 @@ const DefaulTask = ({
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 />
               </Card>
-            ))}
+            )) : <span className="message">Nenhuma tarefa a fazer</span>}
         </ul>
       </div>
       <div className="done">
         <span>Feito</span>
         <ul>
           {isLoading && Loading()}
-          {done &&
+          {done ?
             done.map((item, i) => (
               <Card key={i} onClick={() => handleTask(item)}>
                 <h2>{item.title}</h2>
@@ -87,7 +87,7 @@ const DefaulTask = ({
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 />
               </Card>
-            ))}
+            )) : <span className="message">Nenhuma tarefa concluida</span>}
         </ul>
       </div>
     </TodoContainer>

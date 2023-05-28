@@ -24,8 +24,6 @@ const Task = () => {
     dependeces: [id],
   });
 
-  console.log(data);
-
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavContainer = styled.div`
   width: 14%;
-  max-height:90vh;
+  max-height: 90vh;
   background-color: rgb(15, 15, 15);
   position: sticky;
   top: 4.1em;
@@ -51,11 +51,11 @@ export const NavContainer = styled.div`
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
     span {
-      color: #9c27b0;
+      color: #d84f53;
     }
 
     svg {
-      color: #9c27b0 !important;
+      color: #d84f53 !important;
     }
   }
 `;

@@ -44,34 +44,32 @@ const Project = () => {
   }
 
   return (
-    <ProjectContainer>
-      <Projects>
-        {isLoading ? (
-          <li>
-            <Skeleton
-              variant="circular"
-              width="3em"
-              height="3em"
-              sx={{ background: "rgba(255, 255, 255, 0.2)" }}
-            />
-          </li>
-        ) : (
-          data &&
-          data.map((project, i) => (
-            <li key={i} className={project.id === id ? "current" : ""}>
-              <Link to={`/project/${project.id}`}>
-                <img
-                  src={formatImage(project.perfilImage)}
-                  alt="project_image"
-                />
-              </Link>
-            </li>
-          ))
-        )}
-      </Projects>
-      <Nav id={id!} handleTab={handleTab} />
-      <div className="tab">{CurrentItem}</div>
-    </ProjectContainer>
+    <>
+      {isLoading ? <Skeleton
+        variant="rectangular"
+        width="100%"
+        height="100%"
+        sx={{ background: "rgba(255, 255, 255, 0.2)" }}
+      /> :
+        <ProjectContainer>
+          <Projects>
+            {data &&
+              data.map((project, i) => (
+                <li key={i} className={project.id === id ? "current" : ""}>
+                  <Link to={`/project/${project.id}`}>
+                    <img
+                      src={formatImage(project.perfilImage)}
+                      alt="project_image"
+                    />
+                  </Link>
+                </li>
+              )
+              )}
+          </Projects>
+          <Nav id={id!} handleTab={handleTab} />
+          <div className="tab">{CurrentItem}</div>
+        </ProjectContainer >}
+    </>
   );
 };
 

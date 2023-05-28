@@ -6,7 +6,7 @@ export const TaskContainer = styled.div`
   color: #fff;
   position: relative;
   .new {
-    background-color: #9c27b0;
+    background-color: #d84f53;
     position: fixed;
     bottom: 2em;
     right: 2em;
@@ -23,7 +23,6 @@ export const TaskContainer = styled.div`
       filter: brightness(0.9);
     }
   }
-
 `;
 
 export const TodoContainer = styled.div`
@@ -31,17 +30,27 @@ export const TodoContainer = styled.div`
   display: flex;
   gap: 2em;
 
-  span {
-    font-size: 1.5em;
-    margin-bottom: 1em;
-    color: #9c27b0;
-  }
-
   ul {
     margin-top: 1em;
     display: flex;
     flex-direction: column;
     gap: 1em;
+  }
+
+  .todo,
+  .done {
+    width: 17em;
+    span {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      color: #d84f53;
+    }
+
+    .message {
+      color: #d3d3d3;
+      font-size: 0.9em;
+      font-weight: 300;
+    }
   }
 `;
 

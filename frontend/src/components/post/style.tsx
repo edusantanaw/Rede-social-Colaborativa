@@ -4,7 +4,7 @@ export const PostItem = styled.li`
   all: unset;
   width: 35em;
   padding: 1em;
-  background-color: rgb(15, 15, 15);
+  background-color: rgb(20, 20, 20);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -57,6 +57,7 @@ export const PostItem = styled.li`
       align-items: center;
       svg {
         font-size: 1.5em;
+        transition: 0.2s;
       }
       cursor: pointer;
     }

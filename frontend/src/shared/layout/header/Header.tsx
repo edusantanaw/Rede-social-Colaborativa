@@ -8,6 +8,8 @@ import { useAuth } from "../../hooks/auth";
 import Invites from "./components/Invites";
 import Messages from "./components/Messages";
 import { HeaderContainer } from "./styles";
+import Logo from "../../assets/logo.png";
+import { TextField } from "@mui/material";
 
 const Header = () => {
   const [showPerfil, setShowPerfil] = useState<boolean>(false);
@@ -46,21 +48,25 @@ const Header = () => {
 
   function handleShowInvites() {
     setShowPerfil(() => false);
-    setShowMessages(() =>  false);
+    setShowMessages(() => false);
     setShowInvite((show) => (show ? false : true));
   }
 
   return (
     <HeaderContainer>
       <div className="part">
-        <h2>Social</h2>
+        <img src={Logo} alt="logo_tipo" />
+        <h2>Collab Projects</h2>
       </div>
-      <div className="part">
-        <input
-          type="search"
-          placeholder="Pesquisar..."
-          ref={searchRef}
+      <div className="search">
+        <TextField
+          label="Pesquisar"
+          variant="filled"
+          size="small"
+          fullWidth
+          inputRef={searchRef}
           onChange={handleSearch}
+          color="secondary"
         />
       </div>
       <div className="part">

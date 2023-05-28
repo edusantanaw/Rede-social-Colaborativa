@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const ProjectContainer = styled.div`
-  background-color: rgb(15, 15, 15);
-  width: 25%;
+  padding: 0.8em 1em;
+  background-color: rgb(20, 20, 20);
+  width: 28%;
   height: 30em;
   position: sticky;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
   top: 5.5em;
   #create {
@@ -21,11 +22,11 @@ export const ProjectContainer = styled.div`
   }
 
   ul {
-    padding: 1em;
+    margin-top: 0.5em;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.5em;
     li,
     a {
       display: flex;
@@ -37,6 +38,13 @@ export const ProjectContainer = styled.div`
       }
     }
 
+    li {
+      background-color: rgb(17, 17, 17);
+      padding: 0.5em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
     .project {
       img {
         width: 2.2em;
@@ -46,7 +54,7 @@ export const ProjectContainer = styled.div`
     }
 
     .icon {
-      background-color: #000;
+      background-color: rgb(10, 10, 10);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -58,11 +66,15 @@ export const ProjectContainer = styled.div`
       }
     }
   }
+
+  .create {
+    background-color: rgb(13, 13, 13);
+  }
 `;
 
 export const NewProject = styled.div`
   width: 30em;
-  background-color: rgb(15, 15, 15);
+  background-color: rgb(20, 20, 20);
   color: #fff;
   z-index: 5;
   padding: 0.5em;

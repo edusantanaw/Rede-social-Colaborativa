@@ -3,18 +3,24 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   width: 100%;
   height: 10vh;
-  padding: 0.7em 2em;
+  padding: 0.7em 3.5em;
   display: flex;
-  background-color: rgb(15, 15, 15);
+  background-color: rgba(22, 22, 22);
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 2;
-  box-shadow: 0px 0px 2px 0px #353535;
+  box-shadow: 0px 0px 1px 0px #434343;
   .part {
     width: 33.3%;
     display: flex;
+    align-items: center;
+
+    img {
+      cursor: pointer;
+      width: 3.8em;
+    }
   }
   #home,
   li {
@@ -73,27 +79,14 @@ export const HeaderContainer = styled.header`
   }
 
   h2 {
-    color: #fff;
+    color: #ea5e6e;
     font-weight: 500;
-    text-transform: uppercase;
-    font-size: 1.4em;
+    font-size: 1em;
+    cursor: pointer;
   }
-  input {
-    padding: 1em 2em;
-    width: 100%;
-    height: 3em;
-    border-radius: 3px;
-    background: #353535;
-    border: none;
-    color: #fff;
-    &::placeholder {
-      color: #c3c3c3;
-      font-weight: 300;
-    }
 
-    &:focus {
-      outline: none;
-    }
+  .search {
+    width: 33em;
   }
 `;
 

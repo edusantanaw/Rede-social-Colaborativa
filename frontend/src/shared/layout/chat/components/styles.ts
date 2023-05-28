@@ -4,7 +4,7 @@ export const ContactsContainer = styled.div`
   position: fixed;
   right: 0;
   top: 13%;
-  background-color: rgb(15, 15, 15);
+  background-color: rgb(20, 20, 20);;
   color: #fff;
   display: flex;
   flex-direction: column;

@@ -35,13 +35,13 @@ const Feed = ({ newPost }: props) => {
               variant="rectangular"
               width="37em"
               height="10em"
-              sx={{ borderRadius: "8px", background: "rgb(10, 10, 10)" }}
+              sx={{ borderRadius: "8px", background: "rgb(20, 20, 20)" }}
             />
           ))}
         </ul>
       ) : list && list.length !== 0 ? (
         <ul>
-          {list.length > 0 && list.map((item, i) => <Post key={i} {...item} />)}
+          {list.length > 0 && list.map((item, i) => <Post key={item.id} {...item} />)}
         </ul>
       ) : (
         <NoContent />

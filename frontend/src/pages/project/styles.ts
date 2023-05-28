@@ -11,7 +11,7 @@ export const ProjectContainer = styled.section`
 `;
 
 export const Projects = styled.ul`
-  padding: 1em 0.3em;
+  padding: 1em 0.7em;
   background-color: rgb(10, 10, 10);
   height: 90vh;
   position: sticky;

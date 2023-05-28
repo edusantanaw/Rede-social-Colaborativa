@@ -32,10 +32,10 @@ const Projects = () => {
       )}
       <ProjectContainer>
         <div className="top">
-          <span>Projetos</span>
+          <span>Seus projetos</span>
         </div>
         <ul>
-          <li onClick={handleProjectModal} id="create">
+          <li onClick={handleProjectModal} className="create">
             <div className="icon">
               <MdCreate color="#fff" />
             </div>

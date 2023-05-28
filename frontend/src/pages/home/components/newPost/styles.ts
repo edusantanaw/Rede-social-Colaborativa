@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NewPostContainer = styled.div`
   width: 37em;
-  background-color: rgb(15, 15, 15);
+  background-color: rgb(20, 20, 20);
   padding: 1em;
   color: #fff;
   border-radius: 10px;
@@ -122,7 +122,7 @@ export const NewProjectContent = styled.div`
     display: flex;
     justify-content: center;
     position: relative;
-    width: 100%;
+    height: 16em;
     z-index: 2;
     padding-bottom: 4em;
     img {
