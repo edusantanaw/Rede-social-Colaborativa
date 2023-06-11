@@ -90,7 +90,7 @@ export const MessageContainer = styled.li`
   }
   span {
     font-size: 1.1em;
-    color: rgb(156, 39, 176);
+    color: #d84f53;
     letter-spacing: 1.5px;
   }
 `;

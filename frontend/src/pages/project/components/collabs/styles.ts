@@ -34,7 +34,7 @@ export const CollabContainer = styled.div`
   }
 
   .add {
-    background-color: #9c27b0;
+    background-color: #d84f53;
     position: fixed;
     display: flex;
     align-items: center;
@@ -67,38 +67,38 @@ export const Contacts = styled.div`
   border-radius: 20px;
   ul {
     li {
-        all: unset;
-        list-style: none;
+      all: unset;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.5em;
+      img {
+        width: 2.5em;
+        height: 2.5em;
+      }
+
+      span {
+        max-width: 8em;
+      }
+
+      button {
+        width: 9em;
+        height: 2.5em;
+        border: 0;
+        border-radius: 4px;
+        background-color: #d84f53;
+        color: #fff;
+        cursor: pointer;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        width: 100%;
+        justify-content: center;
         gap: 0.5em;
-        img {
-            width: 2.5em;
-            height: 2.5em;
+        svg {
+          font-size: 0.9em;
         }
-
-        span{
-            max-width: 8em;
-        }
-
-        button {
-            width: 9em;
-            height: 2.5em;
-            border: 0;
-            border-radius: 4px;
-            background-color: #9c27b0;
-            color: #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5em;
-            svg{
-                font-size: 0.9em;
-            }
-        }
+      }
     }
   }
 
@@ -107,5 +107,4 @@ export const Contacts = styled.div`
     align-items: center;
     gap: 0.5em;
   }
-
 `;

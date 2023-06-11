@@ -66,7 +66,7 @@ const EditPerfil = ({ currentInfos, handleCreate }: props) => {
         />
         <div className="file">
           <label htmlFor="image">
-            <ImageIcon /> Image
+            <ImageIcon /> Imagem
           </label>
           <input type="file" id="image" onChange={handleImageChange} />
         </div>

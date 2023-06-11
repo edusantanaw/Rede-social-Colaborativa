@@ -77,7 +77,7 @@ export const ChatMessageContainer = styled.div`
     }
     .user {
       align-self: flex-end;
-      background-color: blueviolet;
+      background-color: #d84f53;
     }
 
     .contact {

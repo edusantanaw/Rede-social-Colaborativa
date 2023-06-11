@@ -16,7 +16,7 @@ export const InfosPerfil = styled.div`
   }
 
   h3 {
-    color: #9c27b0;
+    color: #d84f53;
     font-size: 1.6em;
   }
 
@@ -29,7 +29,7 @@ export const InfosPerfil = styled.div`
     height: 2.8em;
     border: none;
     color: #fff;
-    background-color: #9c27b0;
+    background-color: #d84f53;
     border-radius: 3px;
     cursor: pointer;
   }

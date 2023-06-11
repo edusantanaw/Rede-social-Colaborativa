@@ -21,11 +21,6 @@ interface props {
   handleNewTask: (data: any) => void;
 }
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
 
 const NewTask = ({ handleNewTask }: props) => {
   const [description, setDescription] = useState<string>("");
@@ -66,7 +61,6 @@ const NewTask = ({ handleNewTask }: props) => {
 
   return (
     <NewTaskModal onSubmit={handleCreateTask}>
-      <ThemeProvider theme={darkTheme}>
         <InputLabel id="title">Titulo</InputLabel>
         <TextField
           label="Titulo"
@@ -99,7 +93,6 @@ const NewTask = ({ handleNewTask }: props) => {
         )}
 
         <input type="submit" />
-      </ThemeProvider>
     </NewTaskModal>
   );
 };

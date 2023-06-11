@@ -59,7 +59,7 @@ export const HeaderContainer = styled.header`
       right: -0.5em;
       display: flex;
       flex-direction: column;
-      background-color: rgb(10, 10, 10);
+      background-color: rgb(20, 20, 20);
       padding: 0.6em;
       border-radius: 5px;
       gap: 0.4em;
@@ -95,7 +95,7 @@ export const InviteContainer = styled.div`
   top: 3.3em;
   width: 11em;
   right: 2em;
-  background-color: rgb(10, 10, 10);
+    background-color: rgb(20, 20, 20);
   border-radius: 8px;
   display: flex;
   flex-direction: column;

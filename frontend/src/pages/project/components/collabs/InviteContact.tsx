@@ -7,6 +7,7 @@ import { IUser } from "../../../../shared/types/user";
 import { formatImage } from "../../../../shared/utils/formatImage";
 import { Contacts } from "./styles";
 import CheckIcon from '@mui/icons-material/Check';
+import { Typography } from "@mui/material";
 
 interface props {
   contacts: IUser[];
@@ -32,17 +33,20 @@ const InviteContact = ({ contacts }: props) => {
     try {
       await inviteCollab(id!, userId);
       setinvited((current) => [...current, userId]);
-    } catch (error) {}
+    } catch (error) { }
   }
 
-  function verifyInvited(id:string){
+  function verifyInvited(id: string) {
     const invited = inviteds.includes(id)
-    if(invited) return true;
-    return false; 
+    if (invited) return true;
+    return false;
   }
 
   return (
     <Contacts>
+      <Typography color="#d84f53" fontSize="1.4em" padding="0.2em" alignItems="center" width="100%" textAlign={"center"}>
+        Seus contatos
+      </Typography>
       <ul>
         {data &&
           data.map((item, i) => (
@@ -51,11 +55,11 @@ const InviteContact = ({ contacts }: props) => {
                 <img src={formatImage(item.perfilPhoto)} alt="user_photo" />
                 <span>{item.name}</span>
               </div>
-              {showInviteButton(item.id) && !verifyInvited(item.id) ? 
+              {showInviteButton(item.id) && !verifyInvited(item.id) ?
                 <button onClick={() => handleInvite(item.id)}>Convidar</button>
                 :
                 <button>Convidado <CheckIcon /> </button>
-            }
+              }
             </li>
           ))}
       </ul>

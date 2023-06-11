@@ -5,7 +5,7 @@ export const MessagesContainer = styled.div`
   top: 3.3em;
   width: 15em;
   right: 1.5em;
-  background-color: rgb(10, 10, 10);
+  background-color: rgb(20, 20, 20);
   border-radius: 5px;
   color: #fff;
   h3 {
@@ -40,12 +40,6 @@ export const MessagesContainer = styled.div`
     width: 12em;
     cursor: pointer;
     overflow: hidden;
-    img {
-      width: 2.5em;
-      height: 2.5em;
-      object-fit: cover;
-      border-radius: 50%;
-    }
     span {
       font-size: 0.85em;
     }
@@ -57,5 +51,9 @@ export const MessagesContainer = styled.div`
     }
   }
 
-  
+  img {
+    width: 2.5em !important;
+    height: 2.5em !important;
+    border-radius: 50%;
+  }
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const UppdateContainer = styled.form`
   background-color: rgb(15, 15, 15);
   width: 25em;
-  height: 30em;
+  height: 28em;
   z-index: 5;
   padding: 1em;
   display: flex;
@@ -38,7 +38,7 @@ export const UppdateContainer = styled.form`
   }
 
   input[type="submit"] {
-    background-color: #7b1fa2;
+    background-color: #d84f53;
     height: 2.8em;
     width: 100%;
     color: #fff;

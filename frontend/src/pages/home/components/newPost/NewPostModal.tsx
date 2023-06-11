@@ -29,7 +29,7 @@ const NewPostModal = ({ handleCreate, handleModal }: props) => {
       if (!content && !image) return;
       await handleCreate(image, content);
       handleModal();
-      resetComponent();
+      resetComponent(); 
     } catch (error) {
       console.log(error);
     }
